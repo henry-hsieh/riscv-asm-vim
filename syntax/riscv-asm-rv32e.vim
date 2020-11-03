@@ -29,7 +29,10 @@ syn keyword riscvBaseInstruction       slli srli srai
 " R-type
 syn keyword riscvBaseInstruction       add sub sll slt sltu xor srl sra or and
 " I-type: fence
-syn keyword riscvBaseInstruction       fence
+syn match   riscvFenceError            "\S\+" contains=riscvInsnOperator display contained
+syn match   riscvFenceType             "\<i\=o\=r\=w\=\>" display contained
+syn region  riscvBaseInstruction       matchgroup=riscvBaseInstruction start=+\<fence\>+ skip=+\\$+ end=+$+ contains=riscvFenceError,riscvFenceType
+syn keyword riscvBaseInstruction       fence.tso
 " Special
 syn keyword riscvBaseInstruction       ecall ebreak
 

@@ -144,8 +144,8 @@ syn region  riscvIncluded              display contained start=+"+ skip=+\\\\\|\
 syn match   riscvIncluded              display contained "<[^>]*>"
 syn match   riscvInclude               display "^\s*\zs#\s*include\>\s*["<]" contains=riscvIncluded
 " Define
-syn region  riscvDefine                start="^\s*\zs#\s*\(define\|undef\)\>" skip="\\$" end="$" keepend contains=ALLBUT,riscvCommentP,riscvPreCondit,riscvPreConditMatch,riscvInclude,riscvIncluded,@riscvDirectiveGroup
-syn region  riscvPreProc               start="^\s*\zs#\s*\(pragma\>\|line\>\|warning\>\|warn\>\|error\>\)" skip="\\$" end="$" keepend contains=ALLBUT,riscvCommentP,riscvPreCondit,riscvPreConditMatch,riscvInclude,riscvIncluded,@riscvDirectiveGroup
+syn region  riscvDefine                start="^\s*\zs#\s*\(define\|undef\)\>" skip="\\$" end="$" keepend contains=ALLBUT,riscvCommentP,riscvPreCondit,riscvPreConditMatch,riscvInclude,riscvIncluded,riscvFenceError,riscvFenceType,@riscvDirectiveGroup
+syn region  riscvPreProc               start="^\s*\zs#\s*\(pragma\>\|line\>\|warning\>\|warn\>\|error\>\)" skip="\\$" end="$" keepend contains=ALLBUT,riscvCommentP,riscvPreCondit,riscvPreConditMatch,riscvInclude,riscvIncluded,riscvFenceError,riscvFenceType,@riscvDirectiveGroup
 
 hi def link riscvCommentP              Comment
 hi def link riscvCommentL              Comment
@@ -197,6 +197,8 @@ hi def link riscvBlockDirective        Function
 hi def link riscvConditDirective       Conditional
 " Instructions
 hi def link riscvBaseInstruction       Statement
+hi def link riscvFenceError            Error
+hi def link riscvFenceType             Keyword
 hi def link riscvMInstruction          Statement
 hi def link riscvAInstruction          Statement
 hi def link riscvFInstruction          Statement
