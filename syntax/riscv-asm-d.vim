@@ -30,7 +30,7 @@ endif
 syn keyword riscvDInstruction          fmv.d fabs.d fneg.d
 
 if !exists("b:riscv_asm_f")
-    let b:riscv_asm_f=2.2
+    let b:riscv_asm_f = b:riscv_asm_f_max
     runtime! syntax/riscv-asm-f.vim
 endif
 

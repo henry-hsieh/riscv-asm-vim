@@ -31,7 +31,7 @@ if exists("b:riscv_asm_all_enable") || b:riscv_asm_addr_bit > 64
 endif
 
 if !exists("b:riscv_asm_d")
-    let b:riscv_asm_d=2.2
+    let b:riscv_asm_d = b:riscv_asm_d_max
     runtime! syntax/riscv-asm-d.vim
 endif
 
