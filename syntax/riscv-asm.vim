@@ -82,7 +82,7 @@ syn keyword riscvConditDirective       .if .ifdef .ifb .ifc .ifeq .ifeqs .ifge .
 " GAS RISC-V directives
 syn keyword riscvDataDirective         .half .dword .dtprelword .dtpreldword
 syn keyword riscvDirective             .bss .insn
-syn match   riscvDirectiveType6        "\<\(push\|pop\|rvc\|norvc\|pic\|nopic\|relex\|norelex\|csr-check\|no-csr-check\)\>" display contained
+syn match   riscvDirectiveType6        "\<\(push\|pop\|rvc\|norvc\|pic\|nopic\|relax\|norelax\|csr-check\|no-csr-check\)\>" display contained
 syn match   riscvDirective             "\<.option\>" nextgroup=riscvDirectiveError1,riscvDirectiveType6 skipwhite
 syn match   riscvDirectiveType7        "\<\(Tag_RISCV_arch\|Tag_RISCV_stack_align\|Tag_RISCV_unaligned_access\|Tag_RISCV_priv_spec\|Tag_RISCV_priv_spec_minor\|Tag_RISCV_priv_spec_revision\)\>" display contained
 syn match   riscvDirective             "\<.attribute\>" nextgroup=riscvDirectiveType7,riscvDirectiveError2,riscvInsnOperator skipwhite
