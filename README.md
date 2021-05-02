@@ -108,6 +108,7 @@ Currently supported extensions:
     * D (Double-Precision Floating-Point)
     * Q (Quad-Precision Floating-Point)
     * C (16-bit Compressed Instructions)
+    * V (Vector Instructions)
     * N (User-Level Interrupts)
     * Zicsr (Control and Status Register Access)
     * Zifencei (Instruction-Fetch Fence)
@@ -123,3 +124,5 @@ If invalid sequences are detected, following options will be set.
 `g:riscv_asm_all_enable` `b:riscv_asm_all_enable`
 
 If the options are defined (set to any value), the plugin will ignore all ISA settings and highlight all instructions and registers.
+
+If vector extension is enabled, you could use `let g:riscv_asm_v_eew` to setup suitable EEW value. It will be set to 64 by default.
