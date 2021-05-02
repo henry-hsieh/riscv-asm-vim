@@ -116,6 +116,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_c")
     runtime! syntax/riscv-asm-c.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_v")
+    runtime! syntax/riscv-asm-v.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicsr")
     runtime! syntax/riscv-asm-zicsr.vim
 endif
@@ -206,6 +209,7 @@ hi def link riscvDInstruction          Statement
 hi def link riscvQInstruction          Statement
 hi def link riscvCInstruction          Statement
 hi def link riscvNInstruction          Statement
+hi def link riscvVInstruction          Statement
 hi def link riscvZicsrInstruction      Statement
 hi def link riscvZifenceiInstruction   Statement
 hi def link riscvSInstruction          Statement

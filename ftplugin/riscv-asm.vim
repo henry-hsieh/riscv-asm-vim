@@ -45,7 +45,7 @@ let b:riscv_asm_c_max = 2.0
 " P Extension: Packed-SIMD Extensions
 "let b:riscv_asm_p_max = 0.2
 " V Extension: Vector Extensions
-"let b:riscv_asm_v_max = 0.9
+let b:riscv_asm_v_max = 1.0
 " N Extension: User-Level Interrupts
 let b:riscv_asm_n_max = 1.1
 " Zicsr Extension: Control and Status Register Access
@@ -354,6 +354,21 @@ if !exists("b:riscv_asm_all_enable")
             endif
         endif
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^v\(\d\+\(\.\d\+\)\=\)\=', "", "")
+        " Find EEW setting for V extension
+        if exists("g:riscv_asm_v_eew")
+            let s:riscv_asm_v_eew = g:riscv_asm_v_eew
+            if s:riscv_asm_v_eew !~ '^\(8\|16\|32\|64\|128\|256\|512\|1024\)$'
+                " Informal EEW
+                " EEW above 64 are reserved
+                let s:riscv_asm_v_eew = 64
+            else
+                let s:riscv_asm_v_eew = str2nr(s:riscv_asm_v_eew, 10)
+            endif
+        else
+            " EEW above 64 are reserved
+            let s:riscv_asm_v_eew = 64
+        endif
+        let b:riscv_asm_v_eew = s:riscv_asm_v_eew
     else
         if exists("b:riscv_asm_v")
             unlet b:riscv_asm_v
