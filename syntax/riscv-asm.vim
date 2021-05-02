@@ -59,15 +59,15 @@ syn keyword riscvDirective             .reloc .sbttl .scl .section .set .size .s
 syn keyword riscvDirective             .val .version .vtable_entry .vtable_inherit .warning .weak .weakref
 syn match   riscvDirectiveError1       "\S\+" display contained
 syn match   riscvDirectiveType1        "\<\(discard\|one_only\|same_size\|same_contents\)\>" display contained
-syn match   riscvDirective             "\<.linkonce\>" nextgroup=riscvDirectiveError1,riscvDirectiveType1 skipwhite
+syn match   riscvDirective             "\<\.linkonce\>" nextgroup=riscvDirectiveError1,riscvDirectiveType1 skipwhite
 syn match   riscvDirectiveError2       "\S\+" contains=riscvDecNumber,riscvDecError display contained
 syn match   riscvDirectiveType2        "\<\(basic_block\|prologue_end\|epilogue_begin\|is_stmt\|isa\|discriminator\|view\)\>" display contained
-syn region  riscvDirective             matchgroup=riscvDirective start=+\<.loc\>+ skip=+\\$+ end=+$+ contains=riscvDirectiveError2,riscvDirectiveType2
+syn region  riscvDirective             matchgroup=riscvDirective start=+\<\.loc\>+ skip=+\\$+ end=+$+ contains=riscvDirectiveError2,riscvDirectiveType2
 syn match   riscvDirectiveSymbol       "\<\k\+\>" display contained
 syn match   riscvDirectiveType3        "[#@%]\(function\|gnu_indirect_function\|object\|tls_object\|common\|notype\|gnu_unique_object\)\>" display contained
 syn match   riscvDirectiveType4        "\"\(function\|gnu_indirect_function\|object\|tls_object\|common\|notype\|gnu_unique_object\)\"" display contained
 syn match   riscvDirectiveType5        "\<\(STT_FUNC\|STT_GNU_IFUNC\|STT_OBJECT\|STT_TLS\|STT_COMMON\|STT_NOTYPE\)\>" display contained
-syn region  riscvDirective             matchgroup=riscvDirective start=+\<.type\>+ skip=+\\$+ end=+$+ contains=riscvDirectiveType3,riscvDirectiveType4,riscvDirectiveType5,riscvDirectiveSymbol,riscvInsnOperator
+syn region  riscvDirective             matchgroup=riscvDirective start=+\<\.type\>+ skip=+\\$+ end=+$+ contains=riscvDirectiveType3,riscvDirectiveType4,riscvDirectiveType5,riscvDirectiveSymbol,riscvInsnOperator
 
 syn keyword riscvDataDirective         .ascii .asciz .byte .double .fill .float .hword .int .long .nops .octa .org .quad .short .single
 syn keyword riscvDataDirective         .skip .sleb128 .space .string .string8 .string16 .uleb128 .word .zero .2byte .4byte .8byte
@@ -83,9 +83,9 @@ syn keyword riscvConditDirective       .if .ifdef .ifb .ifc .ifeq .ifeqs .ifge .
 syn keyword riscvDataDirective         .half .dword .dtprelword .dtpreldword
 syn keyword riscvDirective             .bss .insn
 syn match   riscvDirectiveType6        "\<\(push\|pop\|rvc\|norvc\|pic\|nopic\|relax\|norelax\|csr-check\|no-csr-check\)\>" display contained
-syn match   riscvDirective             "\<.option\>" nextgroup=riscvDirectiveError1,riscvDirectiveType6 skipwhite
+syn match   riscvDirective             "\<\.option\>" nextgroup=riscvDirectiveError1,riscvDirectiveType6 skipwhite
 syn match   riscvDirectiveType7        "\<\(Tag_RISCV_arch\|Tag_RISCV_stack_align\|Tag_RISCV_unaligned_access\|Tag_RISCV_priv_spec\|Tag_RISCV_priv_spec_minor\|Tag_RISCV_priv_spec_revision\)\>" display contained
-syn match   riscvDirective             "\<.attribute\>" nextgroup=riscvDirectiveType7,riscvDirectiveError2,riscvInsnOperator skipwhite
+syn match   riscvDirective             "\<\.attribute\>" nextgroup=riscvDirectiveType7,riscvDirectiveError2,riscvInsnOperator skipwhite
 syn cluster riscvDirectiveGroup        contains=riscvDirective,riscvDirectiveError1,riscvDirectiveError2,riscvDirectiveType1,riscvDirectiveType2,riscvDirectiveType3,riscvDirectiveType4,riscvDirectiveType5,riscvDirectiveType6,riscvDirectiveType7,riscvDirectiveSymbol,riscvBlockDirective,riscvDataDirective,riscvConditDirective
 
 " Include registers and instructions
@@ -124,6 +124,59 @@ if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicsr")
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zifencei")
     runtime! syntax/riscv-asm-zifencei.vim
+endif
+
+" Disable defined identifier for reopen
+if exists("b:riscv_asm_defined_rv32e")
+    unlet b:riscv_asm_defined_rv32e
+endif
+if exists("b:riscv_asm_defined_rv32i")
+    unlet b:riscv_asm_defined_rv32i
+endif
+if exists("b:riscv_asm_defined_rv64i")
+    unlet b:riscv_asm_defined_rv64i
+endif
+if exists("b:riscv_asm_defined_rv128i")
+    unlet b:riscv_asm_defined_rv128i
+endif
+if exists("b:riscv_asm_defined_m")
+    unlet b:riscv_asm_defined_m
+endif
+if exists("b:riscv_asm_defined_a")
+    unlet b:riscv_asm_defined_a
+endif
+if exists("b:riscv_asm_defined_f")
+    unlet b:riscv_asm_defined_f
+endif
+if exists("b:riscv_asm_defined_d")
+    unlet b:riscv_asm_defined_d
+endif
+if exists("b:riscv_asm_defined_q")
+    unlet b:riscv_asm_defined_q
+endif
+if exists("b:riscv_asm_defined_c")
+    unlet b:riscv_asm_defined_c
+endif
+if exists("b:riscv_asm_defined_v")
+    unlet b:riscv_asm_defined_v
+endif
+if exists("b:riscv_asm_defined_zicsr")
+    unlet b:riscv_asm_defined_zicsr
+endif
+if exists("b:riscv_asm_defined_zifencei")
+    unlet b:riscv_asm_defined_zifencei
+endif
+if exists("b:riscv_asm_defined_zxm")
+    unlet b:riscv_asm_defined_zxm
+endif
+if exists("b:riscv_asm_defined_h")
+    unlet b:riscv_asm_defined_h
+endif
+if exists("b:riscv_asm_defined_s")
+    unlet b:riscv_asm_defined_s
+endif
+if exists("b:riscv_asm_defined_n")
+    unlet b:riscv_asm_defined_n
 endif
 
 " Functions
