@@ -231,6 +231,7 @@ hi def link riscvInsnOperator          Special
 " Registers
 hi def link riscvGPRegister            Keyword
 hi def link riscvFPRegister            Keyword
+hi def link riscvVRegister             Keyword
 hi def link riscvUCSRegister           Function
 hi def link riscvSCSRegister           Function
 hi def link riscvHCSRegister           Function

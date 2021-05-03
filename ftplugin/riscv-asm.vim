@@ -486,7 +486,7 @@ endif
 if exists("loaded_matchit")
   let b:match_ignorecase=0
   let b:match_words=
-    \ '^\s*#\s*ifn\=def\>:^\s*#\s*elif\>:^\s*#\s*else\>:^\s*#\s*endif\>,' .
+    \ '^\s*#\s*if\(n\=def\)\=\>:^\s*#\s*elif\>:^\s*#\s*else\>:^\s*#\s*endif\>,' .
     \ '\<.macro\>:\<.exitm\>:\<.endm\>,' .
     \ '\<.def\>:\<.endef\>,' .
     \ '\<.func\>:\<.endfunc\>,' .
