@@ -14,7 +14,7 @@ syn keyword riscvUCSRegister           vstart vxsat vxrm vcsr vl vtype vlenb
 
 " Instructions
 " Configuration-Setting Instructions
-syn keyword riscvVInstruction          vsetvli vsetvl
+syn keyword riscvVInstruction          vsetvli vsetvl vsetivli
 if exists("b:riscv_asm_all_enable") || b:riscv_asm_v_eew >= 8
     " Vector Unit-Stride Instructions
     syn keyword riscvVInstruction          vle8.v vse8.v
@@ -223,6 +223,8 @@ if exists("b:riscv_asm_all_enable") || b:riscv_asm_v_eew == 1024
     " Vector AMO Instructions (zvamo)
     syn keyword riscvVInstruction          vamoswapei1024.v vamoaddei1024.v vamoxorei1024.v vamoandei1024.v vamoorei1024.v vamominei1024.v vamomaxei1024.v vamominuei1024.v vamomaxuei1024.v
 endif
+" Vector Unit-Stride Mask Instructions
+syn keyword riscvVInstruction          vlm.v vsm.v
 " Vector Store Whole Register Instructions
 syn keyword riscvVInstruction          vs1r.v vs2r.v vs4r.v vs8r.v
 " Vector Integer Arithmetic Instructions
