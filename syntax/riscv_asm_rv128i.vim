@@ -2,7 +2,7 @@ if exists("b:riscv_asm_defined_rv128i")
     finish
 endif
 
-runtime! syntax/riscv-asm-rv64i.vim
+runtime! syntax/riscv_asm_rv64i.vim
 " Instructions
 " I-type: load
 syn keyword riscvBaseInstruction       ldu lq

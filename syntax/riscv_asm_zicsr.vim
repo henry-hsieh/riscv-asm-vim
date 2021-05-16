@@ -23,19 +23,19 @@ syn keyword riscvZicsrInstruction      csrr csrw csrs csrc
 syn keyword riscvZicsrInstruction      csrwi csrsi csrci
 
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_n")
-    runtime! syntax/riscv-asm-n.vim
+    runtime! syntax/riscv_asm_n.vim
 endif
 
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_s")
-    runtime! syntax/riscv-asm-s.vim
+    runtime! syntax/riscv_asm_s.vim
 endif
 
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_h")
-    runtime! syntax/riscv-asm-h.vim
+    runtime! syntax/riscv_asm_h.vim
 endif
 
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zxm")
-    runtime! syntax/riscv-asm-zxm.vim
+    runtime! syntax/riscv_asm_zxm.vim
 endif
 
 let b:riscv_asm_defined_zicsr = 0

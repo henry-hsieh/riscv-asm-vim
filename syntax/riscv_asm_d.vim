@@ -31,7 +31,7 @@ syn keyword riscvDInstruction          fmv.d fabs.d fneg.d
 
 if !exists("b:riscv_asm_f")
     let b:riscv_asm_f = b:riscv_asm_f_max
-    runtime! syntax/riscv-asm-f.vim
+    runtime! syntax/riscv_asm_f.vim
 endif
 
 let b:riscv_asm_defined_d = 0

@@ -90,40 +90,40 @@ syn cluster riscvDirectiveGroup        contains=riscvDirective,riscvDirectiveErr
 
 " Include registers and instructions
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_rv128i")
-    runtime! syntax/riscv-asm-rv128i.vim
+    runtime! syntax/riscv_asm_rv128i.vim
 elseif exists("b:riscv_asm_rv64i")
-    runtime! syntax/riscv-asm-rv64i.vim
+    runtime! syntax/riscv_asm_rv64i.vim
 elseif exists("b:riscv_asm_rv32i")
-    runtime! syntax/riscv-asm-rv32i.vim
+    runtime! syntax/riscv_asm_rv32i.vim
 elseif exists("b:riscv_asm_rv32e")
-    runtime! syntax/riscv-asm-rv32e.vim
+    runtime! syntax/riscv_asm_rv32e.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_m")
-    runtime! syntax/riscv-asm-m.vim
+    runtime! syntax/riscv_asm_m.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_a")
-    runtime! syntax/riscv-asm-a.vim
+    runtime! syntax/riscv_asm_a.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_f")
-    runtime! syntax/riscv-asm-f.vim
+    runtime! syntax/riscv_asm_f.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_d")
-    runtime! syntax/riscv-asm-d.vim
+    runtime! syntax/riscv_asm_d.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_q")
-    runtime! syntax/riscv-asm-q.vim
+    runtime! syntax/riscv_asm_q.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_c")
-    runtime! syntax/riscv-asm-c.vim
+    runtime! syntax/riscv_asm_c.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_v")
-    runtime! syntax/riscv-asm-v.vim
+    runtime! syntax/riscv_asm_v.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicsr")
-    runtime! syntax/riscv-asm-zicsr.vim
+    runtime! syntax/riscv_asm_zicsr.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zifencei")
-    runtime! syntax/riscv-asm-zifencei.vim
+    runtime! syntax/riscv_asm_zifencei.vim
 endif
 
 " Disable defined identifier for reopen
@@ -277,4 +277,4 @@ hi def link riscvPreCondit             Conditional
 hi def link riscvPreConditMatch        Conditional
 hi def link riscvPreProc               PreProc
 
-let b:current_syntax = "riscv-asm"
+let b:current_syntax = "riscv_asm"

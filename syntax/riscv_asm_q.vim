@@ -32,7 +32,7 @@ endif
 
 if !exists("b:riscv_asm_d")
     let b:riscv_asm_d = b:riscv_asm_d_max
-    runtime! syntax/riscv-asm-d.vim
+    runtime! syntax/riscv_asm_d.vim
 endif
 
 let b:riscv_asm_defined_q = 0

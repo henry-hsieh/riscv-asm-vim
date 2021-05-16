@@ -42,7 +42,7 @@ syn keyword riscvZicsrInstruction      frcsr fscsr frrm fsrm frflags fsflags
 
 if !exists("b:riscv_asm_zicsr")
     let b:riscv_asm_zicsr = b:riscv_asm_zicsr_max
-    runtime! syntax/riscv-asm-zicsr.vim
+    runtime! syntax/riscv_asm_zicsr.vim
 endif
 
 let b:riscv_asm_defined_f = 0

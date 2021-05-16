@@ -323,7 +323,7 @@ syn keyword riscvVInstruction          vnclip.wv vnclip.wx vnclip.wi
 " Vector Floating-Point Instructions
 if !exists("b:riscv_asm_f")
     let b:riscv_asm_f = b:riscv_asm_f_max
-    runtime! syntax/riscv-asm-f.vim
+    runtime! syntax/riscv_asm_f.vim
 endif
 " Vector Single-Width Floating-Point Add/Subtract Instructions
 syn keyword riscvVInstruction          vfadd.vv vfadd.vf
@@ -488,7 +488,7 @@ syn keyword riscvVInstruction          vmnot.m
 
 if !exists("b:riscv_asm_zicsr")
     let b:riscv_asm_zicsr = b:riscv_asm_zicsr_max
-    runtime! syntax/riscv-asm-zicsr.vim
+    runtime! syntax/riscv_asm_zicsr.vim
 endif
 
 let b:riscv_asm_defined_v = 0
