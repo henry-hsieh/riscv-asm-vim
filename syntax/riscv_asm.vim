@@ -130,6 +130,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zifencei")
     runtime! syntax/riscv_asm_zifencei.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zihintntl")
+    runtime! syntax/riscv_asm_zihintntl.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zihpm")
     runtime! syntax/riscv_asm_zihpm.vim
 endif
@@ -182,6 +185,9 @@ if exists("b:riscv_asm_defined_zicsr")
 endif
 if exists("b:riscv_asm_defined_zifencei")
     unlet b:riscv_asm_defined_zifencei
+endif
+if exists("b:riscv_asm_defined_zihintntl")
+    unlet b:riscv_asm_defined_zihintntl
 endif
 if exists("b:riscv_asm_defined_zihpm")
     unlet b:riscv_asm_defined_zihpm
@@ -289,6 +295,7 @@ hi def link riscvVInstruction          Statement
 hi def link riscvZicntrInstruction     Statement
 hi def link riscvZicsrInstruction      Statement
 hi def link riscvZifenceiInstruction   Statement
+hi def link riscvZihintntlInstruction  Statement
 hi def link riscvZihpmInstruction      Statement
 hi def link riscvZfhInstruction        Statement
 hi def link riscvZfhminInstruction     Statement

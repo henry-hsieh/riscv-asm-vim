@@ -125,6 +125,7 @@ Currently supported extensions:
     * Zicntr (Base Counters and Timers)
     * Zicsr (Control and Status Register Access)
     * Zifencei (Instruction-Fetch Fence)
+    * Zihintntl (Non-Temporal Locality Hints)
     * Zihpm (Hardware Performance Counters)
     * Zfh (Half-Precision Floating-Point)
     * Zfhmin (Minimal Half-Precision Floating-Point)
