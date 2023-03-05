@@ -38,7 +38,7 @@ endif
 
 " Pseudo-instructions
 syn keyword riscvFInstruction          fmv.s fabs.s fneg.s
-syn keyword riscvZicsrInstruction      frcsr fscsr frrm fsrm frflags fsflags
+syn keyword riscvFInstruction          frcsr fscsr frrm fsrm fsrmi frflags fsflags fsflagsi
 
 if !exists("b:riscv_asm_zicsr")
     let b:riscv_asm_zicsr = b:riscv_asm_zicsr_max

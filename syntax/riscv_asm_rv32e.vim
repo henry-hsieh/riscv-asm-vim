@@ -37,8 +37,8 @@ syn keyword riscvBaseInstruction       fence.tso
 syn keyword riscvBaseInstruction       ecall ebreak
 
 " Pseudo-instructions
-syn keyword riscvBaseInstruction       la lla
-syn keyword riscvBaseInstruction       nop li mv not neg negw sext.w seqz snez sltz sgtz
+syn keyword riscvBaseInstruction       la lla lga
+syn keyword riscvBaseInstruction       nop li mv not neg negw sext.b sext.h sext.w zext.b zext.h zext.w seqz snez sltz sgtz
 syn keyword riscvBaseInstruction       beqz bnez blez bgez bltz bgtz
 syn keyword riscvBaseInstruction       bgt ble bgtu bleu
 syn keyword riscvBaseInstruction       j jr ret call tail
