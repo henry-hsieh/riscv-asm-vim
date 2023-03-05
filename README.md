@@ -49,6 +49,18 @@ cd ~/.vim/bundle
 git clone https://github.com/henry-hsieh/riscv-asm-vim
 ```
 
+### [Packer.nvim](https://github.com/wbthomason/packer.nvim)
+
+1. Add the following to your packer startup function:
+
+```lua
+use "henry-hsieh/riscv-asm-vim"
+```
+
+2. Install the plugin:
+
+    * Reload `init.lua` and run `:PackerSync` in Neovim.
+
 ## Usage
 
 ### Basics
