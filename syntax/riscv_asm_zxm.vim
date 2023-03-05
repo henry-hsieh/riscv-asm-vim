@@ -7,14 +7,14 @@ endif
 syn keyword riscvMCSRegister           mvendorid marchid mimpid mhartid
 " Machine Trap Setup
 syn keyword riscvMCSRegister           mstatus misa medeleg mideleg mie mtvec mcounteren
-if exists("b:riscv_asm_all_enable") || b:riscv_asm_addr_bit == 32
+if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen == 32
     syn keyword riscvMCSRegister           mstatush
 endif
 " Machine Trap Handling
 syn keyword riscvMCSRegister           mscratch mepc mcause mtval mip mtinst mtval2
 " Machine Memory Protection
 syn keyword riscvMCSRegister           pmpcfg0 pmpcfg2 pmpcfg4 pmpcfg6 pmpcfg8 pmpcfg10 pmpcfg12 pmpcfg14
-if exists("b:riscv_asm_all_enable") || b:riscv_asm_addr_bit == 32
+if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen == 32
     syn keyword riscvMCSRegister           pmpcfg1 pmpcfg3 pmpcfg5 pmpcfg7 pmpcfg9 pmpcfg11 pmpcfg13 pmpcfg15
 endif
 syn keyword riscvMCSRegister           pmpaddr0 pmpaddr1 pmpaddr2 pmpaddr3 pmpaddr4 pmpaddr5 pmpaddr6 pmpaddr7 pmpaddr8 pmpaddr9 pmpaddr10 pmpaddr11 pmpaddr12 pmpaddr13 pmpaddr14 pmpaddr15
@@ -24,7 +24,7 @@ syn keyword riscvMCSRegister           pmpaddr48 pmpaddr49 pmpaddr50 pmpaddr51 p
 " Machine Counter/Timers
 syn keyword riscvMCSRegister           mcycle minstret mhpmcounter3 mhpmcounter4 mhpmcounter5 mhpmcounter6 mhpmcounter7 mhpmcounter8 mhpmcounter9 mhpmcounter10 mhpmcounter11 mhpmcounter12 mhpmcounter13 mhpmcounter14 mhpmcounter15 mhpmcounter16
 syn keyword riscvMCSRegister           mhpmcounter17 mhpmcounter18 mhpmcounter19 mhpmcounter20 mhpmcounter21 mhpmcounter22 mhpmcounter23 mhpmcounter24 mhpmcounter25 mhpmcounter26 mhpmcounter27 mhpmcounter28 mhpmcounter29 mhpmcounter30 mhpmcounter31
-if exists("b:riscv_asm_all_enable") || b:riscv_asm_addr_bit == 32
+if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen == 32
     syn keyword riscvMCSRegister           mcycleh minstreth mhpmcounter3h mhpmcounter4h mhpmcounter5h mhpmcounter6h mhpmcounter7h mhpmcounter8h mhpmcounter9h mhpmcounter10h mhpmcounter11h mhpmcounter12h mhpmcounter13h mhpmcounter14h mhpmcounter15h mhpmcounter16h
     syn keyword riscvMCSRegister           mhpmcounter17h mhpmcounter18h mhpmcounter19h mhpmcounter20h mhpmcounter21h mhpmcounter22h mhpmcounter23h mhpmcounter24h mhpmcounter25h mhpmcounter26h mhpmcounter27h mhpmcounter28h mhpmcounter29h mhpmcounter30h mhpmcounter31h
 endif

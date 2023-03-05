@@ -21,7 +21,7 @@ syn keyword riscvDInstruction          fcvt.s.d fcvt.d.s
 syn keyword riscvDInstruction          feq.d flt.d fle.d
 " I-type: classfication and conversion
 syn keyword riscvDInstruction          fclass.d fcvt.w.d fcvt.wu.d fcvt.d.w fcvt.d.wu
-if exists("b:riscv_asm_all_enable") || b:riscv_asm_addr_bit > 32
+if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen > 32
     " I-type: conversion and movement
     syn keyword riscvDInstruction          fcvt.l.d fcvt.lu.d fmv.x.d fcvt.d.l fcvt.d.lu fmv.d.x
 endif

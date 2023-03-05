@@ -99,6 +99,7 @@ Currently supported extensions:
 * Base Integer
     * RV32E (Embedded 32-bit integer)
     * RV32I (32-bit integer)
+    * RV64E (Embedded 64-bit integer)
     * RV64I (64-bit integer)
     * RV128I (128-bit integer)
 * Extensions

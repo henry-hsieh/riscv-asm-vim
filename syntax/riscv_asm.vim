@@ -93,6 +93,8 @@ if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_rv128i")
     runtime! syntax/riscv_asm_rv128i.vim
 elseif exists("b:riscv_asm_rv64i")
     runtime! syntax/riscv_asm_rv64i.vim
+elseif exists("b:riscv_asm_rv64e")
+    runtime! syntax/riscv_asm_rv64e.vim
 elseif exists("b:riscv_asm_rv32i")
     runtime! syntax/riscv_asm_rv32i.vim
 elseif exists("b:riscv_asm_rv32e")

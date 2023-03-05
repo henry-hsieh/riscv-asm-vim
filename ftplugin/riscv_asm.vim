@@ -18,8 +18,9 @@ setlocal comments=s1:/*,mb:*,ex:*/,://,b:#
 
 " List max version of supported ISA and its extensions
 " Base Integer
-let b:riscv_asm_rv32e_max = 1.9
+let b:riscv_asm_rv32e_max = 2.0
 let b:riscv_asm_rv32i_max = 2.1
+let b:riscv_asm_rv64e_max = 2.0
 let b:riscv_asm_rv64i_max = 2.1
 let b:riscv_asm_rv128i_max = 1.7
 " M Extension: Integer Multiplication and Division
@@ -100,6 +101,9 @@ if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ie]' && !exists("b:riscv_asm_all_ena
     if exists("b:riscv_asm_rv32i")
         unlet b:riscv_asm_rv32i
     endif
+    if exists("b:riscv_asm_rv64e")
+        unlet b:riscv_asm_rv64e
+    endif
     if exists("b:riscv_asm_rv64i")
         unlet b:riscv_asm_rv64i
     endif
@@ -115,7 +119,7 @@ if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ie]' && !exists("b:riscv_asm_all_ena
                 let b:riscv_asm_rv32e = b:riscv_asm_rv32e_max
             endif
         endif
-        let b:riscv_asm_addr_bit = 32
+        let b:riscv_asm_xlen = 32
     elseif s:extract_length == "32" && s:extract_base =~ '[Ii]'
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_rv32i = b:riscv_asm_rv32i_max
@@ -125,7 +129,17 @@ if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ie]' && !exists("b:riscv_asm_all_ena
                 let b:riscv_asm_rv32i = b:riscv_asm_rv32i_max
             endif
         endif
-        let b:riscv_asm_addr_bit = 32
+        let b:riscv_asm_xlen = 32
+    elseif s:extract_length == "64" && s:extract_base =~ '[Ee]'
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_rv64e = b:riscv_asm_rv64e_max
+        else
+            let b:riscv_asm_rv64e = str2float(s:extract_version)
+            if b:riscv_asm_rv64e > b:riscv_asm_rv64e_max
+                let b:riscv_asm_rv64e = b:riscv_asm_rv64e_max
+            endif
+        endif
+        let b:riscv_asm_xlen = 64
     elseif s:extract_length == "64" && s:extract_base =~ '[Ii]'
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_rv64i = b:riscv_asm_rv64i_max
@@ -135,7 +149,7 @@ if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ie]' && !exists("b:riscv_asm_all_ena
                 let b:riscv_asm_rv64i = b:riscv_asm_rv64i_max
             endif
         endif
-        let b:riscv_asm_addr_bit = 64
+        let b:riscv_asm_xlen = 64
     elseif s:extract_length == "128" && s:extract_base =~ '[Ii]'
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_rv128i = b:riscv_asm_rv128i_max
@@ -145,7 +159,7 @@ if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ie]' && !exists("b:riscv_asm_all_ena
                 let b:riscv_asm_rv128i = b:riscv_asm_rv128i_max
             endif
         endif
-        let b:riscv_asm_addr_bit = 128
+        let b:riscv_asm_xlen = 128
     endif
     let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv\d\+[ie]\(\d\+\(\.\d\+\)\=\)\=', "", "")
 else

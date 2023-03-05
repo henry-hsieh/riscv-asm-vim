@@ -11,7 +11,7 @@ syn keyword riscvAInstruction          lr.w.aq sc.w.aq amoswap.w.aq amoadd.w.aq 
 syn keyword riscvAInstruction          lr.w.rl sc.w.rl amoswap.w.rl amoadd.w.rl amoxor.w.rl amoand.w.rl amoor.w.rl amomin.w.rl amomax.w.rl maominu.w.rl amomaxu.w.rl
 " Acquire and Release
 syn keyword riscvAInstruction          lr.w.aqrl sc.w.aqrl amoswap.w.aqrl amoadd.w.aqrl amoxor.w.aqrl amoand.w.aqrl amoor.w.aqrl amomin.w.aqrl amomax.w.aqrl maominu.w.aqrl amomaxu.w.aqrl
-if exists("b:riscv_asm_all_enable") || b:riscv_asm_addr_bit > 32
+if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen > 32
     " Relaxed
     syn keyword riscvAInstruction          lr.d sc.d amoswap.d amoadd.d amoxor.d amoand.d amoor.d amomin.d amomax.d maominu.d amomaxu.d
     " Acquire

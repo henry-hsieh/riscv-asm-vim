@@ -21,11 +21,11 @@ syn keyword riscvQInstruction          fcvt.s.q fcvt.q.s fcvt.d.q fcvt.q.d
 syn keyword riscvQInstruction          feq.q flt.q fle.q
 " I-type: classfication and conversion
 syn keyword riscvQInstruction          fclass.q fcvt.w.q fcvt.wu.q fcvt.q.w fcvt.q.wu
-if exists("b:riscv_asm_all_enable") || b:riscv_asm_addr_bit > 32
+if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen > 32
     " I-type: conversion
     syn keyword riscvQInstruction          fcvt.l.q fcvt.lu.q fcvt.q.l fcvt.q.lu
 endif
-if exists("b:riscv_asm_all_enable") || b:riscv_asm_addr_bit > 64
+if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen > 64
     " I-type: conversion
     syn keyword riscvQInstruction          fmv.x.q fmv.q.x
 endif
