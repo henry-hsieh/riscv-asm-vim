@@ -133,6 +133,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zihintntl")
     runtime! syntax/riscv_asm_zihintntl.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zihintpause")
+    runtime! syntax/riscv_asm_zihintpause.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zihpm")
     runtime! syntax/riscv_asm_zihpm.vim
 endif
@@ -189,6 +192,9 @@ endif
 if exists("b:riscv_asm_defined_zihintntl")
     unlet b:riscv_asm_defined_zihintntl
 endif
+if exists("b:riscv_asm_defined_zihintpause")
+    unlet b:riscv_asm_defined_zihintpause
+endif
 if exists("b:riscv_asm_defined_zihpm")
     unlet b:riscv_asm_defined_zihpm
 endif
@@ -232,82 +238,83 @@ syn match   riscvInclude               display "^\s*\zs#\s*include\>\s*["<]" con
 syn region  riscvDefine                start="^\s*\zs#\s*\(define\|undef\)\>" skip="\\$" end="$" keepend contains=ALLBUT,riscvCommentP,riscvPreCondit,riscvPreConditMatch,riscvInclude,riscvIncluded,riscvFenceError,riscvFenceType,@riscvDirectiveGroup
 syn region  riscvPreProc               start="^\s*\zs#\s*\(pragma\>\|line\>\|warning\>\|warn\>\|error\>\)" skip="\\$" end="$" keepend contains=ALLBUT,riscvCommentP,riscvPreCondit,riscvPreConditMatch,riscvInclude,riscvIncluded,riscvFenceError,riscvFenceType,@riscvDirectiveGroup
 
-hi def link riscvCommentP              Comment
-hi def link riscvCommentL              Comment
-hi def link riscvComment               Comment
-hi def link riscvCommentStart          Comment
-hi def link riscvCommentStartError     Error
-hi def link riscvCommentEndError       Error
-hi def link riscvTodo                  Todo
-hi def link riscvBinNumber             Number
-hi def link riscvOctNumber             Number
-hi def link riscvDecNumber             Number
-hi def link riscvHexNumber             Number
-hi def link riscvFltNumber             Number
-hi def link riscvBinError              Error
-hi def link riscvOctError              Error
-hi def link riscvDecError              Error
-hi def link riscvHexError              Error
-hi def link riscvByteEscape            SpecialChar
-hi def link riscvConstant              Constant
-hi def link riscvByteError             Error
-hi def link riscvCharError             Error
-hi def link riscvCharEscape            SpecialChar
-hi def link riscvCharacter             Character
-hi def link riscvString                String
-hi def link riscvOperator              Special
-hi def link riscvInsnOperator          Special
+hi def link riscvCommentP                   Comment
+hi def link riscvCommentL                   Comment
+hi def link riscvComment                    Comment
+hi def link riscvCommentStart               Comment
+hi def link riscvCommentStartError          Error
+hi def link riscvCommentEndError            Error
+hi def link riscvTodo                       Todo
+hi def link riscvBinNumber                  Number
+hi def link riscvOctNumber                  Number
+hi def link riscvDecNumber                  Number
+hi def link riscvHexNumber                  Number
+hi def link riscvFltNumber                  Number
+hi def link riscvBinError                   Error
+hi def link riscvOctError                   Error
+hi def link riscvDecError                   Error
+hi def link riscvHexError                   Error
+hi def link riscvByteEscape                 SpecialChar
+hi def link riscvConstant                   Constant
+hi def link riscvByteError                  Error
+hi def link riscvCharError                  Error
+hi def link riscvCharEscape                 SpecialChar
+hi def link riscvCharacter                  Character
+hi def link riscvString                     String
+hi def link riscvOperator                   Special
+hi def link riscvInsnOperator               Special
 " Registers
-hi def link riscvGPRegister            Keyword
-hi def link riscvFPRegister            Keyword
-hi def link riscvVRegister             Keyword
-hi def link riscvUCSRegister           Function
-hi def link riscvSCSRegister           Function
-hi def link riscvHCSRegister           Function
-hi def link riscvMCSRegister           Function
-hi def link riscvLabel                 Label
-hi def link riscvNumericLabel          Label
-hi def link riscvDirective             Special
-hi def link riscvDirectiveError1       Error
-hi def link riscvDirectiveError2       Error
-hi def link riscvDirectiveType1        Identifier
-hi def link riscvDirectiveType2        Identifier
-hi def link riscvDirectiveType3        Identifier
-hi def link riscvDirectiveType4        String
-hi def link riscvDirectiveType5        Identifier
-hi def link riscvDirectiveType6        Identifier
-hi def link riscvDirectiveType7        Identifier
-hi def link riscvDirectiveSymbol       Label
-hi def link riscvDataDirective         Type
-hi def link riscvBlockDirective        Function
-hi def link riscvConditDirective       Conditional
+hi def link riscvGPRegister                 Keyword
+hi def link riscvFPRegister                 Keyword
+hi def link riscvVRegister                  Keyword
+hi def link riscvUCSRegister                Function
+hi def link riscvSCSRegister                Function
+hi def link riscvHCSRegister                Function
+hi def link riscvMCSRegister                Function
+hi def link riscvLabel                      Label
+hi def link riscvNumericLabel               Label
+hi def link riscvDirective                  Special
+hi def link riscvDirectiveError1            Error
+hi def link riscvDirectiveError2            Error
+hi def link riscvDirectiveType1             Identifier
+hi def link riscvDirectiveType2             Identifier
+hi def link riscvDirectiveType3             Identifier
+hi def link riscvDirectiveType4             String
+hi def link riscvDirectiveType5             Identifier
+hi def link riscvDirectiveType6             Identifier
+hi def link riscvDirectiveType7             Identifier
+hi def link riscvDirectiveSymbol            Label
+hi def link riscvDataDirective              Type
+hi def link riscvBlockDirective             Function
+hi def link riscvConditDirective            Conditional
 " Instructions
-hi def link riscvBaseInstruction       Statement
-hi def link riscvFenceError            Error
-hi def link riscvFenceType             Keyword
-hi def link riscvMInstruction          Statement
-hi def link riscvAInstruction          Statement
-hi def link riscvFInstruction          Statement
-hi def link riscvDInstruction          Statement
-hi def link riscvQInstruction          Statement
-hi def link riscvCInstruction          Statement
-hi def link riscvVInstruction          Statement
-hi def link riscvZicntrInstruction     Statement
-hi def link riscvZicsrInstruction      Statement
-hi def link riscvZifenceiInstruction   Statement
-hi def link riscvZihintntlInstruction  Statement
-hi def link riscvZihpmInstruction      Statement
-hi def link riscvZfhInstruction        Statement
-hi def link riscvZfhminInstruction     Statement
-hi def link riscvSInstruction          Statement
-hi def link riscvHInstruction          Statement
-hi def link riscvZxmInstruction        Statement
-hi def link riscvFunction              Function
-hi def link riscvInclude               Include
-hi def link riscvIncluded              String
-hi def link riscvDefine                Macro
-hi def link riscvPreCondit             Conditional
-hi def link riscvPreConditMatch        Conditional
-hi def link riscvPreProc               PreProc
+hi def link riscvBaseInstruction            Statement
+hi def link riscvFenceError                 Error
+hi def link riscvFenceType                  Keyword
+hi def link riscvMInstruction               Statement
+hi def link riscvAInstruction               Statement
+hi def link riscvFInstruction               Statement
+hi def link riscvDInstruction               Statement
+hi def link riscvQInstruction               Statement
+hi def link riscvCInstruction               Statement
+hi def link riscvVInstruction               Statement
+hi def link riscvZicntrInstruction          Statement
+hi def link riscvZicsrInstruction           Statement
+hi def link riscvZifenceiInstruction        Statement
+hi def link riscvZihintntlInstruction       Statement
+hi def link riscvZihintpauseInstruction     Statement
+hi def link riscvZihpmInstruction           Statement
+hi def link riscvZfhInstruction             Statement
+hi def link riscvZfhminInstruction          Statement
+hi def link riscvSInstruction               Statement
+hi def link riscvHInstruction               Statement
+hi def link riscvZxmInstruction             Statement
+hi def link riscvFunction                   Function
+hi def link riscvInclude                    Include
+hi def link riscvIncluded                   String
+hi def link riscvDefine                     Macro
+hi def link riscvPreCondit                  Conditional
+hi def link riscvPreConditMatch             Conditional
+hi def link riscvPreProc                    PreProc
 
 let b:current_syntax = "riscv_asm"

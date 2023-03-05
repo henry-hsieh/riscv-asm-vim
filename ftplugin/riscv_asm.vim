@@ -55,6 +55,8 @@ let b:riscv_asm_zicsr_max = 2.0
 let b:riscv_asm_zifencei_max = 2.0
 " Zihintntl Extension: Non-Temporal Locality Hints
 let b:riscv_asm_zihintntl_max = 0.2
+" Zihintpause Extension: Pause Hint
+let b:riscv_asm_zihintpause_max = 2.0
 " Zihpm Extension: Hardware Performance Counters
 let b:riscv_asm_zihpm_max = 2.0
 " Zfh Extension: Half-Precision Floating-Point
@@ -175,7 +177,7 @@ else
     let b:riscv_asm_all_enable = 1
 endif
 " Parse extensions
-" The name should follow the MAFDQLCBJTPVZicntrZicsrZifenceiZihintntlZihpmZfh(min)SHZxm sequence
+" The name should follow the MAFDQLCBJTPVZicntrZicsrZifenceiZihintntlZihintpauseZihpmZfh(min)SHZxm sequence
 if !exists("b:riscv_asm_all_enable")
     " M extension
     if s:riscv_asm_isa =~ '\c^m'
@@ -462,6 +464,23 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_zihintntl")
             unlet b:riscv_asm_zihintntl
+        endif
+    endif
+    " Zihintpause extension
+    if s:riscv_asm_isa =~ '\c^zihintpause'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^zihintpause\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zihintpause = b:riscv_asm_zihintpause_max
+        else
+            let b:riscv_asm_zihintpause = str2float(s:extract_version)
+            if b:riscv_asm_zihintpause > b:riscv_asm_zihintpause_max
+                let b:riscv_asm_zihintpause = b:riscv_asm_zihintpause_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^zihintpause\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zihintpause")
+            unlet b:riscv_asm_zihintpause
         endif
     endif
     " Zihpm extension
