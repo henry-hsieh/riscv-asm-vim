@@ -201,9 +201,6 @@ endif
 if exists("b:riscv_asm_defined_s")
     unlet b:riscv_asm_defined_s
 endif
-if exists("b:riscv_asm_defined_n")
-    unlet b:riscv_asm_defined_n
-endif
 
 " Functions
 syn match riscvFunction                "%\(hi\|lo\|pcrel_hi\|pcrel_lo\|tprel_hi\|tprel_lo\|tprel_add\|tls_ie_pcrel_hi\|tls_gd_pcrel_hi\|got_pcrel_hi\)\>"
@@ -288,7 +285,6 @@ hi def link riscvFInstruction          Statement
 hi def link riscvDInstruction          Statement
 hi def link riscvQInstruction          Statement
 hi def link riscvCInstruction          Statement
-hi def link riscvNInstruction          Statement
 hi def link riscvVInstruction          Statement
 hi def link riscvZicntrInstruction     Statement
 hi def link riscvZicsrInstruction      Statement

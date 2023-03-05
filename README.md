@@ -122,7 +122,6 @@ Currently supported extensions:
     * Q (Quad-Precision Floating-Point)
     * C (16-bit Compressed Instructions)
     * V (Vector Instructions)
-    * N (User-Level Interrupts)
     * Zicntr (Base Counters and Timers)
     * Zicsr (Control and Status Register Access)
     * Zifencei (Instruction-Fetch Fence)

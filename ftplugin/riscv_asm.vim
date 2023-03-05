@@ -47,8 +47,6 @@ let b:riscv_asm_c_max = 2.0
 "let b:riscv_asm_p_max = 0.2
 " V Extension: Vector Extensions
 let b:riscv_asm_v_max = 1.0
-" N Extension: User-Level Interrupts
-let b:riscv_asm_n_max = 1.1
 " Zicntr Extension: Base Counters and Timers
 let b:riscv_asm_zicntr_max = 2.0
 " Zicsr Extension: Control and Status Register Access
@@ -175,7 +173,7 @@ else
     let b:riscv_asm_all_enable = 1
 endif
 " Parse extensions
-" The name should follow the MAFDQLCBJTPVNZicntrZicsrZifenceiZihpmZfh(min)SHZxm sequence
+" The name should follow the MAFDQLCBJTPVZicntrZicsrZifenceiZihpmZfh(min)SHZxm sequence
 if !exists("b:riscv_asm_all_enable")
     " M extension
     if s:riscv_asm_isa =~ '\c^m'
@@ -394,23 +392,6 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_v")
             unlet b:riscv_asm_v
-        endif
-    endif
-    " N extension
-    if s:riscv_asm_isa =~ '\c^n'
-        let s:extract_version = substitute(s:riscv_asm_isa, '\c^n\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
-        if s:extract_version !~ '\d\+\.\d\+'
-            let b:riscv_asm_n = b:riscv_asm_n_max
-        else
-            let b:riscv_asm_n = str2float(s:extract_version)
-            if b:riscv_asm_n > b:riscv_asm_n_max
-                let b:riscv_asm_n = b:riscv_asm_n_max
-            endif
-        endif
-        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^n\(\d\+\(\.\d\+\)\=\)\=', "", "")
-    else
-        if exists("b:riscv_asm_n")
-            unlet b:riscv_asm_n
         endif
     endif
     " Zicntr extension

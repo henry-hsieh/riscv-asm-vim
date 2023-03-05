@@ -9,10 +9,6 @@ syn keyword riscvZicsrInstruction      csrrw csrrs csrrc csrrwi csrrsi csrrci
 syn keyword riscvZicsrInstruction      csrr csrw csrs csrc
 syn keyword riscvZicsrInstruction      csrwi csrsi csrci
 
-if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_n")
-    runtime! syntax/riscv_asm_n.vim
-endif
-
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_s")
     runtime! syntax/riscv_asm_s.vim
 endif
