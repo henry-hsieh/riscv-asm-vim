@@ -115,6 +115,8 @@ Currently supported extensions:
     * Zicsr (Control and Status Register Access)
     * Zifencei (Instruction-Fetch Fence)
     * Zihpm (Hardware Performance Counters)
+    * Zfh (Half-Precision Floating-Point)
+    * Zfhmin (Minimal Half-Precision Floating-Point)
 * Privileged Extensions
     * S (Supervisor-Level Extension)
     * H (Hypervisor-Level Extension)

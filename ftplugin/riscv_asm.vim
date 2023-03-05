@@ -57,6 +57,10 @@ let b:riscv_asm_zicsr_max = 2.0
 let b:riscv_asm_zifencei_max = 2.0
 " Zihpm Extension: Hardware Performance Counters
 let b:riscv_asm_zihpm_max = 2.0
+" Zfh Extension: Half-Precision Floating-Point
+let b:riscv_asm_zfh_max = 1.0
+" Zfhmin Extension: Minimal Half-Precision Floating-Point
+let b:riscv_asm_zfhmin_max = 1.0
 " S Extension: Supervisor-Level Extension
 let b:riscv_asm_s_max = 1.12
 " H Extension: Hypervisor-Level Extension
@@ -171,7 +175,7 @@ else
     let b:riscv_asm_all_enable = 1
 endif
 " Parse extensions
-" The name should follow the MAFDQLCBJTPVNZicntrZicsrZifenceiZihpmSHZxm sequence
+" The name should follow the MAFDQLCBJTPVNZicntrZicsrZifenceiZihpmZfh(min)SHZxm sequence
 if !exists("b:riscv_asm_all_enable")
     " M extension
     if s:riscv_asm_isa =~ '\c^m'
@@ -475,6 +479,40 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_zihpm")
             unlet b:riscv_asm_zihpm
+        endif
+    endif
+    " Zfhmin extension
+    if s:riscv_asm_isa =~ '\c^zfhmin'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^zfhmin\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zfhmin = b:riscv_asm_zfhmin_max
+        else
+            let b:riscv_asm_zfhmin = str2float(s:extract_version)
+            if b:riscv_asm_zfhmin > b:riscv_asm_zfhmin_max
+                let b:riscv_asm_zfhmin = b:riscv_asm_zfhmin_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^zfhmin\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zfhmin")
+            unlet b:riscv_asm_zfhmin
+        endif
+    endif
+    " Zfh extension
+    if s:riscv_asm_isa =~ '\c^zfh' && !exists("b:riscv_asm_zfhmin")
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^zfh\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zfh = b:riscv_asm_zfh_max
+        else
+            let b:riscv_asm_zfh = str2float(s:extract_version)
+            if b:riscv_asm_zfh > b:riscv_asm_zfh_max
+                let b:riscv_asm_zfh = b:riscv_asm_zfh_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^zfh\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zfh")
+            unlet b:riscv_asm_zfh
         endif
     endif
     " S extension
