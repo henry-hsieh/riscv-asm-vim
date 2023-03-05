@@ -111,8 +111,10 @@ Currently supported extensions:
     * C (16-bit Compressed Instructions)
     * V (Vector Instructions)
     * N (User-Level Interrupts)
+    * Zicntr (Base Counters and Timers)
     * Zicsr (Control and Status Register Access)
     * Zifencei (Instruction-Fetch Fence)
+    * Zihpm (Hardware Performance Counters)
 * Privileged Extensions
     * S (Supervisor-Level Extension)
     * H (Hypervisor-Level Extension)

@@ -121,11 +121,17 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_v")
     runtime! syntax/riscv_asm_v.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicntr")
+    runtime! syntax/riscv_asm_zicntr.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicsr")
     runtime! syntax/riscv_asm_zicsr.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zifencei")
     runtime! syntax/riscv_asm_zifencei.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zihpm")
+    runtime! syntax/riscv_asm_zihpm.vim
 endif
 
 " Disable defined identifier for reopen
@@ -162,11 +168,17 @@ endif
 if exists("b:riscv_asm_defined_v")
     unlet b:riscv_asm_defined_v
 endif
+if exists("b:riscv_asm_defined_zicntr")
+    unlet b:riscv_asm_defined_zicntr
+endif
 if exists("b:riscv_asm_defined_zicsr")
     unlet b:riscv_asm_defined_zicsr
 endif
 if exists("b:riscv_asm_defined_zifencei")
     unlet b:riscv_asm_defined_zifencei
+endif
+if exists("b:riscv_asm_defined_zihpm")
+    unlet b:riscv_asm_defined_zihpm
 endif
 if exists("b:riscv_asm_defined_zxm")
     unlet b:riscv_asm_defined_zxm
@@ -266,8 +278,10 @@ hi def link riscvQInstruction          Statement
 hi def link riscvCInstruction          Statement
 hi def link riscvNInstruction          Statement
 hi def link riscvVInstruction          Statement
+hi def link riscvZicntrInstruction     Statement
 hi def link riscvZicsrInstruction      Statement
 hi def link riscvZifenceiInstruction   Statement
+hi def link riscvZihpmInstruction      Statement
 hi def link riscvSInstruction          Statement
 hi def link riscvHInstruction          Statement
 hi def link riscvZxmInstruction        Statement
