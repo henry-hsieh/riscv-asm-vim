@@ -106,7 +106,7 @@ Following are valid version number format:
 
 The ISA name is case insensitive. The underscores will give the parser hints, but they are not neccessary for all situations.
 
-Currently supported extensions:
+#### Currently supported extensions
 
 * Base Integer
     * RV32E (Embedded 32-bit integer)
@@ -128,14 +128,24 @@ Currently supported extensions:
     * Zihintntl (Non-Temporal Locality Hints)
     * Zihintpause (Pause Hint)
     * Zihpm (Hardware Performance Counters)
-    * Zfh (Half-Precision Floating-Point)
-    * Zfhmin (Minimal Half-Precision Floating-Point)
+    * __Scalar Half-Precsion Floating-Point__
+        * Zfh (Half-Precision Floating-Point)
+        * Zfhmin (Minimal Half-Precision Floating-Point)
 * Privileged Extensions
     * Ss (Supervisor-Level Extension)
+    * _Sv32_ (Page-Based 32-bit Virtual-Memory Systems)
+    * _Sv39_ (Page-Based 39-bit Virtual-Memory Systems)
+    * _Sv48_ (Page-Based 48-bit Virtual-Memory Systems)
+    * _Sv57_ (Page-Based 57-bit Virtual-Memory Systems)
     * H (Hypervisor-Level Extension)
     * Sm (Machine-Level Extension)
 
-You should specifiy the extensions in sequence. `let g:riscv_asm_isa="RV64IMC"` is a valid sequence and `let b:riscv_asm_isa="RV128IZicsrM"` is not a valid sequence.
+1. You should specifiy the extensions in sequence listed above. The base integer ISA is first, the extensions are followed, and the privileged extensions should be the last. The extensions and the privileged extensions are optional.
+2. You should choose one of the Base Integer ISA.
+3. _Italic_ means the version number shall not be given.
+4. __Bold__ means you can only choose one of the extensions in the sub-list.
+
+For example, `let g:riscv_asm_isa="RV64IMC"` is a valid sequence and `let b:riscv_asm_isa="RV128IZicsrM"` is not a valid sequence.
 
 If invalid sequences are detected, following options will be set.
 

@@ -177,7 +177,7 @@ else
     let b:riscv_asm_all_enable = 1
 endif
 " Parse extensions
-" The name should follow the MAFDQLCBJTPVZicntrZicsrZifenceiZihintntlZihintpauseZihpmZfh(min)SsHSm sequence
+" The name should follow the sequence shown in README
 if !exists("b:riscv_asm_all_enable")
     " M extension
     if s:riscv_asm_isa =~ '\c^m'
@@ -550,6 +550,22 @@ if !exists("b:riscv_asm_all_enable")
         if exists("b:riscv_asm_ss")
             unlet b:riscv_asm_ss
         endif
+    endif
+    " Sv32 extension
+    if s:riscv_asm_isa =~ '\c^sv32'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^sv32', "", "")
+    endif
+    " Sv39 extension
+    if s:riscv_asm_isa =~ '\c^sv39'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^sv39', "", "")
+    endif
+    " Sv48 extension
+    if s:riscv_asm_isa =~ '\c^sv48'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^sv48', "", "")
+    endif
+    " Sv57 extension
+    if s:riscv_asm_isa =~ '\c^sv57'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^sv57', "", "")
     endif
     " H extension
     if s:riscv_asm_isa =~ '\c^h'
