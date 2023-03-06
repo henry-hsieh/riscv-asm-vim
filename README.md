@@ -151,7 +151,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `H`                    | Hypervisor Extension                               | 1.0               |
 | `Sm`                   | Machine-Level Extension                            | 1.12              |
 
-1. You should specifiy the extensions in sequence listed above. The base integer ISA is first and mandatory, the unprivileged extensions are followed, and the privileged extensions should be the last. The extensions and the privileged extensions are optional.
+1. You should specifiy the extensions in sequence listed above. The base integer ISA is first and mandatory, the unprivileged extensions are followed, and the privileged extensions should be the last. The unprivileged extensions and the privileged extensions are optional.
 2. If the supported version of an extension is not given, you shouldn't specified the version in the sequence.
 3. Some extensions and privileged extensions can't co-exist, they are listed in the following table.
 
