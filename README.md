@@ -92,7 +92,7 @@ They tell Vim to highlight specified RISC-V extensions.
 
 By default, the plugin will enable the RV32G extension.
 
-This means that only 32I,M,A,F,D,Zicsr,Zifence instructions and registers will be highlighted.
+This means that only 32I,M,A,F,D,Zicsr,Zifencei instructions and registers will be highlighted.
 
 The version numbers of extensions can be parsed, but they are not used in plugin for now.
 
@@ -109,41 +109,54 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 #### Currently supported extensions
 
 * Base Integer
-    * RV32E (Embedded 32-bit integer)
-    * RV32I (32-bit integer)
-    * RV64E (Embedded 64-bit integer)
-    * RV64I (64-bit integer)
-    * RV128I (128-bit integer)
-* Extensions
-    * M (Integer Multiplication and Division)
-    * A (Atomics)
-    * F (Single-Precision Floating-Point)
-    * D (Double-Precision Floating-Point)
-    * Q (Quad-Precision Floating-Point)
-    * C (16-bit Compressed Instructions)
-    * V (Vector Instructions)
-    * Zicntr (Base Counters and Timers)
-    * Zicsr (Control and Status Register Access)
-    * Zifencei (Instruction-Fetch Fence)
-    * Zihintntl (Non-Temporal Locality Hints)
-    * Zihintpause (Pause Hint)
-    * Zihpm (Hardware Performance Counters)
-    * __Scalar Half-Precsion Floating-Point__
-        * Zfh (Half-Precision Floating-Point)
-        * Zfhmin (Minimal Half-Precision Floating-Point)
-* Privileged Extensions
-    * Ss (Supervisor-Level Extension)
-    * _Sv32_ (Page-Based 32-bit Virtual-Memory Systems)
-    * _Sv39_ (Page-Based 39-bit Virtual-Memory Systems)
-    * _Sv48_ (Page-Based 48-bit Virtual-Memory Systems)
-    * _Sv57_ (Page-Based 57-bit Virtual-Memory Systems)
-    * H (Hypervisor-Level Extension)
-    * Sm (Machine-Level Extension)
 
-1. You should specifiy the extensions in sequence listed above. The base integer ISA is first, the extensions are followed, and the privileged extensions should be the last. The extensions and the privileged extensions are optional.
-2. You should choose one of the Base Integer ISA.
-3. _Italic_ means the version number shall not be given.
-4. __Bold__ means you can only choose one of the extensions in the sub-list.
+| Base ISA               | Full Name                                          | Supported Version |
+|:---------------------- |:-------------------------------------------------- |:----------------- |
+| `RV32E`                | Embedded 32-bit integer                            | 2.0               |
+| `RV32I`                | 32-bit integer                                     | 2.1               |
+| `RV64E`                | Embedded 64-bit integer                            | 2.0               |
+| `RV64I`                | 64-bit integer                                     | 2.1               |
+| `RV128I`               | 128-bit integer                                    | 1.7               |
+
+* Unprivileged Extensions
+
+| Extension              | Full Name                                          | Supported Version |
+|:---------------------- |:-------------------------------------------------- |:----------------- |
+| `M`                    | Integer Multiplication and Division                | 2.0               |
+| `A`                    | Atomics                                            | 2.1               |
+| `F`                    | Single-Precision Floating-Point                    | 2.2               |
+| `D`                    | Double-Precision Floating-Point                    | 2.2               |
+| `Q`                    | Quad-Precision Floating-Point                      | 2.2               |
+| `C`                    | 16-bit Compressed Instructions                     | 2.0               |
+| `V`                    | Vector Instructions                                | 1.0               |
+| `Zicntr`               | Base Counters and Timers                           | 2.0               |
+| `Zicsr`                | Control and Status Register Access                 | 2.0               |
+| `Zifencei`             | Instruction-Fetch Fence                            | 2.0               |
+| `Zihintntl`            | Non-Temporal Locality Hints                        | 0.2               |
+| `Zihintpause`          | Pause Hint                                         | 2.0               |
+| `Zihpm`                | Hardware Performance Counters                      | 2.0               |
+| `Zfh`                  | Half-Precision Floating-Point                      | 1.0               |
+| `Zfhmin`               | Minimal Half-Precision Floating-Point              | 1.0               |
+
+* Privileged Extensions
+
+| Extension              | Full Name                                          | Supported Version |
+|:---------------------- |:-------------------------------------------------- |:----------------- |
+| `Ss`                   | Supervisor-Level Extension                         | 1.12              |
+| `Sv32`                 | Page-Based 32-bit Virtual-Memory Systems           |                   |
+| `Sv39`                 | Page-Based 39-bit Virtual-Memory Systems           |                   |
+| `Sv48`                 | Page-Based 48-bit Virtual-Memory Systems           |                   |
+| `Sv57`                 | Page-Based 57-bit Virtual-Memory Systems           |                   |
+| `H`                    | Hypervisor Extension                               | 1.0               |
+| `Sm`                   | Machine-Level Extension                            | 1.12              |
+
+1. You should specifiy the extensions in sequence listed above. The base integer ISA is first and mandatory, the unprivileged extensions are followed, and the privileged extensions should be the last. The extensions and the privileged extensions are optional.
+2. If the supported version of an extension is not given, you shouldn't specified the version in the sequence.
+3. Some extensions and privileged extensions can't co-exist, they are listed in the following table.
+
+| Extension A                                        | Extension B                                |
+|:-------------------------------------------------- |:-------------------------------------------------- |
+| `Zfh`                                              | `Zfhmin`                                           |
 
 For example, `let g:riscv_asm_isa="RV64IMC"` is a valid sequence and `let b:riscv_asm_isa="RV128IZicsrM"` is not a valid sequence.
 

@@ -65,8 +65,8 @@ let b:riscv_asm_zfh_max = 1.0
 let b:riscv_asm_zfhmin_max = 1.0
 " Ss Extension: Supervisor-Level Extension
 let b:riscv_asm_ss_max = 1.12
-" H Extension: Hypervisor-Level Extension
-let b:riscv_asm_h_max = 0.6
+" H Extension: Hypervisor Extension
+let b:riscv_asm_h_max = 1.0
 " Sm Extension: Machine-Level Extension
 let b:riscv_asm_sm_max = 1.12
 
