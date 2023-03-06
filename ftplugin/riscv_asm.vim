@@ -519,6 +519,10 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_zmmul
         endif
     endif
+    " Zam extension
+    if s:riscv_asm_isa =~ '\c^zam'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^zam\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    endif
     " Zfhmin extension
     if s:riscv_asm_isa =~ '\c^zfhmin'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^zfhmin\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
