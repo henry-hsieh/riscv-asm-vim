@@ -59,6 +59,8 @@ let b:riscv_asm_zihintntl_max = 0.2
 let b:riscv_asm_zihintpause_max = 2.0
 " Zihpm Extension: Hardware Performance Counters
 let b:riscv_asm_zihpm_max = 2.0
+" Zmmul Extension: Multiplication Without Division
+let b:riscv_asm_zmmul_max = 1.0
 " Zfh Extension: Half-Precision Floating-Point
 let b:riscv_asm_zfh_max = 1.0
 " Zfhmin Extension: Minimal Half-Precision Floating-Point
@@ -498,6 +500,23 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_zihpm")
             unlet b:riscv_asm_zihpm
+        endif
+    endif
+    " Zmmul extension
+    if s:riscv_asm_isa =~ '\c^zmmul' && !exists("b:riscv_asm_m")
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^zmmul\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zmmul = b:riscv_asm_zmmul_max
+        else
+            let b:riscv_asm_zmmul = str2float(s:extract_version)
+            if b:riscv_asm_zmmul > b:riscv_asm_zmmul_max
+                let b:riscv_asm_zmmul = b:riscv_asm_zmmul_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^zmmul\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zmmul")
+            unlet b:riscv_asm_zmmul
         endif
     endif
     " Zfhmin extension

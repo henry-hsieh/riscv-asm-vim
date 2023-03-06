@@ -135,6 +135,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zihintntl`            | Non-Temporal Locality Hints                        | 0.2               |
 | `Zihintpause`          | Pause Hint                                         | 2.0               |
 | `Zihpm`                | Hardware Performance Counters                      | 2.0               |
+| `Zmmul`                | Multiplication Without Division                    | 1.0               |
 | `Zfh`                  | Half-Precision Floating-Point                      | 1.0               |
 | `Zfhmin`               | Minimal Half-Precision Floating-Point              | 1.0               |
 
@@ -157,6 +158,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | Extension A                                        | Extension B                                |
 |:-------------------------------------------------- |:-------------------------------------------------- |
 | `Zfh`                                              | `Zfhmin`                                           |
+| `M`                                                | `Zmmul`                                            |
 
 For example, `let g:riscv_asm_isa="RV64IMC"` is a valid sequence and `let b:riscv_asm_isa="RV128IZicsrM"` is not a valid sequence.
 
