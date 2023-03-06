@@ -131,9 +131,9 @@ Currently supported extensions:
     * Zfh (Half-Precision Floating-Point)
     * Zfhmin (Minimal Half-Precision Floating-Point)
 * Privileged Extensions
-    * S (Supervisor-Level Extension)
+    * Ss (Supervisor-Level Extension)
     * H (Hypervisor-Level Extension)
-    * Zxm (Machine-Level Extension)
+    * Sm (Machine-Level Extension)
 
 You should specifiy the extensions in sequence. `let g:riscv_asm_isa="RV64IMC"` is a valid sequence and `let b:riscv_asm_isa="RV128IZicsrM"` is not a valid sequence.
 

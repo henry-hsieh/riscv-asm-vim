@@ -63,12 +63,12 @@ let b:riscv_asm_zihpm_max = 2.0
 let b:riscv_asm_zfh_max = 1.0
 " Zfhmin Extension: Minimal Half-Precision Floating-Point
 let b:riscv_asm_zfhmin_max = 1.0
-" S Extension: Supervisor-Level Extension
-let b:riscv_asm_s_max = 1.12
+" Ss Extension: Supervisor-Level Extension
+let b:riscv_asm_ss_max = 1.12
 " H Extension: Hypervisor-Level Extension
 let b:riscv_asm_h_max = 0.6
-" Zxm Extension: Machine-Level Extension
-let b:riscv_asm_zxm_max = 1.12
+" Sm Extension: Machine-Level Extension
+let b:riscv_asm_sm_max = 1.12
 
 " Find global setting of RISC-V ISA
 if exists("g:riscv_asm_isa")
@@ -177,7 +177,7 @@ else
     let b:riscv_asm_all_enable = 1
 endif
 " Parse extensions
-" The name should follow the MAFDQLCBJTPVZicntrZicsrZifenceiZihintntlZihintpauseZihpmZfh(min)SHZxm sequence
+" The name should follow the MAFDQLCBJTPVZicntrZicsrZifenceiZihintntlZihintpauseZihpmZfh(min)SsHSm sequence
 if !exists("b:riscv_asm_all_enable")
     " M extension
     if s:riscv_asm_isa =~ '\c^m'
@@ -534,21 +534,21 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_zfh
         endif
     endif
-    " S extension
-    if s:riscv_asm_isa =~ '\c^s'
-        let s:extract_version = substitute(s:riscv_asm_isa, '\c^s\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+    " Ss extension
+    if s:riscv_asm_isa =~ '\c^ss'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^ss\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
-            let b:riscv_asm_s = b:riscv_asm_s_max
+            let b:riscv_asm_ss = b:riscv_asm_ss_max
         else
-            let b:riscv_asm_s = str2float(s:extract_version)
-            if b:riscv_asm_s > b:riscv_asm_s_max
-                let b:riscv_asm_s = b:riscv_asm_s_max
+            let b:riscv_asm_ss = str2float(s:extract_version)
+            if b:riscv_asm_ss > b:riscv_asm_ss_max
+                let b:riscv_asm_ss = b:riscv_asm_ss_max
             endif
         endif
-        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^s\(\d\+\(\.\d\+\)\=\)\=', "", "")
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^ss\(\d\+\(\.\d\+\)\=\)\=', "", "")
     else
-        if exists("b:riscv_asm_s")
-            unlet b:riscv_asm_s
+        if exists("b:riscv_asm_ss")
+            unlet b:riscv_asm_ss
         endif
     endif
     " H extension
@@ -568,21 +568,21 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_h
         endif
     endif
-    " Zxm extension
-    if s:riscv_asm_isa =~ '\c^zxm'
-        let s:extract_version = substitute(s:riscv_asm_isa, '\c^zxm\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+    " Sm extension
+    if s:riscv_asm_isa =~ '\c^sm'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^sm\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
-            let b:riscv_asm_zxm = b:riscv_asm_zxm_max
+            let b:riscv_asm_sm = b:riscv_asm_sm_max
         else
-            let b:riscv_asm_zxm = str2float(s:extract_version)
-            if b:riscv_asm_zxm > b:riscv_asm_zxm_max
-                let b:riscv_asm_zxm = b:riscv_asm_zxm_max
+            let b:riscv_asm_sm = str2float(s:extract_version)
+            if b:riscv_asm_sm > b:riscv_asm_sm_max
+                let b:riscv_asm_sm = b:riscv_asm_sm_max
             endif
         endif
-        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^zxm\(\d\+\(\.\d\+\)\=\)\=', "", "")
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^sm\(\d\+\(\.\d\+\)\=\)\=', "", "")
     else
-        if exists("b:riscv_asm_zxm")
-            unlet b:riscv_asm_zxm
+        if exists("b:riscv_asm_sm")
+            unlet b:riscv_asm_sm
         endif
     endif
     " Unknown extensions or parser error

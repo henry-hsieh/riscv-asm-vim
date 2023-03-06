@@ -1,17 +1,28 @@
-if exists("b:riscv_asm_defined_zxm")
+if exists("b:riscv_asm_defined_sm")
     finish
 endif
 
 " Control Status Register
 " Machine Information Registers
-syn keyword riscvMCSRegister           mvendorid marchid mimpid mhartid
+syn keyword riscvMCSRegister           mvendorid marchid mimpid mhartid mconfigptr
 " Machine Trap Setup
-syn keyword riscvMCSRegister           mstatus misa medeleg mideleg mie mtvec mcounteren
+syn keyword riscvMCSRegister           mstatus misa mie mtvec mcounteren
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_ss")
+    syn keyword riscvMCSRegister           medeleg mideleg
+endif
 if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen == 32
     syn keyword riscvMCSRegister           mstatush
 endif
 " Machine Trap Handling
-syn keyword riscvMCSRegister           mscratch mepc mcause mtval mip mtinst mtval2
+syn keyword riscvMCSRegister           mscratch mepc mcause mtval mip
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_h")
+    syn keyword riscvMCSRegister           mtinst mtval2
+endif
+" Machine Configuration
+syn keyword riscvMCSRegister           menvcfg mseccfg
+if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen == 32
+    syn keyword riscvMCSRegister           menvcfgh mseccfgh
+endif
 " Machine Memory Protection
 syn keyword riscvMCSRegister           pmpcfg0 pmpcfg2 pmpcfg4 pmpcfg6 pmpcfg8 pmpcfg10 pmpcfg12 pmpcfg14
 if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen == 32
@@ -33,6 +44,11 @@ syn keyword riscvMCSRegister           mcountinhibit mhpmevent3 mhpmevent4 mhpme
 syn keyword riscvMCSRegister           mhpmevent17 mhpmevent18 mhpmevent19 mhpmevent20 mhpmevent21 mhpmevent22 mhpmevent23 mhpmevent24 mhpmevent25 mhpmevent26 mhpmevent27 mhpmevent28 mhpmevent29 mhpmevent30 mhpmevent31
 
 " Instructions
-syn keyword riscvZxmInstruction        mret wfi
+syn keyword riscvSmInstruction         mret wfi
 
-let b:riscv_asm_defined_zxm = 0
+if !exists("b:riscv_asm_zicsr")
+    let b:riscv_asm_zicsr = b:riscv_asm_zicsr_max
+    runtime! syntax/riscv_asm_zicsr.vim
+endif
+
+let b:riscv_asm_defined_sm = 0
