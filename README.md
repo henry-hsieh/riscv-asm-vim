@@ -144,6 +144,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zdinx`                | Double-Precision Floating-Point in Integer Registers                                        | 1.0               |
 | `Zhinx`                | Half-Precision Floating-Point in Integer Registers                                          | 1.0               |
 | `Zhinxmin`             | Minimal Half-Precision Floating-Point in Integer Registers                                  | 1.0               |
+| `Ztso`                 | Total Store Ordering                                                                        | 1.0               |
 
 * Privileged Extensions
 

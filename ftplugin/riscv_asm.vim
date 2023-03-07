@@ -652,6 +652,10 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_zhinx
         endif
     endif
+    " Ztso extension
+    if s:riscv_asm_isa =~ '\c^ztso'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^ztso\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    endif
     " Ss extension
     if s:riscv_asm_isa =~ '\c^ss'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^ss\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
