@@ -110,56 +110,62 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 
 * Base Integer
 
-| Base ISA               | Full Name                                          | Supported Version |
-|:---------------------- |:-------------------------------------------------- |:----------------- |
-| `RV32E`                | Embedded 32-bit integer                            | 2.0               |
-| `RV32I`                | 32-bit integer                                     | 2.1               |
-| `RV64E`                | Embedded 64-bit integer                            | 2.0               |
-| `RV64I`                | 64-bit integer                                     | 2.1               |
-| `RV128I`               | 128-bit integer                                    | 1.7               |
+| Base ISA               | Full Name                                                                                   | Supported Version |
+|:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
+| `RV32E`                | Embedded 32-bit integer                                                                     | 2.0               |
+| `RV32I`                | 32-bit integer                                                                              | 2.1               |
+| `RV64E`                | Embedded 64-bit integer                                                                     | 2.0               |
+| `RV64I`                | 64-bit integer                                                                              | 2.1               |
+| `RV128I`               | 128-bit integer                                                                             | 1.7               |
 
 * Unprivileged Extensions
 
-| Extension              | Full Name                                          | Supported Version |
-|:---------------------- |:-------------------------------------------------- |:----------------- |
-| `M`                    | Integer Multiplication and Division                | 2.0               |
-| `A`                    | Atomics                                            | 2.1               |
-| `F`                    | Single-Precision Floating-Point                    | 2.2               |
-| `D`                    | Double-Precision Floating-Point                    | 2.2               |
-| `Q`                    | Quad-Precision Floating-Point                      | 2.2               |
-| `C`                    | 16-bit Compressed Instructions                     | 2.0               |
-| `V`                    | Vector Instructions                                | 1.0               |
-| `Zicntr`               | Base Counters and Timers                           | 2.0               |
-| `Zicsr`                | Control and Status Register Access                 | 2.0               |
-| `Zifencei`             | Instruction-Fetch Fence                            | 2.0               |
-| `Zihintntl`            | Non-Temporal Locality Hints                        | 0.2               |
-| `Zihintpause`          | Pause Hint                                         | 2.0               |
-| `Zihpm`                | Hardware Performance Counters                      | 2.0               |
-| `Zmmul`                | Multiplication Without Division                    | 1.0               |
-| `Zam`                  | Misaligned Atomic                                  | 0.1               |
-| `Zfh`                  | Half-Precision Floating-Point                      | 1.0               |
-| `Zfhmin`               | Minimal Half-Precision Floating-Point              | 1.0               |
+| Extension              | Full Name                                                                                   | Supported Version |
+|:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
+| `M`                    | Integer Multiplication and Division                                                         | 2.0               |
+| `A`                    | Atomics                                                                                     | 2.1               |
+| `F`                    | Single-Precision Floating-Point                                                             | 2.2               |
+| `D`                    | Double-Precision Floating-Point                                                             | 2.2               |
+| `Q`                    | Quad-Precision Floating-Point                                                               | 2.2               |
+| `C`                    | 16-bit Compressed Instructions                                                              | 2.0               |
+| `V`                    | Vector Instructions                                                                         | 1.0               |
+| `Zicntr`               | Base Counters and Timers                                                                    | 2.0               |
+| `Zicsr`                | Control and Status Register Access                                                          | 2.0               |
+| `Zifencei`             | Instruction-Fetch Fence                                                                     | 2.0               |
+| `Zihintntl`            | Non-Temporal Locality Hints                                                                 | 0.2               |
+| `Zihintpause`          | Pause Hint                                                                                  | 2.0               |
+| `Zihpm`                | Hardware Performance Counters                                                               | 2.0               |
+| `Zmmul`                | Multiplication Without Division                                                             | 1.0               |
+| `Zam`                  | Misaligned Atomic                                                                           | 0.1               |
+| `Zfh`                  | Half-Precision Floating-Point                                                               | 1.0               |
+| `Zfhmin`               | Minimal Half-Precision Floating-Point                                                       | 1.0               |
+| `Zfinx`                | Single-Precision Floating-Point in Integer Registers                                        | 1.0               |
+| `Zdinx`                | Double-Precision Floating-Point in Integer Registers                                        | 1.0               |
+| `Zhinx`                | Half-Precision Floating-Point in Integer Registers                                          | 1.0               |
+| `Zhinxmin`             | Minimal Half-Precision Floating-Point in Integer Registers                                  | 1.0               |
 
 * Privileged Extensions
 
-| Extension              | Full Name                                          | Supported Version |
-|:---------------------- |:-------------------------------------------------- |:----------------- |
-| `Ss`                   | Supervisor-Level Extension                         | 1.12              |
-| `Sv32`                 | Page-Based 32-bit Virtual-Memory Systems           |                   |
-| `Sv39`                 | Page-Based 39-bit Virtual-Memory Systems           |                   |
-| `Sv48`                 | Page-Based 48-bit Virtual-Memory Systems           |                   |
-| `Sv57`                 | Page-Based 57-bit Virtual-Memory Systems           |                   |
-| `H`                    | Hypervisor Extension                               | 1.0               |
-| `Sm`                   | Machine-Level Extension                            | 1.12              |
+| Extension              | Full Name                                                                                   | Supported Version |
+|:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
+| `Ss`                   | Supervisor-Level Extension                                                                  | 1.12              |
+| `Sv32`                 | Page-Based 32-bit Virtual-Memory Systems                                                    |                   |
+| `Sv39`                 | Page-Based 39-bit Virtual-Memory Systems                                                    |                   |
+| `Sv48`                 | Page-Based 48-bit Virtual-Memory Systems                                                    |                   |
+| `Sv57`                 | Page-Based 57-bit Virtual-Memory Systems                                                    |                   |
+| `H`                    | Hypervisor Extension                                                                        | 1.0               |
+| `Sm`                   | Machine-Level Extension                                                                     | 1.12              |
 
 1. You should specifiy the extensions in sequence listed above. The base integer ISA is first and mandatory, the unprivileged extensions are followed, and the privileged extensions should be the last. The unprivileged extensions and the privileged extensions are optional.
 2. If the supported version of an extension is not given, you shouldn't specified the version in the sequence.
 3. Some extensions and privileged extensions can't co-exist, they are listed in the following table.
 
-| Extension A                                        | Extension B                                |
+| Extension A                                        | Extension B                                        |
 |:-------------------------------------------------- |:-------------------------------------------------- |
 | `Zfh`                                              | `Zfhmin`                                           |
 | `M`                                                | `Zmmul`                                            |
+| `F`/`D`/`Q`/`Zfh`/`Zfhmin`                         | `Zfinx`/`Zdinx`/`Zhinx`/`Zhinxmin`                 |
+| `Zhinx`                                            | `Zhinxmin`                                         |
 
 For example, `let g:riscv_asm_isa="RV64IMC"` is a valid sequence and `let b:riscv_asm_isa="RV128IZicsrM"` is not a valid sequence.
 

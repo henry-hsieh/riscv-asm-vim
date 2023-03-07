@@ -65,6 +65,14 @@ let b:riscv_asm_zmmul_max = 1.0
 let b:riscv_asm_zfh_max = 1.0
 " Zfhmin Extension: Minimal Half-Precision Floating-Point
 let b:riscv_asm_zfhmin_max = 1.0
+" Zfinx Extension: Single-Precision Floating-Point in Integer Registers
+let b:riscv_asm_zfinx_max = 1.0
+" Zdinx Extension: Double-Precision Floating-Point in Integer Registers
+let b:riscv_asm_zdinx_max = 1.0
+" Zhinx Extension: Half-Precision Floating-Point in Integer Registers
+let b:riscv_asm_zhinx_max = 1.0
+" Zhinxmin Extension: Minimal Half-Precision Floating-Point in Integer Registers
+let b:riscv_asm_zhinxmin_max = 1.0
 " Ss Extension: Supervisor-Level Extension
 let b:riscv_asm_ss_max = 1.12
 " H Extension: Hypervisor Extension
@@ -555,6 +563,74 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_zfh")
             unlet b:riscv_asm_zfh
+        endif
+    endif
+    " Zfinx extension
+    if s:riscv_asm_isa =~ '\c^zfinx' && !exists("b:riscv_asm_f") && !exists("b:riscv_asm_d") && !exists("b:riscv_asm_q") && !exists("b:riscv_asm_zfh") && !exists("b:riscv_asm_zfhmin")
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^zfinx\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zfinx = b:riscv_asm_zfinx_max
+        else
+            let b:riscv_asm_zfinx = str2float(s:extract_version)
+            if b:riscv_asm_zfinx > b:riscv_asm_zfinx_max
+                let b:riscv_asm_zfinx = b:riscv_asm_zfinx_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^zfinx\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zfinx")
+            unlet b:riscv_asm_zfinx
+        endif
+    endif
+    " Zdinx extension
+    if s:riscv_asm_isa =~ '\c^zdinx' && !exists("b:riscv_asm_f") && !exists("b:riscv_asm_d") && !exists("b:riscv_asm_q") && !exists("b:riscv_asm_zfh") && !exists("b:riscv_asm_zfhmin")
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^zdinx\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zdinx = b:riscv_asm_zdinx_max
+        else
+            let b:riscv_asm_zdinx = str2float(s:extract_version)
+            if b:riscv_asm_zdinx > b:riscv_asm_zdinx_max
+                let b:riscv_asm_zdinx = b:riscv_asm_zdinx_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^zdinx\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zdinx")
+            unlet b:riscv_asm_zdinx
+        endif
+    endif
+    " Zhinxmin extension
+    if s:riscv_asm_isa =~ '\c^zhinxmin' && !exists("b:riscv_asm_f") && !exists("b:riscv_asm_d") && !exists("b:riscv_asm_q") && !exists("b:riscv_asm_zfh") && !exists("b:riscv_asm_zfhmin")
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^zhinxmin\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zhinxmin = b:riscv_asm_zhinxmin_max
+        else
+            let b:riscv_asm_zhinxmin = str2float(s:extract_version)
+            if b:riscv_asm_zhinxmin > b:riscv_asm_zhinxmin_max
+                let b:riscv_asm_zhinxmin = b:riscv_asm_zhinxmin_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^zhinxmin\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zhinxmin")
+            unlet b:riscv_asm_zhinxmin
+        endif
+    endif
+    " Zhinx extension
+    if s:riscv_asm_isa =~ '\c^zhinx' && !exists("b:riscv_asm_f") && !exists("b:riscv_asm_d") && !exists("b:riscv_asm_q") && !exists("b:riscv_asm_zfh") && !exists("b:riscv_asm_zfhmin") && !exists("b:riscv_asm_zhinxmin")
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^zhinx\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zhinx = b:riscv_asm_zhinx_max
+        else
+            let b:riscv_asm_zhinx = str2float(s:extract_version)
+            if b:riscv_asm_zhinx > b:riscv_asm_zhinx_max
+                let b:riscv_asm_zhinx = b:riscv_asm_zhinx_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^zhinx\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zhinx")
+            unlet b:riscv_asm_zhinx
         endif
     endif
     " Ss extension
