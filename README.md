@@ -137,6 +137,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zihpm`                | Hardware Performance Counters                                                               | 2.0               |
 | `Zmmul`                | Multiplication Without Division                                                             | 1.0               |
 | `Zam`                  | Misaligned Atomic                                                                           | 0.1               |
+| `Zfa`                  | Additional Floating-Point Instructions                                                      | 0.1               |
 | `Zfh`                  | Half-Precision Floating-Point                                                               | 1.0               |
 | `Zfhmin`               | Minimal Half-Precision Floating-Point                                                       | 1.0               |
 | `Zfinx`                | Single-Precision Floating-Point in Integer Registers                                        | 1.0               |
@@ -164,7 +165,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 |:-------------------------------------------------- |:-------------------------------------------------- |
 | `Zfh`                                              | `Zfhmin`                                           |
 | `M`                                                | `Zmmul`                                            |
-| `F`/`D`/`Q`/`Zfh`/`Zfhmin`                         | `Zfinx`/`Zdinx`/`Zhinx`/`Zhinxmin`                 |
+| `F`/`D`/`Q`/`Zfa`/`Zfh`/`Zfhmin`                   | `Zfinx`/`Zdinx`/`Zhinx`/`Zhinxmin`                 |
 | `Zhinx`                                            | `Zhinxmin`                                         |
 
 For example, `let g:riscv_asm_isa="RV64IMC"` is a valid sequence and `let b:riscv_asm_isa="RV128IZicsrM"` is not a valid sequence.
