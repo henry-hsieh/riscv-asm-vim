@@ -129,6 +129,17 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Q`                    | Quad-Precision Floating-Point                                                               | 2.2               |
 | `C`                    | 16-bit Compressed Instructions                                                              | 2.0               |
 | `V`                    | Vector Instructions                                                                         | 1.0               |
+
+* Privileged Extensions
+
+| Extension              | Full Name                                                                                   | Supported Version |
+|:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
+| `H`                    | Hypervisor Extension                                                                        | 1.0               |
+
+* Additional Unprivileged Extensions
+
+| Extension              | Full Name                                                                                   | Supported Version |
+|:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
 | `Zicntr`               | Base Counters and Timers                                                                    | 2.0               |
 | `Zicsr`                | Control and Status Register Access                                                          | 2.0               |
 | `Zifencei`             | Instruction-Fetch Fence                                                                     | 2.0               |
@@ -144,9 +155,18 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zdinx`                | Double-Precision Floating-Point in Integer Registers                                        | 1.0               |
 | `Zhinx`                | Half-Precision Floating-Point in Integer Registers                                          | 1.0               |
 | `Zhinxmin`             | Minimal Half-Precision Floating-Point in Integer Registers                                  | 1.0               |
+| `Zvamo`                | Vector Atomic Instructions                                                                  |                   |
+| `Zve32f`               | Vector Extension for Embedded 32-bit Single-Precision Floating-Point                        | 1.1               |
+| `Zve32x`               | Vector Extension for Embedded 32-bit Integer                                                | 1.1               |
+| `Zve64d`               | Vector Extension for Embedded 64-bit Double-Precision Floating-Point                        | 1.1               |
+| `Zve64f`               | Vector Extension for Embedded 64-bit Single-Precision Floating-Point                        | 1.1               |
+| `Zve64x`               | Vector Extension for Embedded 64-bit Integer                                                | 1.1               |
+| `Zvediv`               | Vector Divided Element Extension                                                            |                   |
+| `Zvfh`                 | Vector Extension for Half-Precision Floating-Point                                          | 1.1               |
+| `Zvfhmin`              | Vector Extension for Minimal Half-Precision Floating-Point                                  | 1.1               |
 | `Ztso`                 | Total Store Ordering                                                                        | 1.0               |
 
-* Privileged Extensions
+* Additional Privileged Extensions
 
 | Extension              | Full Name                                                                                   | Supported Version |
 |:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
@@ -155,12 +175,12 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Sv39`                 | Page-Based 39-bit Virtual-Memory Systems                                                    |                   |
 | `Sv48`                 | Page-Based 48-bit Virtual-Memory Systems                                                    |                   |
 | `Sv57`                 | Page-Based 57-bit Virtual-Memory Systems                                                    |                   |
-| `H`                    | Hypervisor Extension                                                                        | 1.0               |
 | `Sm`                   | Machine-Level Extension                                                                     | 1.12              |
 
-1. You should specifiy the extensions in sequence listed above. The base integer ISA is first and mandatory, the unprivileged extensions are followed, and the privileged extensions should be the last. The unprivileged extensions and the privileged extensions are optional.
+1. You should specifiy the extensions in sequence listed above. The base integer ISA is first and mandatory, the unprivileged extensions, the privileged extensions, the additional unprivileged extensions, and the additional privileged extensions should be specified in sequence. The (additional) unprivileged extensions and the (additional) privileged extensions are optional.
 2. If the supported version of an extension is not given, you shouldn't specified the version in the sequence.
-3. Some extensions and privileged extensions can't co-exist, they are listed in the following table.
+3. A underscore should be added between two additional extensions.
+4. Some extensions and privileged extensions can't co-exist, they are listed in the following table.
 
 | Extension A                                        | Extension B                                        |
 |:-------------------------------------------------- |:-------------------------------------------------- |
