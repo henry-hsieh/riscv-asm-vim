@@ -533,7 +533,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zmmul extension
-    if s:riscv_asm_isa =~ '\c^-\=zmmul\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && !exists("b:riscv_asm_m")
+    if s:riscv_asm_isa =~ '\c^-\=zmmul\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zmmul\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zmmul = b:riscv_asm_zmmul_max
