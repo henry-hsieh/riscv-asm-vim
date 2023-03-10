@@ -431,7 +431,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zicntr extension
-    if s:riscv_asm_isa =~ '\c^-\=zicntr'
+    if s:riscv_asm_isa =~ '\c^-\=zicntr\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zicntr\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zicntr = b:riscv_asm_zicntr_max
@@ -448,7 +448,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zicsr extension
-    if s:riscv_asm_isa =~ '\c^-\=zicsr'
+    if s:riscv_asm_isa =~ '\c^-\=zicsr\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zicsr\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zicsr = b:riscv_asm_zicsr_max
@@ -465,7 +465,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zifencei extension
-    if s:riscv_asm_isa =~ '\c^-\=zifencei'
+    if s:riscv_asm_isa =~ '\c^-\=zifencei\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zifencei\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zifencei = b:riscv_asm_zifencei_max
@@ -482,7 +482,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zihintntl extension
-    if s:riscv_asm_isa =~ '\c^-\=zihintntl'
+    if s:riscv_asm_isa =~ '\c^-\=zihintntl\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zihintntl\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zihintntl = b:riscv_asm_zihintntl_max
@@ -499,7 +499,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zihintpause extension
-    if s:riscv_asm_isa =~ '\c^-\=zihintpause'
+    if s:riscv_asm_isa =~ '\c^-\=zihintpause\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zihintpause\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zihintpause = b:riscv_asm_zihintpause_max
@@ -516,7 +516,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zihpm extension
-    if s:riscv_asm_isa =~ '\c^-\=zihpm'
+    if s:riscv_asm_isa =~ '\c^-\=zihpm\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zihpm\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zihpm = b:riscv_asm_zihpm_max
@@ -533,7 +533,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zmmul extension
-    if s:riscv_asm_isa =~ '\c^-\=zmmul' && !exists("b:riscv_asm_m")
+    if s:riscv_asm_isa =~ '\c^-\=zmmul\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && !exists("b:riscv_asm_m")
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zmmul\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zmmul = b:riscv_asm_zmmul_max
@@ -550,11 +550,11 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zam extension
-    if s:riscv_asm_isa =~ '\c^-\=zam'
+    if s:riscv_asm_isa =~ '\c^-\=zam\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zam\(\d\+\(\.\d\+\)\=\)\=', "", "")
     endif
     " Zfa extension
-    if s:riscv_asm_isa =~ '\c^-\=zfa'
+    if s:riscv_asm_isa =~ '\c^-\=zfa\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zfa\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zfa = b:riscv_asm_zfa_max
@@ -588,7 +588,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zfhmin extension
-    if s:riscv_asm_isa =~ '\c^-\=zfhmin'
+    if s:riscv_asm_isa =~ '\c^-\=zfhmin\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zfhmin\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zfhmin = b:riscv_asm_zfhmin_max
@@ -605,7 +605,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zfinx extension
-    if s:riscv_asm_isa =~ '\c^-\=zfinx' && !exists("b:riscv_asm_f") && !exists("b:riscv_asm_d") && !exists("b:riscv_asm_q") && !exists("b:riscv_asm_zfa") && !exists("b:riscv_asm_zfh") && !exists("b:riscv_asm_zfhmin")
+    if s:riscv_asm_isa =~ '\c^-\=zfinx\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && !exists("b:riscv_asm_f") && !exists("b:riscv_asm_d") && !exists("b:riscv_asm_q") && !exists("b:riscv_asm_zfa") && !exists("b:riscv_asm_zfh") && !exists("b:riscv_asm_zfhmin")
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zfinx\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zfinx = b:riscv_asm_zfinx_max
@@ -622,7 +622,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zdinx extension
-    if s:riscv_asm_isa =~ '\c^-\=zdinx' && !exists("b:riscv_asm_f") && !exists("b:riscv_asm_d") && !exists("b:riscv_asm_q") && !exists("b:riscv_asm_zfa") && !exists("b:riscv_asm_zfh") && !exists("b:riscv_asm_zfhmin")
+    if s:riscv_asm_isa =~ '\c^-\=zdinx\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && !exists("b:riscv_asm_f") && !exists("b:riscv_asm_d") && !exists("b:riscv_asm_q") && !exists("b:riscv_asm_zfa") && !exists("b:riscv_asm_zfh") && !exists("b:riscv_asm_zfhmin")
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zdinx\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zdinx = b:riscv_asm_zdinx_max
@@ -656,7 +656,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zhinxmin extension
-    if s:riscv_asm_isa =~ '\c^-\=zhinxmin' && !exists("b:riscv_asm_f") && !exists("b:riscv_asm_d") && !exists("b:riscv_asm_q") && !exists("b:riscv_asm_zfa") && !exists("b:riscv_asm_zfh") && !exists("b:riscv_asm_zfhmin")
+    if s:riscv_asm_isa =~ '\c^-\=zhinxmin\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && !exists("b:riscv_asm_f") && !exists("b:riscv_asm_d") && !exists("b:riscv_asm_q") && !exists("b:riscv_asm_zfa") && !exists("b:riscv_asm_zfh") && !exists("b:riscv_asm_zfhmin")
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zhinxmin\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zhinxmin = b:riscv_asm_zhinxmin_max
@@ -673,7 +673,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zvamo extension
-    if s:riscv_asm_isa =~ '\c^-\=zvamo'
+    if s:riscv_asm_isa =~ '\c^-\=zvamo\(-\|$\)'
         let b:riscv_asm_zvamo = 0.0
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvamo', "", "")
     else
@@ -682,7 +682,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zve32f extension
-    if s:riscv_asm_isa =~ '\c^-\=zve32f' && !exists("b:riscv_asm_zfinx") && !exists("b:riscv_asm_zdinx") && !exists("b:riscv_asm_zhinx") && !exists("b:riscv_asm_zhinxmin")
+    if s:riscv_asm_isa =~ '\c^-\=zve32f\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && !exists("b:riscv_asm_zfinx") && !exists("b:riscv_asm_zdinx") && !exists("b:riscv_asm_zhinx") && !exists("b:riscv_asm_zhinxmin")
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zve32f\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zve32f = b:riscv_asm_zve32f_max
@@ -699,7 +699,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zve32x extension
-    if s:riscv_asm_isa =~ '\c^-\=zve32x'
+    if s:riscv_asm_isa =~ '\c^-\=zve32x\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zve32x\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zve32x = b:riscv_asm_zve32x_max
@@ -716,7 +716,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zve64d extension
-    if s:riscv_asm_isa =~ '\c^-\=zve64d' && !exists("b:riscv_asm_zfinx") && !exists("b:riscv_asm_zdinx") && !exists("b:riscv_asm_zhinx") && !exists("b:riscv_asm_zhinxmin")
+    if s:riscv_asm_isa =~ '\c^-\=zve64d\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && !exists("b:riscv_asm_zfinx") && !exists("b:riscv_asm_zdinx") && !exists("b:riscv_asm_zhinx") && !exists("b:riscv_asm_zhinxmin")
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zve64d\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zve64d = b:riscv_asm_zve64d_max
@@ -733,7 +733,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zve64f extension
-    if s:riscv_asm_isa =~ '\c^-\=zve64f' && !exists("b:riscv_asm_zfinx") && !exists("b:riscv_asm_zdinx") && !exists("b:riscv_asm_zhinx") && !exists("b:riscv_asm_zhinxmin")
+    if s:riscv_asm_isa =~ '\c^-\=zve64f\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && !exists("b:riscv_asm_zfinx") && !exists("b:riscv_asm_zdinx") && !exists("b:riscv_asm_zhinx") && !exists("b:riscv_asm_zhinxmin")
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zve64f\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zve64f = b:riscv_asm_zve64f_max
@@ -750,7 +750,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zve64x extension
-    if s:riscv_asm_isa =~ '\c^-\=zve64x'
+    if s:riscv_asm_isa =~ '\c^-\=zve64x\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zve64x\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zve64x = b:riscv_asm_zve64x_max
@@ -767,7 +767,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zvediv extension
-    if s:riscv_asm_isa =~ '\c^-\=zvediv'
+    if s:riscv_asm_isa =~ '\c^-\=zvediv\(-\|$\)'
         let b:riscv_asm_zvediv = 0.0
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvediv', "", "")
     else
@@ -793,7 +793,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zvfhmin extension
-    if s:riscv_asm_isa =~ '\c^-\=zvfhmin'
+    if s:riscv_asm_isa =~ '\c^-\=zvfhmin\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zvfhmin\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_zvfhmin = b:riscv_asm_zvfhmin_max
@@ -810,35 +810,35 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Zvl32b extension
-    if s:riscv_asm_isa =~ '\c^-\=zvl32b'
+    if s:riscv_asm_isa =~ '\c^-\=zvl32b\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvl32b\(\d\+\(\.\d\+\)\=\)\=', "", "")
     endif
     " Zvl64b extension
-    if s:riscv_asm_isa =~ '\c^-\=zvl64b'
+    if s:riscv_asm_isa =~ '\c^-\=zvl64b\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvl64b\(\d\+\(\.\d\+\)\=\)\=', "", "")
     endif
     " Zvl128b extension
-    if s:riscv_asm_isa =~ '\c^-\=zvl128b'
+    if s:riscv_asm_isa =~ '\c^-\=zvl128b\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvl128b\(\d\+\(\.\d\+\)\=\)\=', "", "")
     endif
     " Zvl256b extension
-    if s:riscv_asm_isa =~ '\c^-\=zvl256b'
+    if s:riscv_asm_isa =~ '\c^-\=zvl256b\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvl256b\(\d\+\(\.\d\+\)\=\)\=', "", "")
     endif
     " Zvl512b extension
-    if s:riscv_asm_isa =~ '\c^-\=zvl512b'
+    if s:riscv_asm_isa =~ '\c^-\=zvl512b\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvl512b\(\d\+\(\.\d\+\)\=\)\=', "", "")
     endif
     " Zvl1024b extension
-    if s:riscv_asm_isa =~ '\c^-\=zvl1024b'
+    if s:riscv_asm_isa =~ '\c^-\=zvl1024b\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvl1024b\(\d\+\(\.\d\+\)\=\)\=', "", "")
     endif
     " Ztso extension
-    if s:riscv_asm_isa =~ '\c^-\=ztso'
+    if s:riscv_asm_isa =~ '\c^-\=ztso\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=ztso\(\d\+\(\.\d\+\)\=\)\=', "", "")
     endif
     " Ss extension
-    if s:riscv_asm_isa =~ '\c^-\=ss'
+    if s:riscv_asm_isa =~ '\c^-\=ss\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=ss\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_ss = b:riscv_asm_ss_max
@@ -855,23 +855,23 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " Sv32 extension
-    if s:riscv_asm_isa =~ '\c^-\=sv32'
+    if s:riscv_asm_isa =~ '\c^-\=sv32\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sv32', "", "")
     endif
     " Sv39 extension
-    if s:riscv_asm_isa =~ '\c^-\=sv39'
+    if s:riscv_asm_isa =~ '\c^-\=sv39\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sv39', "", "")
     endif
     " Sv48 extension
-    if s:riscv_asm_isa =~ '\c^-\=sv48'
+    if s:riscv_asm_isa =~ '\c^-\=sv48\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sv48', "", "")
     endif
     " Sv57 extension
-    if s:riscv_asm_isa =~ '\c^-\=sv57'
+    if s:riscv_asm_isa =~ '\c^-\=sv57\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sv57', "", "")
     endif
     " Sm extension
-    if s:riscv_asm_isa =~ '\c^-\=sm'
+    if s:riscv_asm_isa =~ '\c^-\=sm\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=sm\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_sm = b:riscv_asm_sm_max
