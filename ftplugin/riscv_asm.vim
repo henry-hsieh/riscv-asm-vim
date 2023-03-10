@@ -809,6 +809,30 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_zvfhmin
         endif
     endif
+    " Zvl32b extension
+    if s:riscv_asm_isa =~ '\c^-\=zvl32b'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvl32b\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    endif
+    " Zvl64b extension
+    if s:riscv_asm_isa =~ '\c^-\=zvl64b'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvl64b\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    endif
+    " Zvl128b extension
+    if s:riscv_asm_isa =~ '\c^-\=zvl128b'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvl128b\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    endif
+    " Zvl256b extension
+    if s:riscv_asm_isa =~ '\c^-\=zvl256b'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvl256b\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    endif
+    " Zvl512b extension
+    if s:riscv_asm_isa =~ '\c^-\=zvl512b'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvl512b\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    endif
+    " Zvl1024b extension
+    if s:riscv_asm_isa =~ '\c^-\=zvl1024b'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zvl1024b\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    endif
     " Ztso extension
     if s:riscv_asm_isa =~ '\c^-\=ztso'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=ztso\(\d\+\(\.\d\+\)\=\)\=', "", "")

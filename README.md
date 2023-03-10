@@ -164,6 +164,12 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zvediv`               | Vector Divided Element Extension                                                            |                   |
 | `Zvfh`                 | Vector Extension for Half-Precision Floating-Point                                          | 1.1               |
 | `Zvfhmin`              | Vector Extension for Minimal Half-Precision Floating-Point                                  | 1.1               |
+| `Zvl32b`               | Minimum 32-bit Vector Length                                                                | 1.1               |
+| `Zvl64b`               | Minimum 64-bit Vector Length                                                                | 1.1               |
+| `Zvl128b`              | Minimum 128-bit Vector Length                                                               | 1.1               |
+| `Zvl256b`              | Minimum 256-bit Vector Length                                                               | 1.1               |
+| `Zvl512b`              | Minimum 512-bit Vector Length                                                               | 1.1               |
+| `Zvl1024b`             | Minimum 1024-bit Vector Length                                                              | 1.1               |
 | `Ztso`                 | Total Store Ordering                                                                        | 1.0               |
 
 * Additional Privileged Extensions
