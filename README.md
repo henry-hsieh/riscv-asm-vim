@@ -200,8 +200,6 @@ If invalid sequences are detected, following options will be set.
 
 If the options are defined (set to any value), the plugin will ignore all ISA settings and highlight all instructions and registers.
 
-If vector extension is enabled, you could use `let g:riscv_asm_v_eew` to setup suitable EEW value. It will be set to 64 by default.
-
 ## Other VIM plugins
 
 ### Tagbar
