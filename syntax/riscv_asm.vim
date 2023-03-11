@@ -112,6 +112,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_d")
     runtime! syntax/riscv_asm_d.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_g")
+    runtime! syntax/riscv_asm_g.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_q")
     runtime! syntax/riscv_asm_q.vim
 endif
@@ -239,6 +242,9 @@ if exists("b:riscv_asm_defined_f")
 endif
 if exists("b:riscv_asm_defined_d")
     unlet b:riscv_asm_defined_d
+endif
+if exists("b:riscv_asm_defined_g")
+    unlet b:riscv_asm_defined_g
 endif
 if exists("b:riscv_asm_defined_q")
     unlet b:riscv_asm_defined_q

@@ -63,36 +63,37 @@ use "henry-hsieh/riscv-asm-vim"
 
 ## Usage
 
-### Basics
-
 1. Any file with a `.S` extension will be loaded as RISC-V assembly syntax.
    Note that this will override default asm syntax.
 
 2. Set filetype in Vim.
 
 ```VimL
-set ft=riscv-asm
+set ft=riscv_asm
 ```
 
 3. Add modeline in your files.
 
 ```c
-// vim: ft=riscv-asm
+// vim: ft=riscv_asm
 ```
 
-### Options
+## Options
 
-`g:riscv_asm_isa` `b:riscv_asm_isa`
+### Specify the ISAs You Want to Highlight
 
-Before use the options, you can read "ISA Extension Naming Conventions" section in [RISC-V Specification](https://github.com/riscv/riscv-isa-manual/releases/download/Ratified-IMAFDQC/riscv-spec-20191213.pdf)
+| Language    | Option Name                                        |
+|:----------- |:-------------------------------------------------- |
+| Vimscript   | `g:riscv_asm_isa`                                  |
+| Neovim Lua  | `vim.g.riscv_asm_isa`                              |
 
-The options comply with the rule in the specification.
+The option complies with the ISA naming rule in the specification. But the extension names follow the latest RISC-V standard.
 
-They tell Vim to highlight specified RISC-V extensions.
+Vim highlights specified RISC-V ISA and extensions.
 
-By default, the plugin will enable the RV32G extension.
+By default, the plugin will enable the RV64GC extension.
 
-This means that only 32I,M,A,F,D,Zicsr,Zifencei instructions and registers will be highlighted.
+This means that only RV64I,M,A,F,D,C,Zicsr,Zifencei instructions and registers will be highlighted.
 
 The version numbers of extensions can be parsed, but they are not used in plugin for now.
 
@@ -106,7 +107,7 @@ Following are valid version number format:
 
 The ISA name is case insensitive. The underscores will give the parser hints, but they are not neccessary for all situations.
 
-#### Currently supported extensions
+#### Currently Supported Extensions
 
 * Base Integer
 
@@ -126,6 +127,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `A`                    | Atomics                                                                                     | 2.1               |
 | `F`                    | Single-Precision Floating-Point                                                             | 2.2               |
 | `D`                    | Double-Precision Floating-Point                                                             | 2.2               |
+| `G`                    | General                                                                                     |                   |
 | `Q`                    | Quad-Precision Floating-Point                                                               | 2.2               |
 | `C`                    | 16-bit Compressed Instructions                                                              | 2.0               |
 | `V`                    | Vector Instructions                                                                         | 1.1               |
@@ -190,23 +192,40 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Svpbmt`               | Page-Based Memory Types                                                                     | 1.0               |
 | `Sm`                   | Machine-Level Extension                                                                     | 1.12              |
 
-1. You should specifiy the extensions in sequence listed above. The base integer ISA is first and mandatory, the unprivileged extensions, the privileged extensions, the additional unprivileged extensions, and the additional privileged extensions should be specified in sequence. The (additional) unprivileged extensions and the (additional) privileged extensions are optional.
-2. If the supported version of an extension is not given, you shouldn't specified the version in the sequence.
-3. A underscore should be added between two additional extensions.
-4. Some extensions and privileged extensions can't co-exist, they are listed in the following table.
+#### Conflict Extensions
 
 | Extension A                                                                                          | Extension B                                                                                          |
 |:---------------------------------------------------------------------------------------------------- |:---------------------------------------------------------------------------------------------------- |
-| `RV32E`/`RV64E`                                                                                      | `H`                                                                                                  |
+| `RV32E`/`RV64E`                                                                                      | `H`/`G`                                                                                              |
 | `F`/`D`/`Q`/`V`/`Zfa`/`Zfh`/`Zfhmin`/`Zve32f`/`Zve64d`/`Zve64f`/`Zvfh`/`Zvfhmin`                     | `Zfinx`/`Zdinx`/`Zhinx`/`Zhinxmin`                                                                   |
 
-For example, `let g:riscv_asm_isa="RV64IMC"` is a valid sequence and `let b:riscv_asm_isa="RV128IZicsrM"` is not a valid sequence.
+#### Rules Should Be Followed
 
-If invalid sequences are detected, following options will be set.
+1. You should specifiy the extensions in sequence listed in [Currently Supported Extensions](#currently-supported-extensions). You should always choose one of the base integer ISA and put the base ISA name in the head of the option. Don't specify more than one base ISA, or the parser will return error. In addition to the base ISA, you can optionally add the extensions. The specified order should be the unprivileged extensions, the privileged extensions, the additional unprivileged extensions, and the additional privileged extensions. The extensions in the same category should follow the order listed in the corresponding table.
+2. If the supported version of an extension is not given, you shouldn't specified the version in the sequence.
+3. A underscore should be added between two consecutive additional extensions.
+4. Some extensions and privileged extensions can't co-exist, they are listed in [Conflict Extensions](#conflict-extensions). You shouldn't put them into the option together.
 
-`g:riscv_asm_all_enable` `b:riscv_asm_all_enable`
+Some examples of valid and invalid ISA combinations:
 
-If the options are defined (set to any value), the plugin will ignore all ISA settings and highlight all instructions and registers.
+| Sequence                | Valid | Reason                                                      | Unresolved String |
+|:----------------------- |:----- |:----------------------------------------------------------- |:----------------- |
+| `RV64IMCZicsr_Zifencei` | Yes   |                                                             |                   |
+| `RV32IAM`               | No    | Incorrect order                                             | `M`               |
+| `Zicsr`                 | No    | No base ISA                                                 | `Zicsr`           |
+| `RV32IRV64IMAFC`        | No    | More than one base ISAs                                     | `RV64IMAFC`       |
+| `RV64GZve64dZvl256b`    | No    | No underscore between two consecutive additional extensions | `Zve64dZvl256b`   |
+| `RV32EMG`               | No    | Conflict extensions (`RV32E` & `G`)                         | `G`               |
+| `RV64GCVZvamo1p0`       | No    | Specify version number on an unversioned extension          | `Zvamo1p0`        |
+
+### Enable All Supported RISC-V ISA
+
+| Language    | Option Name                                        |
+|:----------- |:-------------------------------------------------- |
+| Vimscript   | `g:riscv_asm_all_enable`                           |
+| Neovim Lua  | `vim.g.riscv_asm_all_enable`                       |
+
+If the option is defined (set to any value), the plugin will ignore the value of `g:riscv_asm_isa` and highlight all instructions and registers supported by the plugin. If an invalid sequence in `g:riscv_asm_isa` is detected, the plugin will automatically highlight all instructions and registers, too.
 
 ## Other VIM plugins
 

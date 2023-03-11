@@ -118,12 +118,9 @@ endif
 
 " Set default value if setting of RISC-V ISA isn't found
 if !exists("s:riscv_asm_isa")
-    let s:riscv_asm_isa = "rv32g"
+    let s:riscv_asm_isa = "rv64gc"
+    unlet b:riscv_asm_xlen
 endif
-
-" Replace the G extension with separated extensions
-let s:riscv_asm_g = 'IMAFDZicsrZifencei'
-let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\cg\(\d\+\(p\d\+\)\=\)\=', s:riscv_asm_g, "g")
 
 " Replace version format with decimal format
 let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c\(\d\+\)p\(\d\+\)', '\1.\2', "g")
@@ -141,10 +138,10 @@ if exists("g:riscv_asm_all_enable")
 endif
 
 " Parse base ISA
-if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ie]' && !exists("b:riscv_asm_all_enable")
-    let s:extract_length = substitute(s:riscv_asm_isa, '\c^rv\(\d\+\)\([ie]\)\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
-    let s:extract_base = substitute(s:riscv_asm_isa, '\c^rv\(\d\+\)\([ie]\)\(\d\+\(\.\d\+\)\=\)\=.*', '\2', "")
-    let s:extract_version = substitute(s:riscv_asm_isa, '\c^rv\(\d\+\)\([ie]\)\(\d\+\(\.\d\+\)\=\)\=.*', '\3', "")
+if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ieg]' && !exists("b:riscv_asm_all_enable")
+    let s:extract_length = substitute(s:riscv_asm_isa, '\c^rv\(\d\+\)\([ieg]\)\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+    let s:extract_base = substitute(s:riscv_asm_isa, '\c^rv\(\d\+\)\([ieg]\)\(\d\+\(\.\d\+\)\=\)\=.*', '\2', "")
+    let s:extract_version = substitute(s:riscv_asm_isa, '\c^rv\(\d\+\)\([ieg]\)\(\d\+\(\.\d\+\)\=\)\=.*', '\3', "")
     if exists("b:riscv_asm_rv32e")
         unlet b:riscv_asm_rv32e
     endif
@@ -180,6 +177,9 @@ if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ie]' && !exists("b:riscv_asm_all_ena
             endif
         endif
         let b:riscv_asm_xlen = 32
+    elseif s:extract_length == "32" && s:extract_base =~ '[Gg]' && s:extract_version == ''
+        let b:riscv_asm_rv32i = b:riscv_asm_rv32i_max
+        let b:riscv_asm_xlen = 32
     elseif s:extract_length == "64" && s:extract_base =~ '[Ee]'
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_rv64e = b:riscv_asm_rv64e_max
@@ -200,6 +200,9 @@ if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ie]' && !exists("b:riscv_asm_all_ena
             endif
         endif
         let b:riscv_asm_xlen = 64
+    elseif s:extract_length == "64" && s:extract_base =~ '[Gg]' && s:extract_version == ''
+        let b:riscv_asm_rv64i = b:riscv_asm_rv64i_max
+        let b:riscv_asm_xlen = 64
     elseif s:extract_length == "128" && s:extract_base =~ '[Ii]'
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_rv128i = b:riscv_asm_rv128i_max
@@ -210,10 +213,16 @@ if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ie]' && !exists("b:riscv_asm_all_ena
             endif
         endif
         let b:riscv_asm_xlen = 128
+    elseif s:extract_length == "128" && s:extract_base =~ '[Gg]' && s:extract_version == ''
+        let b:riscv_asm_rv128i = b:riscv_asm_rv128i_max
+        let b:riscv_asm_xlen = 128
     endif
-    let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv\d\+[ie]\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv\(32\|64\)[ie]\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv128i\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv\d\+g', "", "")
 else
     " Base ISA isn't found, enable all extensions
+    let b:riscv_asm_xlen = 0
     let b:riscv_asm_all_enable = 1
 endif
 " Parse extensions
@@ -285,6 +294,15 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_d")
             unlet b:riscv_asm_d
+        endif
+    endif
+    " G extension
+    if s:riscv_asm_isa =~ '\c^g' && s:extract_base !~ '[Ee]'
+        let b:riscv_asm_g = 0.0
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^g', "", "")
+    else
+        if exists("b:riscv_asm_g")
+            unlet b:riscv_asm_g
         endif
     endif
     " Q extension
@@ -990,8 +1008,10 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_sm
         endif
     endif
+endif
+if exists("b:riscv_asm_xlen")
     " Unknown extensions or parser error
-    if s:riscv_asm_isa =~ '.\+'
+    if s:riscv_asm_isa =~ '.\+' || b:riscv_asm_xlen == 0
         let b:riscv_asm_all_enable = 1
         " Restore the underscore before additional extension names
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c-\(z\)', '_\1', "g")
