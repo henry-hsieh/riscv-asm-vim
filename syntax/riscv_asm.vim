@@ -417,7 +417,7 @@ hi def link riscvDataDirective              Type
 hi def link riscvBlockDirective             Function
 hi def link riscvConditDirective            Conditional
 " Instructions
-hi def link riscvBaseInstruction            Statement
+hi def link riscvIInstruction               Statement
 hi def link riscvFenceError                 Error
 hi def link riscvFenceType                  Keyword
 hi def link riscvMInstruction               Statement
@@ -429,15 +429,6 @@ hi def link riscvCInstruction               Statement
 hi def link riscvBInstruction               Statement
 hi def link riscvVInstruction               Statement
 hi def link riscvHInstruction               Statement
-hi def link riscvZicntrInstruction          Statement
-hi def link riscvZicsrInstruction           Statement
-hi def link riscvZifenceiInstruction        Statement
-hi def link riscvZihintntlInstruction       Statement
-hi def link riscvZihintpauseInstruction     Statement
-hi def link riscvZihpmInstruction           Statement
-hi def link riscvZfaInstruction             Statement
-hi def link riscvZfhInstruction             Statement
-hi def link riscvZfhminInstruction          Statement
 hi def link riscvSsInstruction              Statement
 hi def link riscvSvInstruction              Statement
 hi def link riscvSmInstruction              Statement

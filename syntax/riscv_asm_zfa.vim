@@ -4,59 +4,59 @@ endif
 
 " Instructions
 " I-type: load-immediate
-syn keyword riscvZfaInstruction        fli.s
+syn keyword riscvFInstruction          fli.s
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_d")
-    syn keyword riscvZfaInstruction        fli.d
+    syn keyword riscvFInstruction          fli.d
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_q")
-    syn keyword riscvZfaInstruction        fli.q
+    syn keyword riscvFInstruction          fli.q
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zfh")
-    syn keyword riscvZfaInstruction        fli.h
+    syn keyword riscvFInstruction          fli.h
 endif
 " R-type: min/max
-syn keyword riscvZfaInstruction        fminm.s fmaxm.s
+syn keyword riscvFInstruction          fminm.s fmaxm.s
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_d")
-    syn keyword riscvZfaInstruction        fminm.d fmaxm.d
+    syn keyword riscvFInstruction          fminm.d fmaxm.d
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_q")
-    syn keyword riscvZfaInstruction        fminm.q fmaxm.q
+    syn keyword riscvFInstruction          fminm.q fmaxm.q
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zfh")
-    syn keyword riscvZfaInstruction        fminm.h fmaxm.h
+    syn keyword riscvFInstruction          fminm.h fmaxm.h
 endif
 " I-type: round-to-integer
-syn keyword riscvZfaInstruction        fround.s froundnx.s
+syn keyword riscvFInstruction          fround.s froundnx.s
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_d")
-    syn keyword riscvZfaInstruction        fround.d froundnx.d
+    syn keyword riscvFInstruction          fround.d froundnx.d
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_q")
-    syn keyword riscvZfaInstruction        fround.q froundnx.q
+    syn keyword riscvFInstruction          fround.q froundnx.q
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zfh")
-    syn keyword riscvZfaInstruction        fround.h froundnx.h
+    syn keyword riscvFInstruction          fround.h froundnx.h
 endif
 " I-type: modular convert-to-integer
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_d")
-    syn keyword riscvZfaInstruction        fcvtmod.w.d
+    syn keyword riscvFInstruction          fcvtmod.w.d
 endif
 " I-type: move
 if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen == 32 && exists("b:riscv_asm_d")
-    syn keyword riscvZfaInstruction        fmvh.x.d fmvp.d.x
+    syn keyword riscvFInstruction          fmvh.x.d fmvp.d.x
 endif
 if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen == 64 && exists("b:riscv_asm_q")
-    syn keyword riscvZfaInstruction        fmvh.x.q fmvp.q.x
+    syn keyword riscvFInstruction          fmvh.x.q fmvp.q.x
 endif
 " R-type: comparison
-syn keyword riscvZfaInstruction        fleq.s fltq.s
+syn keyword riscvFInstruction          fleq.s fltq.s
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_d")
-    syn keyword riscvZfaInstruction        fleq.d fltq.d
+    syn keyword riscvFInstruction          fleq.d fltq.d
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_q")
-    syn keyword riscvZfaInstruction        fleq.q fltq.q
+    syn keyword riscvFInstruction          fleq.q fltq.q
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zfh")
-    syn keyword riscvZfaInstruction        fleq.h fltq.h
+    syn keyword riscvFInstruction          fleq.h fltq.h
 endif
 
 if !exists("b:riscv_asm_f")

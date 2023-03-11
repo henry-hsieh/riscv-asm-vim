@@ -4,10 +4,10 @@ endif
 
 " Instructions
 " I-type: conversion and movement
-syn keyword riscvZfhminInstruction     fcvt.s.h fcvt.h.s
+syn keyword riscvFInstruction          fcvt.s.h fcvt.h.s
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zdinx") || exists("b:riscv_asm_d")
     " I-type: conversion
-    syn keyword riscvZfhminInstruction     fcvt.d.h fcvt.h.d
+    syn keyword riscvFInstruction          fcvt.d.h fcvt.h.d
 endif
 
 if !exists("b:riscv_asm_zfinx")

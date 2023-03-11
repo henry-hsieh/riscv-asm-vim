@@ -5,14 +5,14 @@ endif
 runtime! syntax/riscv_asm_zhinxmin.vim
 " Instructions
 " I-type: load
-syn keyword riscvZfhminInstruction     flh
+syn keyword riscvFInstruction          flh
 " S-type
-syn keyword riscvZfhminInstruction     fsh
+syn keyword riscvFInstruction          fsh
 " I-type: conversion and movement
-syn keyword riscvZfhminInstruction     fmv.x.h fmv.h.x
+syn keyword riscvFInstruction          fmv.x.h fmv.h.x
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_q")
     " I-type: conversion
-    syn keyword riscvZfhminInstruction     fcvt.q.h fcvt.h.q
+    syn keyword riscvFInstruction          fcvt.q.h fcvt.h.q
 endif
 
 if !exists("b:riscv_asm_f")

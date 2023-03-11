@@ -5,12 +5,12 @@ endif
 runtime! syntax/riscv_asm_rv64i.vim
 " Instructions
 " I-type: load
-syn keyword riscvBaseInstruction       ldu lq
+syn keyword riscvIInstruction          ldu lq
 " S-type
-syn keyword riscvBaseInstruction       sq
+syn keyword riscvIInstruction          sq
 " I-type
-syn keyword riscvBaseInstruction       addid sllid srlid sraid
+syn keyword riscvIInstruction          addid sllid srlid sraid
 " R-type
-syn keyword riscvBaseInstruction       addd subd slld srld srad
+syn keyword riscvIInstruction          addd subd slld srld srad
 
 let b:riscv_asm_defined_rv128i = 0

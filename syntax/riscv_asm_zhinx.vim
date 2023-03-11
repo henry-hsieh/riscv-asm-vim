@@ -5,22 +5,22 @@ endif
 runtime! syntax/riscv_asm_zhinxmin.vim
 " Instructions
 " R4-type
-syn keyword riscvZfhInstruction        fmadd.h fmsub.h fnmsub.h fnmadd.h
+syn keyword riscvFInstruction          fmadd.h fmsub.h fnmsub.h fnmadd.h
 " R-type: arithmetic
-syn keyword riscvZfhInstruction        fadd.h fsub.h fmul.h fdiv.h
+syn keyword riscvFInstruction          fadd.h fsub.h fmul.h fdiv.h
 " I-type: square root
-syn keyword riscvZfhInstruction        fsqrt.h
+syn keyword riscvFInstruction          fsqrt.h
 " R-type: sign inject and min/max
-syn keyword riscvZfhInstruction        fsgnj.h fsgnjn.h fsgnjx.h fmin.h fmax.h
+syn keyword riscvFInstruction          fsgnj.h fsgnjn.h fsgnjx.h fmin.h fmax.h
 " I-type: conversion
-syn keyword riscvZfhInstruction        fcvt.w.h fcvt.wu.h
+syn keyword riscvFInstruction          fcvt.w.h fcvt.wu.h
 " R-type: comparison
-syn keyword riscvZfhInstruction        feq.h flt.h fle.h
+syn keyword riscvFInstruction          feq.h flt.h fle.h
 " I-type: classfication, conversion
-syn keyword riscvZfhInstruction        fclass.h fcvt.h.w fcvt.h.wu
+syn keyword riscvFInstruction          fclass.h fcvt.h.w fcvt.h.wu
 if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen > 32
     " I-type: conversion
-    syn keyword riscvZfhInstruction        fcvt.l.h fcvt.lu.h fcvt.h.l fcvt.h.lu
+    syn keyword riscvFInstruction          fcvt.l.h fcvt.lu.h fcvt.h.l fcvt.h.lu
 endif
 
 let b:riscv_asm_defined_zhinx = 0

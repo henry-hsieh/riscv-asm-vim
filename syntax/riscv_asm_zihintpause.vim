@@ -3,6 +3,6 @@ if exists("b:riscv_asm_defined_zihintpause")
 endif
 
 " Instructions
-syn keyword riscvZihintpauseInstruction     pause
+syn keyword riscvIInstruction          pause
 
 let b:riscv_asm_defined_zihintpause = 0

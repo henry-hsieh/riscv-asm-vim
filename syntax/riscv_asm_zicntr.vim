@@ -10,9 +10,9 @@ if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen == 32
 endif
 
 " Pseudo-instructions
-syn keyword riscvZicntrInstruction      rdinstret rdcycle rdtime
+syn keyword riscvIInstruction          rdinstret rdcycle rdtime
 if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen == 32
-    syn keyword riscvZicntrInstruction      rdinstreth rdcycleh rdtimeh
+    syn keyword riscvIInstruction          rdinstreth rdcycleh rdtimeh
 endif
 
 if !exists("b:riscv_asm_zicsr")

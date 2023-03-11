@@ -3,10 +3,10 @@ if exists("b:riscv_asm_defined_zicsr")
 endif
 
 " Instructions
-syn keyword riscvZicsrInstruction      csrrw csrrs csrrc csrrwi csrrsi csrrci
+syn keyword riscvIInstruction          csrrw csrrs csrrc csrrwi csrrsi csrrci
 
 " Pseudo-instructions
-syn keyword riscvZicsrInstruction      csrr csrw csrs csrc
-syn keyword riscvZicsrInstruction      csrwi csrsi csrci
+syn keyword riscvIInstruction          csrr csrw csrs csrc
+syn keyword riscvIInstruction          csrwi csrsi csrci
 
 let b:riscv_asm_defined_zicsr = 0
