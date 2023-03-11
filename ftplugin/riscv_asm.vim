@@ -422,7 +422,7 @@ if !exists("b:riscv_asm_all_enable")
         endif
     endif
     " H extension
-    if s:riscv_asm_isa =~ '\c^h'
+    if s:riscv_asm_isa =~ '\c^h' && !exists("b:riscv_asm_rv32e") && !exists("b:riscv_asm_rv64e")
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^h\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
             let b:riscv_asm_h = b:riscv_asm_h_max

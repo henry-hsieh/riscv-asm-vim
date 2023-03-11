@@ -194,6 +194,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 
 | Extension A                                                                                          | Extension B                                                                                          |
 |:---------------------------------------------------------------------------------------------------- |:---------------------------------------------------------------------------------------------------- |
+| `RV32E`/`RV64E`                                                                                      | `H`                                                                                                  |
 | `F`/`D`/`Q`/`V`/`Zfa`/`Zfh`/`Zfhmin`/`Zve32f`/`Zve64d`/`Zve64f`/`Zvfh`/`Zvfhmin`                     | `Zfinx`/`Zdinx`/`Zhinx`/`Zhinxmin`                                                                   |
 
 For example, `let g:riscv_asm_isa="RV64IMC"` is a valid sequence and `let b:riscv_asm_isa="RV128IZicsrM"` is not a valid sequence.

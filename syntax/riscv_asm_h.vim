@@ -29,6 +29,10 @@ if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen > 32
     syn keyword riscvHInstruction          hlv.wu hlv.d hsv.d
 endif
 
+if !exists("b:riscv_asm_ss")
+    let b:riscv_asm_ss = b:riscv_asm_ss_max
+    runtime! syntax/riscv_asm_ss.vim
+endif
 if !exists("b:riscv_asm_zicsr")
     let b:riscv_asm_zicsr = b:riscv_asm_zicsr_max
     runtime! syntax/riscv_asm_zicsr.vim
