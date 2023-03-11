@@ -155,6 +155,10 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zdinx`                | Double-Precision Floating-Point in Integer Registers                                        | 1.0               |
 | `Zhinx`                | Half-Precision Floating-Point in Integer Registers                                          | 1.0               |
 | `Zhinxmin`             | Minimal Half-Precision Floating-Point in Integer Registers                                  | 1.0               |
+| `Zba`                  | Address Generation Instructions                                                             | 1.0               |
+| `Zbb`                  | Basic Bit-Manipulation                                                                      | 1.0               |
+| `Zbc`                  | Carry-Less Multiplication                                                                   | 1.0               |
+| `Zbs`                  | Single-Bit Instructions                                                                     | 1.0               |
 | `Zvamo`                | Vector Atomic Instructions                                                                  |                   |
 | `Zve32f`               | Vector Extension for Embedded 32-bit Single-Precision Floating-Point                        | 1.1               |
 | `Zve32x`               | Vector Extension for Embedded 32-bit Integer                                                | 1.1               |
