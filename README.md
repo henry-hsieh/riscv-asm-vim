@@ -185,6 +185,9 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Sv39`                 | Page-Based 39-bit Virtual-Memory Systems                                                    |                   |
 | `Sv48`                 | Page-Based 48-bit Virtual-Memory Systems                                                    |                   |
 | `Sv57`                 | Page-Based 57-bit Virtual-Memory Systems                                                    |                   |
+| `Svinval`              | Fine-Grained Address-Translation Cache Invalidation                                         | 1.0               |
+| `Svnapot`              | NAPOT Translation Contiguity                                                                | 1.0               |
+| `Svpbmt`               | Page-Based Memory Types                                                                     | 1.0               |
 | `Sm`                   | Machine-Level Extension                                                                     | 1.12              |
 
 1. You should specifiy the extensions in sequence listed above. The base integer ISA is first and mandatory, the unprivileged extensions, the privileged extensions, the additional unprivileged extensions, and the additional privileged extensions should be specified in sequence. The (additional) unprivileged extensions and the (additional) privileged extensions are optional.

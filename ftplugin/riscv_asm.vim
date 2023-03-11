@@ -101,6 +101,8 @@ let b:riscv_asm_zvfh_max = 1.1
 let b:riscv_asm_zvfhmin_max = 1.1
 " Ss Extension: Supervisor-Level Extension
 let b:riscv_asm_ss_max = 1.12
+" Svinval Extension: Fine-Grained Address-Translation Cache Invalidation
+let b:riscv_asm_svinval_max = 1.0
 " Sm Extension: Machine-Level Extension
 let b:riscv_asm_sm_max = 1.12
 
@@ -945,6 +947,31 @@ if !exists("b:riscv_asm_all_enable")
     " Sv57 extension
     if s:riscv_asm_isa =~ '\c^-\=sv57\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sv57', "", "")
+    endif
+    " Svinval extension
+    if s:riscv_asm_isa =~ '\c^-\=svinval\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=svinval\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_svinval = b:riscv_asm_svinval_max
+        else
+            let b:riscv_asm_svinval = str2float(s:extract_version)
+            if b:riscv_asm_svinval > b:riscv_asm_svinval_max
+                let b:riscv_asm_svinval = b:riscv_asm_svinval_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=svinval\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_svinval")
+            unlet b:riscv_asm_svinval
+        endif
+    endif
+    " Svnapot extension
+    if s:riscv_asm_isa =~ '\c^-\=svnapot\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=svnapot\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    endif
+    " Svpbmt extension
+    if s:riscv_asm_isa =~ '\c^-\=svpbmt\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=svpbmt\(\d\+\(\.\d\+\)\=\)\=', "", "")
     endif
     " Sm extension
     if s:riscv_asm_isa =~ '\c^-\=sm\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'

@@ -121,6 +121,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_v")
     runtime! syntax/riscv_asm_v.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_h")
+    runtime! syntax/riscv_asm_h.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicntr")
     runtime! syntax/riscv_asm_zicntr.vim
 endif
@@ -205,8 +208,8 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_ss")
     runtime! syntax/riscv_asm_ss.vim
 endif
-if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_h")
-    runtime! syntax/riscv_asm_h.vim
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_svinval")
+    runtime! syntax/riscv_asm_svinval.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_sm")
     runtime! syntax/riscv_asm_sm.vim
@@ -245,6 +248,9 @@ if exists("b:riscv_asm_defined_c")
 endif
 if exists("b:riscv_asm_defined_v")
     unlet b:riscv_asm_defined_v
+endif
+if exists("b:riscv_asm_defined_h")
+    unlet b:riscv_asm_defined_h
 endif
 if exists("b:riscv_asm_defined_zicntr")
     unlet b:riscv_asm_defined_zicntr
@@ -330,8 +336,8 @@ endif
 if exists("b:riscv_asm_defined_ss")
     unlet b:riscv_asm_defined_ss
 endif
-if exists("b:riscv_asm_defined_h")
-    unlet b:riscv_asm_defined_h
+if exists("b:riscv_asm_defined_svinval")
+    unlet b:riscv_asm_defined_svinval
 endif
 if exists("b:riscv_asm_defined_sm")
     unlet b:riscv_asm_defined_sm
@@ -422,6 +428,7 @@ hi def link riscvQInstruction               Statement
 hi def link riscvCInstruction               Statement
 hi def link riscvBInstruction               Statement
 hi def link riscvVInstruction               Statement
+hi def link riscvHInstruction               Statement
 hi def link riscvZicntrInstruction          Statement
 hi def link riscvZicsrInstruction           Statement
 hi def link riscvZifenceiInstruction        Statement
@@ -432,7 +439,7 @@ hi def link riscvZfaInstruction             Statement
 hi def link riscvZfhInstruction             Statement
 hi def link riscvZfhminInstruction          Statement
 hi def link riscvSsInstruction              Statement
-hi def link riscvHInstruction               Statement
+hi def link riscvSvInstruction              Statement
 hi def link riscvSmInstruction              Statement
 hi def link riscvFunction                   Function
 hi def link riscvInclude                    Include
