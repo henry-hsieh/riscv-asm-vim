@@ -128,7 +128,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `D`                    | Double-Precision Floating-Point                                                             | 2.2               |
 | `Q`                    | Quad-Precision Floating-Point                                                               | 2.2               |
 | `C`                    | 16-bit Compressed Instructions                                                              | 2.0               |
-| `V`                    | Vector Instructions                                                                         | 1.0               |
+| `V`                    | Vector Instructions                                                                         | 1.1               |
 
 * Privileged Extensions
 

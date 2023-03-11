@@ -46,7 +46,7 @@ let b:riscv_asm_c_max = 2.0
 " P Extension: Packed-SIMD Extensions
 "let b:riscv_asm_p_max = 0.2
 " V Extension: Vector Extensions
-let b:riscv_asm_v_max = 1.0
+let b:riscv_asm_v_max = 1.1
 " H Extension: Hypervisor Extension
 let b:riscv_asm_h_max = 1.0
 " Zicntr Extension: Base Counters and Timers
