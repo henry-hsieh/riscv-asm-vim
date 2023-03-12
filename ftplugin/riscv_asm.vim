@@ -69,6 +69,8 @@ let b:riscv_asm_zihintpause_max = 2.0
 let b:riscv_asm_zihpm_max = 2.0
 " Zmmul Extension: Multiplication Without Division
 let b:riscv_asm_zmmul_max = 1.0
+" Zawrs Extension: Wait-On-Reservation-Set Extension
+let b:riscv_asm_zawrs_max = 1.0
 " Zfa Extension: Additional Floating-Point Instructions
 let b:riscv_asm_zfa_max = 0.1
 " Zfh Extension: Half-Precision Floating-Point
@@ -664,6 +666,23 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_zmmul")
             unlet b:riscv_asm_zmmul
+        endif
+    endif
+    " Zawrs extension
+    if s:riscv_asm_isa =~ '\c^-\=zawrs\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zawrs\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zawrs = b:riscv_asm_zawrs_max
+        else
+            let b:riscv_asm_zawrs = str2float(s:extract_version)
+            if b:riscv_asm_zawrs > b:riscv_asm_zawrs_max
+                let b:riscv_asm_zawrs = b:riscv_asm_zawrs_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zawrs\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zawrs")
+            unlet b:riscv_asm_zawrs
         endif
     endif
     " Zam extension

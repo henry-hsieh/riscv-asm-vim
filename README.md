@@ -152,6 +152,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zihintpause`          | Pause Hint                                                                                  | 2.0               |
 | `Zihpm`                | Hardware Performance Counters                                                               | 2.0               |
 | `Zmmul`                | Multiplication Without Division                                                             | 1.0               |
+| `Zawrs`                | Wait-On-Reservation-Set Extension                                                           | 1.0               |
 | `Zam`                  | Misaligned Atomic                                                                           | 0.1               |
 | `Zfa`                  | Additional Floating-Point Instructions                                                      | 0.1               |
 | `Zfh`                  | Half-Precision Floating-Point                                                               | 1.0               |
