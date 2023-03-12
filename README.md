@@ -185,6 +185,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Ss`                   | Supervisor-Level Extension                                                                  | 1.12              |
 | `Sscofpmf`             | Count Overflow and Mode-Based Filtering Extension                                           | 0.5               |
 | `Sstc`                 | Supervisor-Level Timer Comparison Extension                                                 | 0.5               |
+| `Ssstateen`            | Supervisor-Level State Enable Extension                                                     | 1.0               |
 | `Sv32`                 | Page-Based 32-bit Virtual-Memory Systems                                                    |                   |
 | `Sv39`                 | Page-Based 39-bit Virtual-Memory Systems                                                    |                   |
 | `Sv48`                 | Page-Based 48-bit Virtual-Memory Systems                                                    |                   |
@@ -193,6 +194,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Svnapot`              | NAPOT Translation Contiguity                                                                | 1.0               |
 | `Svpbmt`               | Page-Based Memory Types                                                                     | 1.0               |
 | `Sm`                   | Machine-Level Extension                                                                     | 1.12              |
+| `Smstateen`            | Machine-Level State Enable Extension                                                        | 1.0               |
 
 #### Conflict Extensions
 

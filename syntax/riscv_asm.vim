@@ -214,6 +214,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_sscofpmf")
     runtime! syntax/riscv_asm_sscofpmf.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_ssstateen")
+    runtime! syntax/riscv_asm_ssstateen.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_sstc")
     runtime! syntax/riscv_asm_sstc.vim
 endif
@@ -222,6 +225,9 @@ if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_svinval")
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_sm")
     runtime! syntax/riscv_asm_sm.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_smstateen")
+    runtime! syntax/riscv_asm_smstateen.vim
 endif
 
 " Disable defined identifier for reopen
@@ -351,6 +357,9 @@ endif
 if exists("b:riscv_asm_defined_sscofpmf")
     unlet b:riscv_asm_defined_sscofpmf
 endif
+if exists("b:riscv_asm_defined_ssstateen")
+    unlet b:riscv_asm_defined_ssstateen
+endif
 if exists("b:riscv_asm_defined_sstc")
     unlet b:riscv_asm_defined_sstc
 endif
@@ -359,6 +368,9 @@ if exists("b:riscv_asm_defined_svinval")
 endif
 if exists("b:riscv_asm_defined_sm")
     unlet b:riscv_asm_defined_sm
+endif
+if exists("b:riscv_asm_defined_smstateen")
+    unlet b:riscv_asm_defined_smstateen
 endif
 
 " Functions

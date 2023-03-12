@@ -105,10 +105,14 @@ let b:riscv_asm_ss_max = 1.12
 let b:riscv_asm_sscofpmf_max = 0.5
 " Sstc Extension: Supervisor-Level Timer Comparison Extension
 let b:riscv_asm_sstc_max = 0.5
+" Ssstateen Extension: Supervisor-Level State Enable Extension
+let b:riscv_asm_ssstateen_max = 1.0
 " Svinval Extension: Fine-Grained Address-Translation Cache Invalidation
 let b:riscv_asm_svinval_max = 1.0
 " Sm Extension: Machine-Level Extension
 let b:riscv_asm_sm_max = 1.12
+" Smstateen Extension: Machine-Level State Enable Extension
+let b:riscv_asm_smstateen_max = 1.0
 
 " Find global setting of RISC-V ISA
 if exists("g:riscv_asm_isa")
@@ -988,6 +992,23 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_sstc
         endif
     endif
+    " Ssstateen extension
+    if s:riscv_asm_isa =~ '\c^-\=ssstateen\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=ssstateen\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_ssstateen = b:riscv_asm_ssstateen_max
+        else
+            let b:riscv_asm_ssstateen = str2float(s:extract_version)
+            if b:riscv_asm_ssstateen > b:riscv_asm_ssstateen_max
+                let b:riscv_asm_ssstateen = b:riscv_asm_ssstateen_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=ssstateen\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_ssstateen")
+            unlet b:riscv_asm_ssstateen
+        endif
+    endif
     " Sv32 extension
     if s:riscv_asm_isa =~ '\c^-\=sv32\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sv32', "", "")
@@ -1044,6 +1065,23 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_sm")
             unlet b:riscv_asm_sm
+        endif
+    endif
+    " Smstateen extension
+    if s:riscv_asm_isa =~ '\c^-\=smstateen\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=smstateen\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_smstateen = b:riscv_asm_smstateen_max
+        else
+            let b:riscv_asm_smstateen = str2float(s:extract_version)
+            if b:riscv_asm_smstateen > b:riscv_asm_smstateen_max
+                let b:riscv_asm_smstateen = b:riscv_asm_smstateen_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=smstateen\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_smstateen")
+            unlet b:riscv_asm_smstateen
         endif
     endif
 endif
