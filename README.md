@@ -183,6 +183,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | Extension              | Full Name                                                                                   | Supported Version |
 |:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
 | `Ss`                   | Supervisor-Level Extension                                                                  | 1.12              |
+| `Sscofpmf`             | Count Overflow and Mode-Based Filtering Extension                                           | 0.5               |
 | `Sv32`                 | Page-Based 32-bit Virtual-Memory Systems                                                    |                   |
 | `Sv39`                 | Page-Based 39-bit Virtual-Memory Systems                                                    |                   |
 | `Sv48`                 | Page-Based 48-bit Virtual-Memory Systems                                                    |                   |
