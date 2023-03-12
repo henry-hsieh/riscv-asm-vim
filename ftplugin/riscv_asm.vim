@@ -1356,6 +1356,10 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_sm
         endif
     endif
+    " Smepmp extension
+    if s:riscv_asm_isa =~ '\c^-\=smepmp\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=smepmp\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    endif
     " Smstateen extension
     if s:riscv_asm_isa =~ '\c^-\=smstateen\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=smstateen\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")

@@ -210,6 +210,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Svnapot`              | NAPOT Translation Contiguity                                                                | 1.0               |
 | `Svpbmt`               | Page-Based Memory Types                                                                     | 1.0               |
 | `Sm`                   | Machine-Level Extension                                                                     | 1.12              |
+| `Smepmp`               | PMP Enhancements for Memory Access and Execution Prevention on Machine Mode                 | 1.12              |
 | `Smstateen`            | Machine-Level State Enable Extension                                                        | 1.0               |
 
 #### Conflict Extensions
