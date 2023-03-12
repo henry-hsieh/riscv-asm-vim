@@ -187,8 +187,44 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zbc")
     runtime! syntax/riscv_asm_zbc.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zbkb")
+    runtime! syntax/riscv_asm_zbkb.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zbkc")
+    runtime! syntax/riscv_asm_zbkc.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zbkx")
+    runtime! syntax/riscv_asm_zbkx.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zbs")
     runtime! syntax/riscv_asm_zbs.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zk")
+    runtime! syntax/riscv_asm_zk.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zkn")
+    runtime! syntax/riscv_asm_zkn.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zknd")
+    runtime! syntax/riscv_asm_zknd.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zkne")
+    runtime! syntax/riscv_asm_zkne.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zknh")
+    runtime! syntax/riscv_asm_zknh.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zkr")
+    runtime! syntax/riscv_asm_zkr.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zks")
+    runtime! syntax/riscv_asm_zks.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zksed")
+    runtime! syntax/riscv_asm_zksed.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zksh")
+    runtime! syntax/riscv_asm_zksh.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvamo")
     runtime! syntax/riscv_asm_zvamo.vim
@@ -339,8 +375,44 @@ endif
 if exists("b:riscv_asm_defined_zbc")
     unlet b:riscv_asm_defined_zbc
 endif
+if exists("b:riscv_asm_defined_zbkb")
+    unlet b:riscv_asm_defined_zbkb
+endif
+if exists("b:riscv_asm_defined_zbkc")
+    unlet b:riscv_asm_defined_zbkc
+endif
+if exists("b:riscv_asm_defined_zbkx")
+    unlet b:riscv_asm_defined_zbkx
+endif
 if exists("b:riscv_asm_defined_zbs")
     unlet b:riscv_asm_defined_zbs
+endif
+if exists("b:riscv_asm_defined_zk")
+    unlet b:riscv_asm_defined_zk
+endif
+if exists("b:riscv_asm_defined_zkn")
+    unlet b:riscv_asm_defined_zkn
+endif
+if exists("b:riscv_asm_defined_zknd")
+    unlet b:riscv_asm_defined_zknd
+endif
+if exists("b:riscv_asm_defined_zkne")
+    unlet b:riscv_asm_defined_zkne
+endif
+if exists("b:riscv_asm_defined_zknh")
+    unlet b:riscv_asm_defined_zknh
+endif
+if exists("b:riscv_asm_defined_zkr")
+    unlet b:riscv_asm_defined_zkr
+endif
+if exists("b:riscv_asm_defined_zks")
+    unlet b:riscv_asm_defined_zks
+endif
+if exists("b:riscv_asm_defined_zksed")
+    unlet b:riscv_asm_defined_zksed
+endif
+if exists("b:riscv_asm_defined_zksh")
+    unlet b:riscv_asm_defined_zksh
 endif
 if exists("b:riscv_asm_defined_zvamo")
     unlet b:riscv_asm_defined_zvamo
@@ -475,6 +547,7 @@ hi def link riscvDInstruction               Statement
 hi def link riscvQInstruction               Statement
 hi def link riscvCInstruction               Statement
 hi def link riscvBInstruction               Statement
+hi def link riscvKInstruction               Statement
 hi def link riscvVInstruction               Statement
 hi def link riscvHInstruction               Statement
 hi def link riscvSsInstruction              Statement

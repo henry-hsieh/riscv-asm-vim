@@ -163,7 +163,20 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zba`                  | Address Generation Instructions                                                             | 1.0               |
 | `Zbb`                  | Basic Bit-Manipulation                                                                      | 1.0               |
 | `Zbc`                  | Carry-Less Multiplication                                                                   | 1.0               |
+| `Zbkb`                 | Bitmanip Instructions for Cryptography                                                      | 1.0               |
+| `Zbkc`                 | Carry-Less Multiplication Instructions for Cryptography                                     | 1.0               |
+| `Zbkx`                 | Crossbar Permutation Instructions for Cryptography                                          | 1.0               |
 | `Zbs`                  | Single-Bit Instructions                                                                     | 1.0               |
+| `Zk`                   | Standard Scalar Cryptography Extension                                                      | 1.0               |
+| `Zkn`                  | NIST Algorithm Suite Extension                                                              | 1.0               |
+| `Zknd`                 | AES Decryption Instructions                                                                 | 1.0               |
+| `Zkne`                 | AES Encryption Instructions                                                                 | 1.0               |
+| `Zknh`                 | SHA2 Hash Function Instructions                                                             | 1.0               |
+| `Zkr`                  | Entropy Source Extension                                                                    | 1.0               |
+| `Zks`                  | ShangMi Algorithm Suite Extension                                                           | 1.0               |
+| `Zksed`                | SM4 Block Cipher Instructions                                                               | 1.0               |
+| `Zksh`                 | SM3 Hash Function Instructions                                                              | 1.0               |
+| `Zkt`                  | Data Independent Execution Latency Extension                                                | 1.0               |
 | `Zvamo`                | Vector Atomic Instructions                                                                  |                   |
 | `Zve32f`               | Vector Extension for Embedded 32-bit Single-Precision Floating-Point                        | 1.1               |
 | `Zve32x`               | Vector Extension for Embedded 32-bit Integer                                                | 1.1               |
