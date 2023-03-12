@@ -127,6 +127,15 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_h")
     runtime! syntax/riscv_asm_h.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicbom")
+    runtime! syntax/riscv_asm_zicbom.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicbop")
+    runtime! syntax/riscv_asm_zicbop.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicboz")
+    runtime! syntax/riscv_asm_zicboz.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicntr")
     runtime! syntax/riscv_asm_zicntr.vim
 endif
@@ -269,6 +278,15 @@ if exists("b:riscv_asm_defined_v")
 endif
 if exists("b:riscv_asm_defined_h")
     unlet b:riscv_asm_defined_h
+endif
+if exists("b:riscv_asm_defined_zicbom")
+    unlet b:riscv_asm_defined_zicbom
+endif
+if exists("b:riscv_asm_defined_zicbop")
+    unlet b:riscv_asm_defined_zicbop
+endif
+if exists("b:riscv_asm_defined_zicboz")
+    unlet b:riscv_asm_defined_zicboz
 endif
 if exists("b:riscv_asm_defined_zicntr")
     unlet b:riscv_asm_defined_zicntr
