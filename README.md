@@ -164,7 +164,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zba`                  | Address Generation Instructions                                                             | 1.0               |
 | `Zbb`                  | Basic Bit-Manipulation                                                                      | 1.0               |
 | `Zbc`                  | Carry-Less Multiplication                                                                   | 1.0               |
-| `Zbkb`                 | Bitmanip Instructions for Cryptography                                                      | 1.0               |
+| `Zbkb`                 | Bit-Manipulation Instructions for Cryptography                                              | 1.0               |
 | `Zbkc`                 | Carry-Less Multiplication Instructions for Cryptography                                     | 1.0               |
 | `Zbkx`                 | Crossbar Permutation Instructions for Cryptography                                          | 1.0               |
 | `Zbs`                  | Single-Bit Instructions                                                                     | 1.0               |
@@ -187,6 +187,16 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zvediv`               | Vector Divided Element Extension                                                            |                   |
 | `Zvfh`                 | Vector Extension for Half-Precision Floating-Point                                          | 1.1               |
 | `Zvfhmin`              | Vector Extension for Minimal Half-Precision Floating-Point                                  | 1.1               |
+| `Zvkb`                 | Vector Bit-Manipulation Instructions for Cryptography                                       | 0.4               |
+| `Zvkg`                 | Vector GCM/GMAC                                                                             | 0.4               |
+| `Zvkn`                 | Vector NIST Algorithm Suite Extension                                                       | 0.4               |
+| `Zvkned`               | Vector AES Block Cipher                                                                     | 0.4               |
+| `Zvknha`               | Vector SHA-2 Secure Hash for Embedded 32-bit                                                | 0.4               |
+| `Zvknhb`               | Vector SHA-2 Secure Hash                                                                    | 0.4               |
+| `Zvks`                 | Vector ShangMi Algorithm Suite Extension                                                    | 0.4               |
+| `Zvksed`               | Vector SM4 Block Cipher                                                                     | 0.4               |
+| `Zvksh`                | Vector SM3 Secure Hash                                                                      | 0.4               |
+| `Zvkt`                 | Vector Data Independent Execution Latency Extension                                         | 0.4               |
 | `Zvl32b`               | Minimum 32-bit Vector Length                                                                | 1.1               |
 | `Zvl64b`               | Minimum 64-bit Vector Length                                                                | 1.1               |
 | `Zvl128b`              | Minimum 128-bit Vector Length                                                               | 1.1               |
@@ -220,6 +230,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 |:---------------------------------------------------------------------------------------------------- |:---------------------------------------------------------------------------------------------------- |
 | `RV32E`/`RV64E`                                                                                      | `H`/`G`                                                                                              |
 | `F`/`D`/`Q`/`V`/`Zfa`/`Zfh`/`Zfhmin`/`Zve32f`/`Zve64d`/`Zve64f`/`Zvfh`/`Zvfhmin`                     | `Zfinx`/`Zdinx`/`Zhinx`/`Zhinxmin`                                                                   |
+| `Zve32x`/`Zve32f`                                                                                    | `Zvknhb`                                                                                             |
 
 #### Rules Should Be Followed
 
