@@ -210,6 +210,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | Extension              | Full Name                                                                                   | Supported Version |
 |:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
 | `Ss`                   | Supervisor-Level Extension                                                                  | 1.12              |
+| `Sspmp`                | Supervisor Memory Protection Extension                                                      | 0.8               |
 | `Sscofpmf`             | Count Overflow and Mode-Based Filtering Extension                                           | 0.5               |
 | `Sstc`                 | Supervisor-Level Timer Comparison Extension                                                 | 0.5               |
 | `Ssstateen`            | Supervisor-Level State Enable Extension                                                     | 1.0               |

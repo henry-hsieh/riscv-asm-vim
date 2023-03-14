@@ -153,6 +153,8 @@ let b:riscv_asm_zvksh_max = 0.4
 let b:riscv_asm_ss_max = 1.12
 " Sscofpmf Extension: Count Overflow and Mode-Based Filtering Extension
 let b:riscv_asm_sscofpmf_max = 0.5
+" Sspmp Extension: Supervisor Memory Protection Extension
+let b:riscv_asm_sspmp_max = 0.8
 " Sstc Extension: Supervisor-Level Timer Comparison Extension
 let b:riscv_asm_sstc_max = 0.5
 " Ssstateen Extension: Supervisor-Level State Enable Extension
@@ -1456,6 +1458,23 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_sscofpmf")
             unlet b:riscv_asm_sscofpmf
+        endif
+    endif
+    " Sspmp extension
+    if s:riscv_asm_isa =~ '\c^-\=sspmp\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=sspmp\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_sspmp = b:riscv_asm_sspmp_max
+        else
+            let b:riscv_asm_sspmp = str2float(s:extract_version)
+            if b:riscv_asm_sspmp > b:riscv_asm_sspmp_max
+                let b:riscv_asm_sspmp = b:riscv_asm_sspmp_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sspmp\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_sspmp")
+            unlet b:riscv_asm_sspmp
         endif
     endif
     " Sstc extension
