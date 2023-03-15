@@ -85,6 +85,20 @@ let b:riscv_asm_zdinx_max = 1.0
 let b:riscv_asm_zhinx_max = 1.0
 " Zhinxmin Extension: Minimal Half-Precision Floating-Point in Integer Registers
 let b:riscv_asm_zhinxmin_max = 1.0
+" Zca Extension: C Extension Instructions without Floating-Point Load/Stores
+let b:riscv_asm_zca_max = 1.0
+" Zcb Extension: Simple Code Size Saving Instructions
+let b:riscv_asm_zcb_max = 1.0
+" Zcd Extension: Compressed Double-Precision Floating-Point Load/Stores Instructions
+let b:riscv_asm_zcd_max = 1.0
+" Zce Extension: Compressed Instructions for Microcontrollers
+let b:riscv_asm_zce_max = 1.0
+" Zcf Extension: Compressed Single-Precision Floating-Point Load/Stores Instructions
+let b:riscv_asm_zcf_max = 1.0
+" Zcmp Extension: Push/Pop and Double Move Instructions
+let b:riscv_asm_zcmp_max = 1.0
+" Zcmt Extension: Table Jump Instructions
+let b:riscv_asm_zcmt_max = 1.0
 " Zba Extension: Address Generation Instructions
 let b:riscv_asm_zba_max = 1.0
 " Zbb Extension: Basic Bit-Manipulation
@@ -279,7 +293,7 @@ if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ieg]' && !exists("b:riscv_asm_all_en
     endif
     let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv\(32\|64\)[ie]\(\d\+\(\.\d\+\)\=\)\=', "", "")
     let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv128i\(\d\+\(\.\d\+\)\=\)\=', "", "")
-    let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv\d\+g', "", "")
+    let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv\d\+', "", "")
 else
     " Base ISA isn't found, enable all extensions
     let b:riscv_asm_xlen = 0
@@ -358,12 +372,19 @@ if !exists("b:riscv_asm_all_enable")
     endif
     " G extension
     if s:riscv_asm_isa =~ '\c^g' && s:extract_base !~ '[Ee]'
-        let b:riscv_asm_g = 0.0
-        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^g', "", "")
-    else
-        if exists("b:riscv_asm_g")
-            unlet b:riscv_asm_g
+        if !exists("b:riscv_asm_m")
+            let b:riscv_asm_m = b:riscv_asm_m_max
         endif
+        if !exists("b:riscv_asm_a")
+            let b:riscv_asm_a = b:riscv_asm_a_max
+        endif
+        if !exists("b:riscv_asm_f")
+            let b:riscv_asm_f = b:riscv_asm_f_max
+        endif
+        if !exists("b:riscv_asm_d")
+            let b:riscv_asm_d = b:riscv_asm_d_max
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^g', "", "")
     endif
     " Q extension
     if s:riscv_asm_isa =~ '\c^q'
@@ -826,6 +847,159 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_zhinxmin")
             unlet b:riscv_asm_zhinxmin
+        endif
+    endif
+    " Zca extension
+    if s:riscv_asm_isa =~ '\c^-\=zca\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zca\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zca = b:riscv_asm_zca_max
+        else
+            let b:riscv_asm_zca = str2float(s:extract_version)
+            if b:riscv_asm_zca > b:riscv_asm_zca_max
+                let b:riscv_asm_zca = b:riscv_asm_zca_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zca\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zca")
+            unlet b:riscv_asm_zca
+        endif
+    endif
+    " Zcb extension
+    if s:riscv_asm_isa =~ '\c^-\=zcb\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zcb\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zcb = b:riscv_asm_zcb_max
+        else
+            let b:riscv_asm_zcb = str2float(s:extract_version)
+            if b:riscv_asm_zcb > b:riscv_asm_zcb_max
+                let b:riscv_asm_zcb = b:riscv_asm_zcb_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zcb\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zcb")
+            unlet b:riscv_asm_zcb
+        endif
+    endif
+    " Zcd extension
+    if s:riscv_asm_isa =~ '\c^-\=zcd\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && b:riscv_asm_xlen <= 64 && !exists("b:riscv_asm_zfinx") && !exists("b:riscv_asm_zdinx") && !exists("b:riscv_asm_zhinx") && !exists("b:riscv_asm_zhinxmin")
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zcd\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zcd = b:riscv_asm_zcd_max
+        else
+            let b:riscv_asm_zcd = str2float(s:extract_version)
+            if b:riscv_asm_zcd > b:riscv_asm_zcd_max
+                let b:riscv_asm_zcd = b:riscv_asm_zcd_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zcd\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zcd")
+            unlet b:riscv_asm_zcd
+        endif
+    endif
+    " Zce extension
+    if s:riscv_asm_isa =~ '\c^-\=zce\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && !exists("b:riscv_asm_c") && !exists("b:riscv_asm_zcd")
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zce\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zce = b:riscv_asm_zce_max
+        else
+            let b:riscv_asm_zce = str2float(s:extract_version)
+            if b:riscv_asm_zce > b:riscv_asm_zce_max
+                let b:riscv_asm_zce = b:riscv_asm_zce_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zce\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zce")
+            unlet b:riscv_asm_zce
+        endif
+    endif
+    " Zcf extension
+    if s:riscv_asm_isa =~ '\c^-\=zcf\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && b:riscv_asm_xlen == 32 && !exists("b:riscv_asm_zfinx") && !exists("b:riscv_asm_zdinx") && !exists("b:riscv_asm_zhinx") && !exists("b:riscv_asm_zhinxmin")
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zcf\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zcf = b:riscv_asm_zcf_max
+        else
+            let b:riscv_asm_zcf = str2float(s:extract_version)
+            if b:riscv_asm_zcf > b:riscv_asm_zcf_max
+                let b:riscv_asm_zcf = b:riscv_asm_zcf_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zcf\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zcf")
+            unlet b:riscv_asm_zcf
+        endif
+    endif
+    " Zcmp extension
+    if s:riscv_asm_isa =~ '\c^-\=zcmp\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && !exists("b:riscv_asm_c") && !exists("b:riscv_asm_zcd")
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zcmp\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zcmp = b:riscv_asm_zcmp_max
+        else
+            let b:riscv_asm_zcmp = str2float(s:extract_version)
+            if b:riscv_asm_zcmp > b:riscv_asm_zcmp_max
+                let b:riscv_asm_zcmp = b:riscv_asm_zcmp_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zcmp\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zcmp")
+            unlet b:riscv_asm_zcmp
+        endif
+    endif
+    " Zcmt extension
+    if s:riscv_asm_isa =~ '\c^-\=zcmt\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)' && !exists("b:riscv_asm_c") && !exists("b:riscv_asm_zcd")
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zcmt\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zcmt = b:riscv_asm_zcmt_max
+        else
+            let b:riscv_asm_zcmt = str2float(s:extract_version)
+            if b:riscv_asm_zcmt > b:riscv_asm_zcmt_max
+                let b:riscv_asm_zcmt = b:riscv_asm_zcmt_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zcmt\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zcmt")
+            unlet b:riscv_asm_zcmt
+        endif
+    endif
+    " Zba extension
+    if s:riscv_asm_isa =~ '\c^-\=zba\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zba\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zba = b:riscv_asm_zba_max
+        else
+            let b:riscv_asm_zba = str2float(s:extract_version)
+            if b:riscv_asm_zba > b:riscv_asm_zba_max
+                let b:riscv_asm_zba = b:riscv_asm_zba_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zba\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zba")
+            unlet b:riscv_asm_zba
+        endif
+    endif
+    " Zba extension
+    if s:riscv_asm_isa =~ '\c^-\=zba\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zba\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zba = b:riscv_asm_zba_max
+        else
+            let b:riscv_asm_zba = str2float(s:extract_version)
+            if b:riscv_asm_zba > b:riscv_asm_zba_max
+                let b:riscv_asm_zba = b:riscv_asm_zba_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zba\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zba")
+            unlet b:riscv_asm_zba
         endif
     endif
     " Zba extension

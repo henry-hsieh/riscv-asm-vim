@@ -161,6 +161,13 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zdinx`                | Double-Precision Floating-Point in Integer Registers                                        | 1.0               |
 | `Zhinx`                | Half-Precision Floating-Point in Integer Registers                                          | 1.0               |
 | `Zhinxmin`             | Minimal Half-Precision Floating-Point in Integer Registers                                  | 1.0               |
+| `Zca`                  | C Extension Instructions without Floating-Point Load/Stores                                 | 1.0               |
+| `Zcb`                  | Simple Code Size Saving Instructions                                                        | 1.0               |
+| `Zcd`                  | Compressed Double-Precision Floating-Point Load/Stores Instructions                         | 1.0               |
+| `Zce`                  | Compressed Instructions for Microcontrollers                                                | 1.0               |
+| `Zcf`                  | Compressed Single-Precision Floating-Point Load/Stores Instructions                         | 1.0               |
+| `Zcmp`                 | Push/Pop and Double Move Instructions                                                       | 1.0               |
+| `Zcmt`                 | Table Jump Instructions                                                                     | 1.0               |
 | `Zba`                  | Address Generation Instructions                                                             | 1.0               |
 | `Zbb`                  | Basic Bit-Manipulation                                                                      | 1.0               |
 | `Zbc`                  | Carry-Less Multiplication                                                                   | 1.0               |
@@ -230,8 +237,11 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | Extension A                                                                                          | Extension B                                                                                          |
 |:---------------------------------------------------------------------------------------------------- |:---------------------------------------------------------------------------------------------------- |
 | `RV32E`/`RV64E`                                                                                      | `H`/`G`                                                                                              |
-| `F`/`D`/`Q`/`V`/`Zfa`/`Zfh`/`Zfhmin`/`Zve32f`/`Zve64d`/`Zve64f`/`Zvfh`/`Zvfhmin`                     | `Zfinx`/`Zdinx`/`Zhinx`/`Zhinxmin`                                                                   |
+| `F`/`D`/`Q`/`V`/`Zfa`/`Zfh`/`Zcd`/`Zcf`/`Zfhmin`/`Zve32f`/`Zve64d`/`Zve64f`/`Zvfh`/`Zvfhmin`         | `Zfinx`/`Zdinx`/`Zhinx`/`Zhinxmin`                                                                   |
 | `Zve32x`/`Zve32f`                                                                                    | `Zvknhb`                                                                                             |
+| `Zcd`                                                                                                | `RV128I`/`Zce`/`Zcmp`/`Zcmt`                                                                         |
+| `C`                                                                                                  | `Zce`/`Zcmp`/`Zcmt`                                                                                  |
+| `Zcf`                                                                                                | `RV64I`/`RV64E`/`RV128I`                                                                             |
 
 #### Rules Should Be Followed
 
