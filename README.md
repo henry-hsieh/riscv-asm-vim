@@ -217,6 +217,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | Extension              | Full Name                                                                                   | Supported Version |
 |:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
 | `Ss`                   | Supervisor-Level Extension                                                                  | 1.12              |
+| `Ssaia`                | Supervisor-Level Advanced Interrupt Architecture Extension                                  | 1.0               |
 | `Sspmp`                | Supervisor Memory Protection Extension                                                      | 0.8               |
 | `Sscofpmf`             | Count Overflow and Mode-Based Filtering Extension                                           | 0.5               |
 | `Sstc`                 | Supervisor-Level Timer Comparison Extension                                                 | 0.5               |
@@ -229,6 +230,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Svnapot`              | NAPOT Translation Contiguity                                                                | 1.0               |
 | `Svpbmt`               | Page-Based Memory Types                                                                     | 1.0               |
 | `Sm`                   | Machine-Level Extension                                                                     | 1.12              |
+| `Smaia`                | Machine-Level Advanced Interrupt Architecture Extension                                     | 1.0               |
 | `Smepmp`               | PMP Enhancements for Memory Access and Execution Prevention on Machine Mode                 | 1.12              |
 | `Smstateen`            | Machine-Level State Enable Extension                                                        | 1.0               |
 

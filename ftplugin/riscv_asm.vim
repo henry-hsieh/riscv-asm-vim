@@ -165,6 +165,8 @@ let b:riscv_asm_zvksed_max = 0.4
 let b:riscv_asm_zvksh_max = 0.4
 " Ss Extension: Supervisor-Level Extension
 let b:riscv_asm_ss_max = 1.12
+" Ssaia Extension: Supervisor-Level Advanced Interrupt Architecture Extension
+let b:riscv_asm_ssaia_max = 1.12
 " Sscofpmf Extension: Count Overflow and Mode-Based Filtering Extension
 let b:riscv_asm_sscofpmf_max = 0.5
 " Sspmp Extension: Supervisor Memory Protection Extension
@@ -177,6 +179,8 @@ let b:riscv_asm_ssstateen_max = 1.0
 let b:riscv_asm_svinval_max = 1.0
 " Sm Extension: Machine-Level Extension
 let b:riscv_asm_sm_max = 1.12
+" Smaia Extension: Machine-Level Advanced Interrupt Architecture Extension
+let b:riscv_asm_smaia_max = 1.12
 " Smstateen Extension: Machine-Level State Enable Extension
 let b:riscv_asm_smstateen_max = 1.0
 
@@ -1617,6 +1621,23 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_ss
         endif
     endif
+    " Ssaia extension
+    if s:riscv_asm_isa =~ '\c^-\=ssaia\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=ssaia\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_ssaia = b:riscv_asm_ssaia_max
+        else
+            let b:riscv_asm_ssaia = str2float(s:extract_version)
+            if b:riscv_asm_ssaia > b:riscv_asm_ssaia_max
+                let b:riscv_asm_ssaia = b:riscv_asm_ssaia_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=ssaia\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_ssaia")
+            unlet b:riscv_asm_ssaia
+        endif
+    endif
     " Sscofpmf extension
     if s:riscv_asm_isa =~ '\c^-\=sscofpmf\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=sscofpmf\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
@@ -1741,6 +1762,23 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_sm")
             unlet b:riscv_asm_sm
+        endif
+    endif
+    " Smaia extension
+    if s:riscv_asm_isa =~ '\c^-\=smaia\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=smaia\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_smaia = b:riscv_asm_smaia_max
+        else
+            let b:riscv_asm_smaia = str2float(s:extract_version)
+            if b:riscv_asm_smaia > b:riscv_asm_smaia_max
+                let b:riscv_asm_smaia = b:riscv_asm_smaia_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=smaia\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_smaia")
+            unlet b:riscv_asm_smaia
         endif
     endif
     " Smepmp extension
