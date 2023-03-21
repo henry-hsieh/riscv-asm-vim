@@ -250,6 +250,12 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvamo")
     runtime! syntax/riscv_asm_zvamo.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvbb")
+    runtime! syntax/riscv_asm_zvbb.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvbc")
+    runtime! syntax/riscv_asm_zvbc.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zve32f")
     runtime! syntax/riscv_asm_zve32f.vim
 endif
@@ -273,9 +279,6 @@ if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvfh")
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvfhmin")
     runtime! syntax/riscv_asm_zvfhmin.vim
-endif
-if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvkb")
-    runtime! syntax/riscv_asm_zvkb.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvkg")
     runtime! syntax/riscv_asm_zvkg.vim
@@ -495,6 +498,12 @@ endif
 if exists("b:riscv_asm_defined_zvamo")
     unlet b:riscv_asm_defined_zvamo
 endif
+if exists("b:riscv_asm_defined_zvbb")
+    unlet b:riscv_asm_defined_zvbb
+endif
+if exists("b:riscv_asm_defined_zvbc")
+    unlet b:riscv_asm_defined_zvbc
+endif
 if exists("b:riscv_asm_defined_zve32f")
     unlet b:riscv_asm_defined_zve32f
 endif
@@ -518,9 +527,6 @@ if exists("b:riscv_asm_defined_zvfh")
 endif
 if exists("b:riscv_asm_defined_zvfhmin")
     unlet b:riscv_asm_defined_zvfhmin
-endif
-if exists("b:riscv_asm_defined_zvkb")
-    unlet b:riscv_asm_defined_zvkb
 endif
 if exists("b:riscv_asm_defined_zvkg")
     unlet b:riscv_asm_defined_zvkg

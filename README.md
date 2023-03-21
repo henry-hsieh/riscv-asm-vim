@@ -186,6 +186,8 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zksh`                 | SM3 Hash Function Instructions                                                              | 1.0               |
 | `Zkt`                  | Data Independent Execution Latency Extension                                                | 1.0               |
 | `Zvamo`                | Vector Atomic Instructions                                                                  |                   |
+| `Zvbb`                 | Vector Bit-Manipulation Instructions for Cryptography                                       | 0.4               |
+| `Zvbc`                 | Vector Carry-Less Multiplication                                                            | 0.4               |
 | `Zve32f`               | Vector Extension for Embedded 32-bit Single-Precision Floating-Point                        | 1.1               |
 | `Zve32x`               | Vector Extension for Embedded 32-bit Integer                                                | 1.1               |
 | `Zve64d`               | Vector Extension for Embedded 64-bit Double-Precision Floating-Point                        | 1.1               |
@@ -194,7 +196,6 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zvediv`               | Vector Divided Element Extension                                                            |                   |
 | `Zvfh`                 | Vector Extension for Half-Precision Floating-Point                                          | 1.1               |
 | `Zvfhmin`              | Vector Extension for Minimal Half-Precision Floating-Point                                  | 1.1               |
-| `Zvkb`                 | Vector Bit-Manipulation Instructions for Cryptography                                       | 0.4               |
 | `Zvkg`                 | Vector GCM/GMAC                                                                             | 0.4               |
 | `Zvkn`                 | Vector NIST Algorithm Suite Extension                                                       | 0.4               |
 | `Zvkned`               | Vector AES Block Cipher                                                                     | 0.4               |
