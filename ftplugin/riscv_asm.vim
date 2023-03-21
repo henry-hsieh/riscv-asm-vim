@@ -185,6 +185,10 @@ let b:riscv_asm_sm_max = 1.12
 let b:riscv_asm_smaia_max = 1.12
 " Smstateen Extension: Machine-Level State Enable Extension
 let b:riscv_asm_smstateen_max = 1.0
+" Sdext Extension: External Debug Extension
+let b:riscv_asm_sdext_max = 1.0
+" Sdtrig Extension: Debug Trigger Extension
+let b:riscv_asm_sdtrig_max = 1.0
 
 " Find global setting of RISC-V ISA
 if exists("g:riscv_asm_isa")
@@ -1819,6 +1823,40 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_smstateen")
             unlet b:riscv_asm_smstateen
+        endif
+    endif
+    " Sdext extension
+    if s:riscv_asm_isa =~ '\c^-\=sdext\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=sdext\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_sdext = b:riscv_asm_sdext_max
+        else
+            let b:riscv_asm_sdext = str2float(s:extract_version)
+            if b:riscv_asm_sdext > b:riscv_asm_sdext_max
+                let b:riscv_asm_sdext = b:riscv_asm_sdext_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sdext\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_sdext")
+            unlet b:riscv_asm_sdext
+        endif
+    endif
+    " Sdtrig extension
+    if s:riscv_asm_isa =~ '\c^-\=sdtrig\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=sdtrig\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_sdtrig = b:riscv_asm_sdtrig_max
+        else
+            let b:riscv_asm_sdtrig = str2float(s:extract_version)
+            if b:riscv_asm_sdtrig > b:riscv_asm_sdtrig_max
+                let b:riscv_asm_sdtrig = b:riscv_asm_sdtrig_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sdtrig\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_sdtrig")
+            unlet b:riscv_asm_sdtrig
         endif
     endif
 endif

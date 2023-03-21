@@ -334,6 +334,12 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_smstateen")
     runtime! syntax/riscv_asm_smstateen.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_sdext")
+    runtime! syntax/riscv_asm_sdext.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_sdtrig")
+    runtime! syntax/riscv_asm_sdtrig.vim
+endif
 
 " Disable defined identifier for reopen
 if exists("b:riscv_asm_defined_rv32e")
@@ -582,6 +588,12 @@ endif
 if exists("b:riscv_asm_defined_smstateen")
     unlet b:riscv_asm_defined_smstateen
 endif
+if exists("b:riscv_asm_defined_sdext")
+    unlet b:riscv_asm_defined_sdext
+endif
+if exists("b:riscv_asm_defined_sdtrig")
+    unlet b:riscv_asm_defined_sdtrig
+endif
 
 " Functions
 syn match riscvFunction                "%\(hi\|lo\|pcrel_hi\|pcrel_lo\|tprel_hi\|tprel_lo\|tprel_add\|tls_ie_pcrel_hi\|tls_gd_pcrel_hi\|got_pcrel_hi\)\>"
@@ -640,6 +652,7 @@ hi def link riscvUCSRegister                Function
 hi def link riscvSCSRegister                Function
 hi def link riscvHCSRegister                Function
 hi def link riscvMCSRegister                Function
+hi def link riscvDCSRegister                Function
 hi def link riscvLabel                      Label
 hi def link riscvNumericLabel               Label
 hi def link riscvDirective                  Special

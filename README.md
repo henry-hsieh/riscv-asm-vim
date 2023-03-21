@@ -234,6 +234,8 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Smaia`                | Machine-Level Advanced Interrupt Architecture Extension                                     | 1.0               |
 | `Smepmp`               | PMP Enhancements for Memory Access and Execution Prevention on Machine Mode                 | 1.12              |
 | `Smstateen`            | Machine-Level State Enable Extension                                                        | 1.0               |
+| `Sdext`                | External Debug Extension                                                                    | 1.0               |
+| `Sdtrig`               | Debug Trigger Extension                                                                     | 1.0               |
 
 #### Conflict Extensions
 
