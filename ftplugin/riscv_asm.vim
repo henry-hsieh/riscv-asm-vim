@@ -57,6 +57,8 @@ let b:riscv_asm_zicbop_max = 1.0
 let b:riscv_asm_zicboz_max = 1.0
 " Zicntr Extension: Base Counters and Timers
 let b:riscv_asm_zicntr_max = 2.0
+" Zicond Extension:  Integer Conditional Operations Extension
+let b:riscv_asm_zicond_max = 1.0
 " Zicsr Extension: Control and Status Register Access
 let b:riscv_asm_zicsr_max = 2.0
 " Zifencei Extension: Instruction-Fetch Fence
@@ -615,6 +617,23 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_zicntr")
             unlet b:riscv_asm_zicntr
+        endif
+    endif
+    " Zicond extension
+    if s:riscv_asm_isa =~ '\c^-\=zicond\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zicond\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zicond = b:riscv_asm_zicond_max
+        else
+            let b:riscv_asm_zicond = str2float(s:extract_version)
+            if b:riscv_asm_zicond > b:riscv_asm_zicond_max
+                let b:riscv_asm_zicond = b:riscv_asm_zicond_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zicond\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zicond")
+            unlet b:riscv_asm_zicond
         endif
     endif
     " Zicsr extension

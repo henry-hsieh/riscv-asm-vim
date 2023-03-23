@@ -136,6 +136,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicntr")
     runtime! syntax/riscv_asm_zicntr.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicond")
+    runtime! syntax/riscv_asm_zicond.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zicsr")
     runtime! syntax/riscv_asm_zicsr.vim
 endif
@@ -389,6 +392,9 @@ if exists("b:riscv_asm_defined_zicboz")
 endif
 if exists("b:riscv_asm_defined_zicntr")
     unlet b:riscv_asm_defined_zicntr
+endif
+if exists("b:riscv_asm_defined_zicond")
+    unlet b:riscv_asm_defined_zicond
 endif
 if exists("b:riscv_asm_defined_zicsr")
     unlet b:riscv_asm_defined_zicsr

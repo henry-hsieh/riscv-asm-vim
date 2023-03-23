@@ -146,6 +146,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zicbop`               | Cache-Block Prefetch Instructions                                                           | 1.0               |
 | `Zicboz`               | Cache-Block Zero Instructions                                                               | 1.0               |
 | `Zicntr`               | Base Counters and Timers                                                                    | 2.0               |
+| `Zicond`               | Integer Conditional Operations Extension                                                    | 1.0               |
 | `Zicsr`                | Control and Status Register Access                                                          | 2.0               |
 | `Zifencei`             | Instruction-Fetch Fence                                                                     | 2.0               |
 | `Zihintntl`            | Non-Temporal Locality Hints                                                                 | 0.2               |
