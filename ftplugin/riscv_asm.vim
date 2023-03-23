@@ -553,11 +553,11 @@ if !exists("b:riscv_asm_all_enable")
     if s:riscv_asm_isa =~ '\c^-\=zicbom\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zicbom\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
-            let b:riscv_asm_zicbom = b:riscv_asm_zicntr_max
+            let b:riscv_asm_zicbom = b:riscv_asm_zicbom_max
         else
             let b:riscv_asm_zicbom = str2float(s:extract_version)
-            if b:riscv_asm_zicbom > b:riscv_asm_zicntr_max
-                let b:riscv_asm_zicbom = b:riscv_asm_zicntr_max
+            if b:riscv_asm_zicbom > b:riscv_asm_zicbom_max
+                let b:riscv_asm_zicbom = b:riscv_asm_zicbom_max
             endif
         endif
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zicbom\(\d\+\(\.\d\+\)\=\)\=', "", "")
@@ -570,11 +570,11 @@ if !exists("b:riscv_asm_all_enable")
     if s:riscv_asm_isa =~ '\c^-\=zicbop\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zicbop\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
-            let b:riscv_asm_zicbop = b:riscv_asm_zicntr_max
+            let b:riscv_asm_zicbop = b:riscv_asm_zicbop_max
         else
             let b:riscv_asm_zicbop = str2float(s:extract_version)
-            if b:riscv_asm_zicbop > b:riscv_asm_zicntr_max
-                let b:riscv_asm_zicbop = b:riscv_asm_zicntr_max
+            if b:riscv_asm_zicbop > b:riscv_asm_zicbop_max
+                let b:riscv_asm_zicbop = b:riscv_asm_zicbop_max
             endif
         endif
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zicbop\(\d\+\(\.\d\+\)\=\)\=', "", "")
@@ -587,11 +587,11 @@ if !exists("b:riscv_asm_all_enable")
     if s:riscv_asm_isa =~ '\c^-\=zicboz\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zicboz\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
         if s:extract_version !~ '\d\+\.\d\+'
-            let b:riscv_asm_zicboz = b:riscv_asm_zicntr_max
+            let b:riscv_asm_zicboz = b:riscv_asm_zicboz_max
         else
             let b:riscv_asm_zicboz = str2float(s:extract_version)
-            if b:riscv_asm_zicboz > b:riscv_asm_zicntr_max
-                let b:riscv_asm_zicboz = b:riscv_asm_zicntr_max
+            if b:riscv_asm_zicboz > b:riscv_asm_zicboz_max
+                let b:riscv_asm_zicboz = b:riscv_asm_zicboz_max
             endif
         endif
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zicboz\(\d\+\(\.\d\+\)\=\)\=', "", "")
