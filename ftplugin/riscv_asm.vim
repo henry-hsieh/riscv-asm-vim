@@ -553,6 +553,10 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_h
         endif
     endif
+    " Zic64b extension
+    if s:riscv_asm_isa =~ '\c^-\=zic64b\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zic64b', "", "")
+    endif
     " Zicbom extension
     if s:riscv_asm_isa =~ '\c^-\=zicbom\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zicbom\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
@@ -603,6 +607,22 @@ if !exists("b:riscv_asm_all_enable")
         if exists("b:riscv_asm_zicboz")
             unlet b:riscv_asm_zicboz
         endif
+    endif
+    " Ziccamoa extension
+    if s:riscv_asm_isa =~ '\c^-\=ziccamoa\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=ziccamoa', "", "")
+    endif
+    " Ziccif extension
+    if s:riscv_asm_isa =~ '\c^-\=ziccif\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=ziccif', "", "")
+    endif
+    " Zicclsm extension
+    if s:riscv_asm_isa =~ '\c^-\=zicclsm\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zicclsm', "", "")
+    endif
+    " Ziccrse extension
+    if s:riscv_asm_isa =~ '\c^-\=ziccrse\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=ziccrse', "", "")
     endif
     " Zicntr extension
     if s:riscv_asm_isa =~ '\c^-\=zicntr\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
@@ -739,6 +759,14 @@ if !exists("b:riscv_asm_all_enable")
         if exists("b:riscv_asm_zmmul")
             unlet b:riscv_asm_zmmul
         endif
+    endif
+    " Za128rs extension
+    if s:riscv_asm_isa =~ '\c^-\=za128rs\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=za128rs', "", "")
+    endif
+    " Za64rs extension
+    if s:riscv_asm_isa =~ '\c^-\=za64rs\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=za64rs', "", "")
     endif
     " Zawrs extension
     if s:riscv_asm_isa =~ '\c^-\=zawrs\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
@@ -1682,6 +1710,10 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_ssaia
         endif
     endif
+    " Ssccptr extension
+    if s:riscv_asm_isa =~ '\c^-\=ssccptr\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=ssccptr', "", "")
+    endif
     " Sscofpmf extension
     if s:riscv_asm_isa =~ '\c^-\=sscofpmf\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=sscofpmf\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
@@ -1699,6 +1731,10 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_sscofpmf
         endif
     endif
+    " Sscounterenw extension
+    if s:riscv_asm_isa =~ '\c^-\=sscounterenw\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sscounterenw', "", "")
+    endif
     " Sspmp extension
     if s:riscv_asm_isa =~ '\c^-\=sspmp\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=sspmp\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
@@ -1714,23 +1750,6 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_sspmp")
             unlet b:riscv_asm_sspmp
-        endif
-    endif
-    " Sstc extension
-    if s:riscv_asm_isa =~ '\c^-\=sstc\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
-        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=sstc\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
-        if s:extract_version !~ '\d\+\.\d\+'
-            let b:riscv_asm_sstc = b:riscv_asm_sstc_max
-        else
-            let b:riscv_asm_sstc = str2float(s:extract_version)
-            if b:riscv_asm_sstc > b:riscv_asm_sstc_max
-                let b:riscv_asm_sstc = b:riscv_asm_sstc_max
-            endif
-        endif
-        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sstc\(\d\+\(\.\d\+\)\=\)\=', "", "")
-    else
-        if exists("b:riscv_asm_sstc")
-            unlet b:riscv_asm_sstc
         endif
     endif
     " Ssstateen extension
@@ -1750,6 +1769,35 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_ssstateen
         endif
     endif
+    " Sstc extension
+    if s:riscv_asm_isa =~ '\c^-\=sstc\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=sstc\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_sstc = b:riscv_asm_sstc_max
+        else
+            let b:riscv_asm_sstc = str2float(s:extract_version)
+            if b:riscv_asm_sstc > b:riscv_asm_sstc_max
+                let b:riscv_asm_sstc = b:riscv_asm_sstc_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sstc\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_sstc")
+            unlet b:riscv_asm_sstc
+        endif
+    endif
+    " Sstvala extension
+    if s:riscv_asm_isa =~ '\c^-\=sstvala\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sstvala', "", "")
+    endif
+    " Sstvecd extension
+    if s:riscv_asm_isa =~ '\c^-\=sstvecd\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sstvecd', "", "")
+    endif
+    " Ssu64xl extension
+    if s:riscv_asm_isa =~ '\c^-\=ssu64xl\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=ssu64xl', "", "")
+    endif
     " Sv32 extension
     if s:riscv_asm_isa =~ '\c^-\=sv32\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sv32', "", "")
@@ -1765,6 +1813,10 @@ if !exists("b:riscv_asm_all_enable")
     " Sv57 extension
     if s:riscv_asm_isa =~ '\c^-\=sv57\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sv57', "", "")
+    endif
+    " Svade extension
+    if s:riscv_asm_isa =~ '\c^-\=svade\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=svade', "", "")
     endif
     " Svadu extension
     if s:riscv_asm_isa =~ '\c^-\=svadu\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
@@ -1782,6 +1834,10 @@ if !exists("b:riscv_asm_all_enable")
         if exists("b:riscv_asm_svadu")
             unlet b:riscv_asm_svadu
         endif
+    endif
+    " Svbare extension
+    if s:riscv_asm_isa =~ '\c^-\=svbare\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=svbare', "", "")
     endif
     " Svinval extension
     if s:riscv_asm_isa =~ '\c^-\=svinval\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
@@ -1807,6 +1863,30 @@ if !exists("b:riscv_asm_all_enable")
     " Svpbmt extension
     if s:riscv_asm_isa =~ '\c^-\=svpbmt\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=svpbmt\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    endif
+    " Shcounterenw extension
+    if s:riscv_asm_isa =~ '\c^-\=shcounterenw\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=shcounterenw', "", "")
+    endif
+    " Shtvala extension
+    if s:riscv_asm_isa =~ '\c^-\=shtvala\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=shtvala', "", "")
+    endif
+    " Shvsatpa extension
+    if s:riscv_asm_isa =~ '\c^-\=shvsatpa\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=shvsatpa', "", "")
+    endif
+    " Shvstvala extension
+    if s:riscv_asm_isa =~ '\c^-\=shvstvala\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=shvstvala', "", "")
+    endif
+    " Shvstvecd extension
+    if s:riscv_asm_isa =~ '\c^-\=shvstvecd\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=shvstvecd', "", "")
+    endif
+    " Shgatpa extension
+    if s:riscv_asm_isa =~ '\c^-\=shgatpa\(-\|$\)'
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=shgatpa', "", "")
     endif
     " Sm extension
     if s:riscv_asm_isa =~ '\c^-\=sm\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'

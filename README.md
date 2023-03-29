@@ -142,9 +142,14 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 
 | Extension              | Full Name                                                                                   | Supported Version |
 |:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
+| `Zic64b`               | Cache Block Size Is 64 Bytes                                                                |                   |
 | `Zicbom`               | Cache-Block Management Instructions                                                         | 1.0               |
 | `Zicbop`               | Cache-Block Prefetch Instructions                                                           | 1.0               |
 | `Zicboz`               | Cache-Block Zero Instructions                                                               | 1.0               |
+| `Ziccamoa`             | Main Memory Supports All Atomics in A                                                       |                   |
+| `Ziccif`               | Main Memory Supports Instruction Fetch With Atomicity Requirement                           |                   |
+| `Zicclsm`              | Main Memory Supports Misaligned Loads/Stores                                                |                   |
+| `Ziccrse`              | Main Memory Supports Forward Progress on LR/SC Sequences                                    |                   |
 | `Zicntr`               | Base Counters and Timers                                                                    | 2.0               |
 | `Zicond`               | Integer Conditional Operations Extension                                                    | 1.0               |
 | `Zicsr`                | Control and Status Register Access                                                          | 2.0               |
@@ -153,6 +158,8 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zihintpause`          | Pause Hint                                                                                  | 2.0               |
 | `Zihpm`                | Hardware Performance Counters                                                               | 2.0               |
 | `Zmmul`                | Multiplication Without Division                                                             | 1.0               |
+| `Za128rs`              | Reservation Set Size of 128 Bytes                                                           |                   |
+| `Za64rs`               | Reservation Set Size of 64 Bytes                                                            |                   |
 | `Zawrs`                | Wait-On-Reservation-Set Extension                                                           | 1.0               |
 | `Zam`                  | Misaligned Atomic                                                                           | 0.1               |
 | `Zfa`                  | Additional Floating-Point Instructions                                                      | 0.1               |
@@ -221,17 +228,30 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Ss`                   | Supervisor-Level Extension                                                                  | 1.12              |
 | `Ssaia`                | Supervisor-Level Advanced Interrupt Architecture Extension                                  | 1.0               |
 | `Sspmp`                | Supervisor Memory Protection Extension                                                      | 0.8               |
+| `Ssccptr`              | Main Memory Supports Page Table Reads                                                       |                   |
 | `Sscofpmf`             | Count Overflow and Mode-Based Filtering Extension                                           | 0.5               |
-| `Sstc`                 | Supervisor-Level Timer Comparison Extension                                                 | 0.5               |
+| `Sscounterenw`         | Support Writeable Enables for Any Supported Counter                                         |                   |
 | `Ssstateen`            | Supervisor-Level State Enable Extension                                                     | 1.0               |
+| `Sstc`                 | Supervisor-Level Timer Comparison Extension                                                 | 0.5               |
+| `Sstvala`              | Stval Provides All Needed Values                                                            |                   |
+| `Sstvecd`              | Stvec Supports Direct Mode                                                                  |                   |
+| `Ssu64xl`              | UXLEN=64 Must Be Supported                                                                  |                   |
 | `Sv32`                 | Page-Based 32-bit Virtual-Memory Systems                                                    |                   |
 | `Sv39`                 | Page-Based 39-bit Virtual-Memory Systems                                                    |                   |
 | `Sv48`                 | Page-Based 48-bit Virtual-Memory Systems                                                    |                   |
 | `Sv57`                 | Page-Based 57-bit Virtual-Memory Systems                                                    |                   |
+| `Svade`                | Raise Exceptions on Improper A/D Bits                                                       |                   |
 | `Svadu`                | Hardware Updating of PTE A/D Bits                                                           | 0.1               |
+| `Svbare`               | Bare Mode Virtual-Memory Translation Supported                                              |                   |
 | `Svinval`              | Fine-Grained Address-Translation Cache Invalidation                                         | 1.0               |
 | `Svnapot`              | NAPOT Translation Contiguity                                                                | 1.0               |
 | `Svpbmt`               | Page-Based Memory Types                                                                     | 1.0               |
+| `Shcounterenw`         | Support Writeable Enables for Any Supported Counter                                         |                   |
+| `Shtvala`              | Htval Provides All Needed Values                                                            |                   |
+| `Shvsatpa`             | Vsatp Supports All Modes Supported by Satp                                                  |                   |
+| `Shvstvala`            | Vstval Provides All Needed Values                                                           |                   |
+| `Shvstvecd`            | Vstvec Supports Direct Mode                                                                 |                   |
+| `Shgatpa`              | SvNNx4 Mode Supported for All Modes Supported by Satp, As Well As Bare                      |                   |
 | `Sm`                   | Machine-Level Extension                                                                     | 1.12              |
 | `Smaia`                | Machine-Level Advanced Interrupt Architecture Extension                                     | 1.0               |
 | `Smepmp`               | PMP Enhancements for Memory Access and Execution Prevention on Machine Mode                 | 1.12              |
