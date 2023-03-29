@@ -228,6 +228,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Sv39`                 | Page-Based 39-bit Virtual-Memory Systems                                                    |                   |
 | `Sv48`                 | Page-Based 48-bit Virtual-Memory Systems                                                    |                   |
 | `Sv57`                 | Page-Based 57-bit Virtual-Memory Systems                                                    |                   |
+| `Svadu`                | Hardware Updating of PTE A/D Bits                                                           | 0.1               |
 | `Svinval`              | Fine-Grained Address-Translation Cache Invalidation                                         | 1.0               |
 | `Svnapot`              | NAPOT Translation Contiguity                                                                | 1.0               |
 | `Svpbmt`               | Page-Based Memory Types                                                                     | 1.0               |

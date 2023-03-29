@@ -325,6 +325,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_sstc")
     runtime! syntax/riscv_asm_sstc.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_svadu")
+    runtime! syntax/riscv_asm_svadu.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_svinval")
     runtime! syntax/riscv_asm_svinval.vim
 endif
@@ -581,6 +584,9 @@ if exists("b:riscv_asm_defined_ssstateen")
 endif
 if exists("b:riscv_asm_defined_sstc")
     unlet b:riscv_asm_defined_sstc
+endif
+if exists("b:riscv_asm_defined_svadu")
+    unlet b:riscv_asm_defined_svadu
 endif
 if exists("b:riscv_asm_defined_svinval")
     unlet b:riscv_asm_defined_svinval

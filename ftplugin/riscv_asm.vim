@@ -179,6 +179,8 @@ let b:riscv_asm_sspmp_max = 0.8
 let b:riscv_asm_sstc_max = 0.5
 " Ssstateen Extension: Supervisor-Level State Enable Extension
 let b:riscv_asm_ssstateen_max = 1.0
+" Svadu Extension: Hardware Updating of PTE A/D Bits
+let b:riscv_asm_svadu_max = 0.1
 " Svinval Extension: Fine-Grained Address-Translation Cache Invalidation
 let b:riscv_asm_svinval_max = 1.0
 " Sm Extension: Machine-Level Extension
@@ -1763,6 +1765,23 @@ if !exists("b:riscv_asm_all_enable")
     " Sv57 extension
     if s:riscv_asm_isa =~ '\c^-\=sv57\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sv57', "", "")
+    endif
+    " Svadu extension
+    if s:riscv_asm_isa =~ '\c^-\=svadu\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=svadu\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_svadu = b:riscv_asm_svadu_max
+        else
+            let b:riscv_asm_svadu = str2float(s:extract_version)
+            if b:riscv_asm_svadu > b:riscv_asm_svadu_max
+                let b:riscv_asm_svadu = b:riscv_asm_svadu_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=svadu\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_svadu")
+            unlet b:riscv_asm_svadu
+        endif
     endif
     " Svinval extension
     if s:riscv_asm_isa =~ '\c^-\=svinval\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
