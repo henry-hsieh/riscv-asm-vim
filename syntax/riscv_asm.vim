@@ -435,6 +435,9 @@ endif
 if exists("b:riscv_asm_defined_zmmul")
     unlet b:riscv_asm_defined_zmmul
 endif
+if exists("b:riscv_asm_defined_zacas")
+    unlet b:riscv_asm_defined_zacas
+endif
 if exists("b:riscv_asm_defined_zawrs")
     unlet b:riscv_asm_defined_zawrs
 endif
