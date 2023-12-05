@@ -195,8 +195,8 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zksh`                 | SM3 Hash Function Instructions                                                              | 1.0               |
 | `Zkt`                  | Data Independent Execution Latency Extension                                                | 1.0               |
 | `Zvamo`                | Vector Atomic Instructions                                                                  |                   |
-| `Zvbb`                 | Vector Bit-Manipulation Instructions for Cryptography                                       | 0.4               |
-| `Zvbc`                 | Vector Carry-Less Multiplication                                                            | 0.4               |
+| `Zvbb`                 | Vector Bit-Manipulation Instructions for Cryptography                                       | 1.0               |
+| `Zvbc`                 | Vector Carry-Less Multiplication                                                            | 1.0               |
 | `Zve32f`               | Vector Extension for Embedded 32-bit Single-Precision Floating-Point                        | 1.1               |
 | `Zve32x`               | Vector Extension for Embedded 32-bit Integer                                                | 1.1               |
 | `Zve64d`               | Vector Extension for Embedded 64-bit Double-Precision Floating-Point                        | 1.1               |
@@ -205,15 +205,20 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zvediv`               | Vector Divided Element Extension                                                            |                   |
 | `Zvfh`                 | Vector Extension for Half-Precision Floating-Point                                          | 1.1               |
 | `Zvfhmin`              | Vector Extension for Minimal Half-Precision Floating-Point                                  | 1.1               |
-| `Zvkg`                 | Vector GCM/GMAC                                                                             | 0.4               |
-| `Zvkn`                 | Vector NIST Algorithm Suite Extension                                                       | 0.4               |
-| `Zvkned`               | Vector AES Block Cipher                                                                     | 0.4               |
-| `Zvknha`               | Vector SHA-2 Secure Hash for Embedded 32-bit                                                | 0.4               |
-| `Zvknhb`               | Vector SHA-2 Secure Hash                                                                    | 0.4               |
-| `Zvks`                 | Vector ShangMi Algorithm Suite Extension                                                    | 0.4               |
-| `Zvksed`               | Vector SM4 Block Cipher                                                                     | 0.4               |
-| `Zvksh`                | Vector SM3 Secure Hash                                                                      | 0.4               |
-| `Zvkt`                 | Vector Data Independent Execution Latency Extension                                         | 0.4               |
+| `Zvkb`                 | Vector Cryptography Bit-manipulation                                                        | 1.0               |
+| `Zvkg`                 | Vector GCM/GMAC                                                                             | 1.0               |
+| `Zvkn`                 | Vector NIST Algorithm Suite Extension                                                       | 1.0               |
+| `Zvknc`                | Vector NIST Algorithm Suite with Carryless Multiply                                         | 1.0               |
+| `Zvkned`               | Vector AES Block Cipher                                                                     | 1.0               |
+| `Zvkng`                | Vector NIST Algorithm Suite with GCM                                                        | 1.0               |
+| `Zvknha`               | Vector SHA-2 Secure Hash for Embedded 32-bit                                                | 1.0               |
+| `Zvknhb`               | Vector SHA-2 Secure Hash                                                                    | 1.0               |
+| `Zvks`                 | Vector ShangMi Algorithm Suite Extension                                                    | 1.0               |
+| `Zvksc`                | Vector ShangMi Algorithm Suite with Carryless Multiplication                                | 1.0               |
+| `Zvksed`               | Vector SM4 Block Cipher                                                                     | 1.0               |
+| `Zvksg`                | Vector ShangMi Algorithm Suite with GCM                                                     | 1.0               |
+| `Zvksh`                | Vector SM3 Secure Hash                                                                      | 1.0               |
+| `Zvkt`                 | Vector Data Independent Execution Latency Extension                                         | 1.0               |
 | `Zvl32b`               | Minimum 32-bit Vector Length                                                                | 1.1               |
 | `Zvl64b`               | Minimum 64-bit Vector Length                                                                | 1.1               |
 | `Zvl128b`              | Minimum 128-bit Vector Length                                                               | 1.1               |

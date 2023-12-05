@@ -286,14 +286,23 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvfhmin")
     runtime! syntax/riscv_asm_zvfhmin.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvkb")
+    runtime! syntax/riscv_asm_zvkb.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvkg")
     runtime! syntax/riscv_asm_zvkg.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvkn")
     runtime! syntax/riscv_asm_zvkn.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvknc")
+    runtime! syntax/riscv_asm_zvknc.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvkned")
     runtime! syntax/riscv_asm_zvkned.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvkng")
+    runtime! syntax/riscv_asm_zvkng.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvknha")
     runtime! syntax/riscv_asm_zvknha.vim
@@ -304,8 +313,14 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvks")
     runtime! syntax/riscv_asm_zvks.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvksc")
+    runtime! syntax/riscv_asm_zvksc.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvksed")
     runtime! syntax/riscv_asm_zvksed.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvksg")
+    runtime! syntax/riscv_asm_zvksg.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zvksh")
     runtime! syntax/riscv_asm_zvksh.vim
@@ -546,14 +561,23 @@ endif
 if exists("b:riscv_asm_defined_zvfhmin")
     unlet b:riscv_asm_defined_zvfhmin
 endif
+if exists("b:riscv_asm_defined_zvkb")
+    unlet b:riscv_asm_defined_zvkb
+endif
 if exists("b:riscv_asm_defined_zvkg")
     unlet b:riscv_asm_defined_zvkg
 endif
 if exists("b:riscv_asm_defined_zvkn")
     unlet b:riscv_asm_defined_zvkn
 endif
+if exists("b:riscv_asm_defined_zvknc")
+    unlet b:riscv_asm_defined_zvknc
+endif
 if exists("b:riscv_asm_defined_zvkned")
     unlet b:riscv_asm_defined_zvkned
+endif
+if exists("b:riscv_asm_defined_zvkng")
+    unlet b:riscv_asm_defined_zvkng
 endif
 if exists("b:riscv_asm_defined_zvknha")
     unlet b:riscv_asm_defined_zvknha
@@ -564,8 +588,14 @@ endif
 if exists("b:riscv_asm_defined_zvks")
     unlet b:riscv_asm_defined_zvks
 endif
+if exists("b:riscv_asm_defined_zvksc")
+    unlet b:riscv_asm_defined_zvksc
+endif
 if exists("b:riscv_asm_defined_zvksed")
     unlet b:riscv_asm_defined_zvksed
+endif
+if exists("b:riscv_asm_defined_zvksg")
+    unlet b:riscv_asm_defined_zvksg
 endif
 if exists("b:riscv_asm_defined_zvksh")
     unlet b:riscv_asm_defined_zvksh
