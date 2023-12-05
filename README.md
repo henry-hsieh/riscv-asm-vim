@@ -150,6 +150,8 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Ziccif`               | Main Memory Supports Instruction Fetch With Atomicity Requirement                           |                   |
 | `Zicclsm`              | Main Memory Supports Misaligned Loads/Stores                                                |                   |
 | `Ziccrse`              | Main Memory Supports Forward Progress on LR/SC Sequences                                    |                   |
+| `Zicfilp`              | Landing Pad                                                                                 | 0.4               |
+| `Zicfiss`              | Shadow Stack                                                                                | 0.4               |
 | `Zicntr`               | Base Counters and Timers                                                                    | 2.0               |
 | `Zicond`               | Integer Conditional Operations Extension                                                    | 1.0               |
 | `Zicsr`                | Control and Status Register Access                                                          | 2.0               |

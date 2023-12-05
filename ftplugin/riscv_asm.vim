@@ -55,6 +55,10 @@ let b:riscv_asm_zicbom_max = 1.0
 let b:riscv_asm_zicbop_max = 1.0
 " Zicboz Extension: Cache-Block Zero Instructions
 let b:riscv_asm_zicboz_max = 1.0
+" Zicfilp Extension: Landing Pad
+let b:riscv_asm_zicfilp_max = 0.4
+" Zicfiss Extension: Shadow Stack
+let b:riscv_asm_zicfiss_max = 0.4
 " Zicntr Extension: Base Counters and Timers
 let b:riscv_asm_zicntr_max = 2.0
 " Zicond Extension:  Integer Conditional Operations Extension
@@ -641,6 +645,40 @@ if !exists("b:riscv_asm_all_enable")
     " Ziccrse extension
     if s:riscv_asm_isa =~ '\c^-\=ziccrse\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=ziccrse', "", "")
+    endif
+    " Zicfilp extension
+    if s:riscv_asm_isa =~ '\c^-\=zicfilp\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zicfilp\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zicfilp = b:riscv_asm_zicfilp_max
+        else
+            let b:riscv_asm_zicfilp = str2float(s:extract_version)
+            if b:riscv_asm_zicfilp > b:riscv_asm_zicfilp_max
+                let b:riscv_asm_zicfilp = b:riscv_asm_zicfilp_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zicfilp\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zicfilp")
+            unlet b:riscv_asm_zicfilp
+        endif
+    endif
+    " Zicfiss extension
+    if s:riscv_asm_isa =~ '\c^-\=zicfiss\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zicfiss\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zicfiss = b:riscv_asm_zicfiss_max
+        else
+            let b:riscv_asm_zicfiss = str2float(s:extract_version)
+            if b:riscv_asm_zicfiss > b:riscv_asm_zicfiss_max
+                let b:riscv_asm_zicfiss = b:riscv_asm_zicfiss_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zicfiss\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zicfiss")
+            unlet b:riscv_asm_zicfiss
+        endif
     endif
     " Zicntr extension
     if s:riscv_asm_isa =~ '\c^-\=zicntr\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
