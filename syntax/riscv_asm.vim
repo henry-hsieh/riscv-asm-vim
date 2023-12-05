@@ -157,6 +157,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zmmul")
     runtime! syntax/riscv_asm_zmmul.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zacas")
+    runtime! syntax/riscv_asm_zacas.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zawrs")
     runtime! syntax/riscv_asm_zawrs.vim
 endif

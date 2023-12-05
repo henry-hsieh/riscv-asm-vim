@@ -160,6 +160,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zmmul`                | Multiplication Without Division                                                             | 1.0               |
 | `Za128rs`              | Reservation Set Size of 128 Bytes                                                           |                   |
 | `Za64rs`               | Reservation Set Size of 64 Bytes                                                            |                   |
+| `Zacas`                | Atomic Compare-and-Swap Instructions                                                        | 1.0               |
 | `Zawrs`                | Wait-On-Reservation-Set Extension                                                           | 1.0               |
 | `Zam`                  | Misaligned Atomic                                                                           | 0.1               |
 | `Zfa`                  | Additional Floating-Point Instructions                                                      | 0.1               |
