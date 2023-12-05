@@ -184,11 +184,11 @@ let b:riscv_asm_ss_max = 1.12
 " Ssaia Extension: Supervisor-Level Advanced Interrupt Architecture Extension
 let b:riscv_asm_ssaia_max = 1.0
 " Sscofpmf Extension: Count Overflow and Mode-Based Filtering Extension
-let b:riscv_asm_sscofpmf_max = 0.5
+let b:riscv_asm_sscofpmf_max = 1.0
 " Sspmp Extension: Supervisor Memory Protection Extension
 let b:riscv_asm_sspmp_max = 0.8
 " Sstc Extension: Supervisor-Level Timer Comparison Extension
-let b:riscv_asm_sstc_max = 0.5
+let b:riscv_asm_sstc_max = 1.0
 " Ssstateen Extension: Supervisor-Level State Enable Extension
 let b:riscv_asm_ssstateen_max = 1.0
 " Svadu Extension: Hardware Updating of PTE A/D Bits

@@ -235,10 +235,10 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Ssaia`                | Supervisor-Level Advanced Interrupt Architecture Extension                                  | 1.0               |
 | `Sspmp`                | Supervisor Memory Protection Extension                                                      | 0.8               |
 | `Ssccptr`              | Main Memory Supports Page Table Reads                                                       |                   |
-| `Sscofpmf`             | Count Overflow and Mode-Based Filtering Extension                                           | 0.5               |
+| `Sscofpmf`             | Count Overflow and Mode-Based Filtering Extension                                           | 1.0               |
 | `Sscounterenw`         | Support Writeable Enables for Any Supported Counter                                         |                   |
 | `Ssstateen`            | Supervisor-Level State Enable Extension                                                     | 1.0               |
-| `Sstc`                 | Supervisor-Level Timer Comparison Extension                                                 | 0.5               |
+| `Sstc`                 | Supervisor-Level Timer Comparison Extension                                                 | 1.0               |
 | `Sstvala`              | Stval Provides All Needed Values                                                            |                   |
 | `Sstvecd`              | Stvec Supports Direct Mode                                                                  |                   |
 | `Ssu64xl`              | UXLEN=64 Must Be Supported                                                                  |                   |
