@@ -64,7 +64,7 @@ let b:riscv_asm_zicsr_max = 2.0
 " Zifencei Extension: Instruction-Fetch Fence
 let b:riscv_asm_zifencei_max = 2.0
 " Zihintntl Extension: Non-Temporal Locality Hints
-let b:riscv_asm_zihintntl_max = 0.2
+let b:riscv_asm_zihintntl_max = 1.0
 " Zihintpause Extension: Pause Hint
 let b:riscv_asm_zihintpause_max = 2.0
 " Zihpm Extension: Hardware Performance Counters
@@ -76,7 +76,7 @@ let b:riscv_asm_zacas_max = 1.0
 " Zawrs Extension: Wait-On-Reservation-Set Extension
 let b:riscv_asm_zawrs_max = 1.0
 " Zfa Extension: Additional Floating-Point Instructions
-let b:riscv_asm_zfa_max = 0.1
+let b:riscv_asm_zfa_max = 1.0
 " Zfh Extension: Half-Precision Floating-Point
 let b:riscv_asm_zfh_max = 1.0
 " Zfhmin Extension: Minimal Half-Precision Floating-Point
@@ -172,7 +172,7 @@ let b:riscv_asm_zvksh_max = 0.4
 " Ss Extension: Supervisor-Level Extension
 let b:riscv_asm_ss_max = 1.12
 " Ssaia Extension: Supervisor-Level Advanced Interrupt Architecture Extension
-let b:riscv_asm_ssaia_max = 1.12
+let b:riscv_asm_ssaia_max = 1.0
 " Sscofpmf Extension: Count Overflow and Mode-Based Filtering Extension
 let b:riscv_asm_sscofpmf_max = 0.5
 " Sspmp Extension: Supervisor Memory Protection Extension
@@ -182,13 +182,13 @@ let b:riscv_asm_sstc_max = 0.5
 " Ssstateen Extension: Supervisor-Level State Enable Extension
 let b:riscv_asm_ssstateen_max = 1.0
 " Svadu Extension: Hardware Updating of PTE A/D Bits
-let b:riscv_asm_svadu_max = 0.1
+let b:riscv_asm_svadu_max = 1.0
 " Svinval Extension: Fine-Grained Address-Translation Cache Invalidation
 let b:riscv_asm_svinval_max = 1.0
 " Sm Extension: Machine-Level Extension
 let b:riscv_asm_sm_max = 1.12
 " Smaia Extension: Machine-Level Advanced Interrupt Architecture Extension
-let b:riscv_asm_smaia_max = 1.12
+let b:riscv_asm_smaia_max = 1.0
 " Smstateen Extension: Machine-Level State Enable Extension
 let b:riscv_asm_smstateen_max = 1.0
 " Sdext Extension: External Debug Extension

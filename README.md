@@ -154,7 +154,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zicond`               | Integer Conditional Operations Extension                                                    | 1.0               |
 | `Zicsr`                | Control and Status Register Access                                                          | 2.0               |
 | `Zifencei`             | Instruction-Fetch Fence                                                                     | 2.0               |
-| `Zihintntl`            | Non-Temporal Locality Hints                                                                 | 0.2               |
+| `Zihintntl`            | Non-Temporal Locality Hints                                                                 | 1.0               |
 | `Zihintpause`          | Pause Hint                                                                                  | 2.0               |
 | `Zihpm`                | Hardware Performance Counters                                                               | 2.0               |
 | `Zmmul`                | Multiplication Without Division                                                             | 1.0               |
@@ -163,7 +163,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zacas`                | Atomic Compare-and-Swap Instructions                                                        | 1.0               |
 | `Zawrs`                | Wait-On-Reservation-Set Extension                                                           | 1.0               |
 | `Zam`                  | Misaligned Atomic                                                                           | 0.1               |
-| `Zfa`                  | Additional Floating-Point Instructions                                                      | 0.1               |
+| `Zfa`                  | Additional Floating-Point Instructions                                                      | 1.0               |
 | `Zfh`                  | Half-Precision Floating-Point                                                               | 1.0               |
 | `Zfhmin`               | Minimal Half-Precision Floating-Point                                                       | 1.0               |
 | `Zfinx`                | Single-Precision Floating-Point in Integer Registers                                        | 1.0               |
@@ -242,7 +242,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Sv48`                 | Page-Based 48-bit Virtual-Memory Systems                                                    |                   |
 | `Sv57`                 | Page-Based 57-bit Virtual-Memory Systems                                                    |                   |
 | `Svade`                | Raise Exceptions on Improper A/D Bits                                                       |                   |
-| `Svadu`                | Hardware Updating of PTE A/D Bits                                                           | 0.1               |
+| `Svadu`                | Hardware Updating of PTE A/D Bits                                                           | 1.0               |
 | `Svbare`               | Bare Mode Virtual-Memory Translation Supported                                              |                   |
 | `Svinval`              | Fine-Grained Address-Translation Cache Invalidation                                         | 1.0               |
 | `Svnapot`              | NAPOT Translation Contiguity                                                                | 1.0               |
