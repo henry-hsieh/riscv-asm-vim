@@ -69,6 +69,8 @@ let b:riscv_asm_zihintntl_max = 1.0
 let b:riscv_asm_zihintpause_max = 2.0
 " Zihpm Extension: Hardware Performance Counters
 let b:riscv_asm_zihpm_max = 2.0
+" Zimop Extension: May-Be-Operations Extension
+let b:riscv_asm_zimop_max = 2.0
 " Zmmul Extension: Multiplication Without Division
 let b:riscv_asm_zmmul_max = 1.0
 " Zacas Extension: Atomic Compare-and-Swap Instructions
@@ -99,6 +101,8 @@ let b:riscv_asm_zcd_max = 1.0
 let b:riscv_asm_zce_max = 1.0
 " Zcf Extension: Compressed Single-Precision Floating-Point Load/Stores Instructions
 let b:riscv_asm_zcf_max = 1.0
+" Zcmop Extension: Compressed May-Be-Operations Extension
+let b:riscv_asm_zcmop_max = 1.0
 " Zcmp Extension: Push/Pop and Double Move Instructions
 let b:riscv_asm_zcmp_max = 1.0
 " Zcmt Extension: Table Jump Instructions
@@ -757,6 +761,23 @@ if !exists("b:riscv_asm_all_enable")
             unlet b:riscv_asm_zihpm
         endif
     endif
+    " Zimop extension
+    if s:riscv_asm_isa =~ '\c^-\=zimop\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zimop\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zimop = b:riscv_asm_zimop_max
+        else
+            let b:riscv_asm_zimop = str2float(s:extract_version)
+            if b:riscv_asm_zimop > b:riscv_asm_zimop_max
+                let b:riscv_asm_zimop = b:riscv_asm_zimop_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zimop\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zimop")
+            unlet b:riscv_asm_zimop
+        endif
+    endif
     " Zmmul extension
     if s:riscv_asm_isa =~ '\c^-\=zmmul\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zmmul\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
@@ -1022,6 +1043,23 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_zcf")
             unlet b:riscv_asm_zcf
+        endif
+    endif
+    " Zcmop extension
+    if s:riscv_asm_isa =~ '\c^-\=zcmop\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zcmop\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zcmop = b:riscv_asm_zcmop_max
+        else
+            let b:riscv_asm_zcmop = str2float(s:extract_version)
+            if b:riscv_asm_zcmop > b:riscv_asm_zcmop_max
+                let b:riscv_asm_zcmop = b:riscv_asm_zcmop_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zcmop\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zcmop")
+            unlet b:riscv_asm_zcmop
         endif
     endif
     " Zcmp extension

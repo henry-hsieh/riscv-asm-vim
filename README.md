@@ -157,6 +157,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zihintntl`            | Non-Temporal Locality Hints                                                                 | 1.0               |
 | `Zihintpause`          | Pause Hint                                                                                  | 2.0               |
 | `Zihpm`                | Hardware Performance Counters                                                               | 2.0               |
+| `Zimop`                | May-Be-Operations Extension                                                                 | 0.1               |
 | `Zmmul`                | Multiplication Without Division                                                             | 1.0               |
 | `Za128rs`              | Reservation Set Size of 128 Bytes                                                           |                   |
 | `Za64rs`               | Reservation Set Size of 64 Bytes                                                            |                   |
@@ -175,6 +176,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Zcd`                  | Compressed Double-Precision Floating-Point Load/Stores Instructions                         | 1.0               |
 | `Zce`                  | Compressed Instructions for Microcontrollers                                                | 1.0               |
 | `Zcf`                  | Compressed Single-Precision Floating-Point Load/Stores Instructions                         | 1.0               |
+| `Zcmop`                | Compressed May-Be-Operations Extension                                                      | 0.2               |
 | `Zcmp`                 | Push/Pop and Double Move Instructions                                                       | 1.0               |
 | `Zcmt`                 | Table Jump Instructions                                                                     | 1.0               |
 | `Zba`                  | Address Generation Instructions                                                             | 1.0               |
