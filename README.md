@@ -260,6 +260,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Shgatpa`              | SvNNx4 Mode Supported for All Modes Supported by Satp, As Well As Bare                      |                   |
 | `Sm`                   | Machine-Level Extension                                                                     | 1.12              |
 | `Smaia`                | Machine-Level Advanced Interrupt Architecture Extension                                     | 1.0               |
+| `Smcntrpmf`            | Cycle and Instret Privilege Mode Filtering                                                  | 1.0               |
 | `Smepmp`               | PMP Enhancements for Memory Access and Execution Prevention on Machine Mode                 | 1.12              |
 | `Smstateen`            | Machine-Level State Enable Extension                                                        | 1.0               |
 | `Sdext`                | External Debug Extension                                                                    | 1.0               |

@@ -355,6 +355,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_smaia")
     runtime! syntax/riscv_asm_smaia.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_smcntrpmf")
+    runtime! syntax/riscv_asm_smcntrpmf.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_smstateen")
     runtime! syntax/riscv_asm_smstateen.vim
 endif
@@ -632,6 +635,9 @@ if exists("b:riscv_asm_defined_sm")
 endif
 if exists("b:riscv_asm_defined_smaia")
     unlet b:riscv_asm_defined_smaia
+endif
+if exists("b:riscv_asm_defined_smcntrpmf")
+    unlet b:riscv_asm_defined_smcntrpmf
 endif
 if exists("b:riscv_asm_defined_smstateen")
     unlet b:riscv_asm_defined_smstateen

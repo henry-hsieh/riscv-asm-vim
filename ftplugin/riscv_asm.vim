@@ -199,6 +199,8 @@ let b:riscv_asm_svinval_max = 1.0
 let b:riscv_asm_sm_max = 1.12
 " Smaia Extension: Machine-Level Advanced Interrupt Architecture Extension
 let b:riscv_asm_smaia_max = 1.0
+" Smcntrpmf Extension: Cycle and Instret Privilege Mode Filtering
+let b:riscv_asm_smcntrpmf_max = 1.0
 " Smstateen Extension: Machine-Level State Enable Extension
 let b:riscv_asm_smstateen_max = 1.0
 " Sdext Extension: External Debug Extension
@@ -2034,6 +2036,23 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_smaia")
             unlet b:riscv_asm_smaia
+        endif
+    endif
+    " Smcntrpmf extension
+    if s:riscv_asm_isa =~ '\c^-\=smcntrpmf\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=smcntrpmf\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_smcntrpmf = b:riscv_asm_smcntrpmf_max
+        else
+            let b:riscv_asm_smcntrpmf = str2float(s:extract_version)
+            if b:riscv_asm_smcntrpmf > b:riscv_asm_smcntrpmf_max
+                let b:riscv_asm_smcntrpmf = b:riscv_asm_smcntrpmf_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=smcntrpmf\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_smcntrpmf")
+            unlet b:riscv_asm_smcntrpmf
         endif
     endif
     " Smepmp extension
