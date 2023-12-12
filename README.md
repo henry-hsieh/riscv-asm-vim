@@ -241,6 +241,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Ssccptr`              | Main Memory Supports Page Table Reads                                                       |                   |
 | `Sscofpmf`             | Count Overflow and Mode-Based Filtering Extension                                           | 1.0               |
 | `Sscounterenw`         | Support Writeable Enables for Any Supported Counter                                         |                   |
+| `Sscsrind`             | Supervisor-Level Indirect CSR Access                                                        | 1.0               |
 | `Ssstateen`            | Supervisor-Level State Enable Extension                                                     | 1.0               |
 | `Sstc`                 | Supervisor-Level Timer Comparison Extension                                                 | 1.0               |
 | `Sstvala`              | Stval Provides All Needed Values                                                            |                   |
@@ -265,6 +266,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Sm`                   | Machine-Level Extension                                                                     | 1.12              |
 | `Smaia`                | Machine-Level Advanced Interrupt Architecture Extension                                     | 1.0               |
 | `Smcntrpmf`            | Cycle and Instret Privilege Mode Filtering                                                  | 1.0               |
+| `Smcsrind`             | Machine-Level Indirect CSR Access                                                           | 1.0               |
 | `Smepmp`               | PMP Enhancements for Memory Access and Execution Prevention on Machine Mode                 | 1.12              |
 | `Smstateen`            | Machine-Level State Enable Extension                                                        | 1.0               |
 | `Sdext`                | External Debug Extension                                                                    | 1.0               |

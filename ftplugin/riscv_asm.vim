@@ -193,6 +193,8 @@ let b:riscv_asm_ss_max = 1.12
 let b:riscv_asm_ssaia_max = 1.0
 " Sscofpmf Extension: Count Overflow and Mode-Based Filtering Extension
 let b:riscv_asm_sscofpmf_max = 1.0
+" Sscsrind Extension: Supervisor-Level Indirect CSR Access
+let b:riscv_asm_sscsrind_max = 1.0
 " Sspmp Extension: Supervisor Memory Protection Extension
 let b:riscv_asm_sspmp_max = 0.8
 " Sstc Extension: Supervisor-Level Timer Comparison Extension
@@ -209,6 +211,8 @@ let b:riscv_asm_sm_max = 1.12
 let b:riscv_asm_smaia_max = 1.0
 " Smcntrpmf Extension: Cycle and Instret Privilege Mode Filtering
 let b:riscv_asm_smcntrpmf_max = 1.0
+" Smcsrind Extension: Machine-Level Indirect CSR Access
+let b:riscv_asm_smcsrind_max = 1.0
 " Smstateen Extension: Machine-Level State Enable Extension
 let b:riscv_asm_smstateen_max = 1.0
 " Sdext Extension: External Debug Extension
@@ -1927,6 +1931,23 @@ if !exists("b:riscv_asm_all_enable")
     if s:riscv_asm_isa =~ '\c^-\=sscounterenw\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sscounterenw', "", "")
     endif
+    " Sscsrind extension
+    if s:riscv_asm_isa =~ '\c^-\=sscsrind\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=sscsrind\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_sscsrind = b:riscv_asm_sscsrind_max
+        else
+            let b:riscv_asm_sscsrind = str2float(s:extract_version)
+            if b:riscv_asm_sscsrind > b:riscv_asm_sscsrind_max
+                let b:riscv_asm_sscsrind = b:riscv_asm_sscsrind_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=sscsrind\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_sscsrind")
+            unlet b:riscv_asm_sscsrind
+        endif
+    endif
     " Sspmp extension
     if s:riscv_asm_isa =~ '\c^-\=sspmp\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
         let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=sspmp\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
@@ -2129,6 +2150,23 @@ if !exists("b:riscv_asm_all_enable")
     else
         if exists("b:riscv_asm_smcntrpmf")
             unlet b:riscv_asm_smcntrpmf
+        endif
+    endif
+    " Smcsrind extension
+    if s:riscv_asm_isa =~ '\c^-\=smcsrind\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=smcsrind\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_smcsrind = b:riscv_asm_smcsrind_max
+        else
+            let b:riscv_asm_smcsrind = str2float(s:extract_version)
+            if b:riscv_asm_smcsrind > b:riscv_asm_smcsrind_max
+                let b:riscv_asm_smcsrind = b:riscv_asm_smcsrind_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=smcsrind\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_smcsrind")
+            unlet b:riscv_asm_smcsrind
         endif
     endif
     " Smepmp extension

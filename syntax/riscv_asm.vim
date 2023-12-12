@@ -346,6 +346,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_sscofpmf")
     runtime! syntax/riscv_asm_sscofpmf.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_sscsrind")
+    runtime! syntax/riscv_asm_sscsrind.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_sspmp")
     runtime! syntax/riscv_asm_sspmp.vim
 endif
@@ -369,6 +372,9 @@ if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_smaia")
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_smcntrpmf")
     runtime! syntax/riscv_asm_smcntrpmf.vim
+endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_smcsrind")
+    runtime! syntax/riscv_asm_smcsrind.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_smstateen")
     runtime! syntax/riscv_asm_smstateen.vim
@@ -639,6 +645,9 @@ endif
 if exists("b:riscv_asm_defined_sscofpmf")
     unlet b:riscv_asm_defined_sscofpmf
 endif
+if exists("b:riscv_asm_defined_sscsrind")
+    unlet b:riscv_asm_defined_sscsrind
+endif
 if exists("b:riscv_asm_defined_sspmp")
     unlet b:riscv_asm_defined_sspmp
 endif
@@ -662,6 +671,9 @@ if exists("b:riscv_asm_defined_smaia")
 endif
 if exists("b:riscv_asm_defined_smcntrpmf")
     unlet b:riscv_asm_defined_smcntrpmf
+endif
+if exists("b:riscv_asm_defined_smcsrind")
+    unlet b:riscv_asm_defined_smcsrind
 endif
 if exists("b:riscv_asm_defined_smstateen")
     unlet b:riscv_asm_defined_smstateen
