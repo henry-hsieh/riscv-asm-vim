@@ -166,6 +166,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zmmul")
     runtime! syntax/riscv_asm_zmmul.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zabha")
+    runtime! syntax/riscv_asm_zabha.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_zacas")
     runtime! syntax/riscv_asm_zacas.vim
 endif
@@ -464,6 +467,9 @@ if exists("b:riscv_asm_defined_zimop")
 endif
 if exists("b:riscv_asm_defined_zmmul")
     unlet b:riscv_asm_defined_zmmul
+endif
+if exists("b:riscv_asm_defined_zabha")
+    unlet b:riscv_asm_defined_zabha
 endif
 if exists("b:riscv_asm_defined_zacas")
     unlet b:riscv_asm_defined_zacas

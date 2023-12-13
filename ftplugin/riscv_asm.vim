@@ -77,6 +77,8 @@ let b:riscv_asm_zihpm_max = 2.0
 let b:riscv_asm_zimop_max = 2.0
 " Zmmul Extension: Multiplication Without Division
 let b:riscv_asm_zmmul_max = 1.0
+" Zabha Extension: Byte and Halfword Atomic Memory Operations
+let b:riscv_asm_zabha_max = 1.0
 " Zacas Extension: Atomic Compare-and-Swap Instructions
 let b:riscv_asm_zacas_max = 1.0
 " Zawrs Extension: Wait-On-Reservation-Set Extension
@@ -844,6 +846,23 @@ if !exists("b:riscv_asm_all_enable")
     " Za64rs extension
     if s:riscv_asm_isa =~ '\c^-\=za64rs\(-\|$\)'
         let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=za64rs', "", "")
+    endif
+    " Zabha extension
+    if s:riscv_asm_isa =~ '\c^-\=zabha\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
+        let s:extract_version = substitute(s:riscv_asm_isa, '\c^-\=zabha\(\d\+\(\.\d\+\)\=\)\=.*', '\1', "")
+        if s:extract_version !~ '\d\+\.\d\+'
+            let b:riscv_asm_zabha = b:riscv_asm_zabha_max
+        else
+            let b:riscv_asm_zabha = str2float(s:extract_version)
+            if b:riscv_asm_zabha > b:riscv_asm_zabha_max
+                let b:riscv_asm_zabha = b:riscv_asm_zabha_max
+            endif
+        endif
+        let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^-\=zabha\(\d\+\(\.\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_zabha")
+            unlet b:riscv_asm_zabha
+        endif
     endif
     " Zacas extension
     if s:riscv_asm_isa =~ '\c^-\=zacas\(\d\+\(\.\d\+\)\=\)\=\(-\|$\)'
