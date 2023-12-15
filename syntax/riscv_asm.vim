@@ -95,10 +95,14 @@ elseif exists("b:riscv_asm_rv64i")
     runtime! syntax/riscv_asm_rv64i.vim
 elseif exists("b:riscv_asm_rv64e")
     runtime! syntax/riscv_asm_rv64e.vim
+elseif exists("b:riscv_asm_g") && b:riscv_asm_xlen == 64
+    runtime! syntax/riscv_asm_rv64g.vim
 elseif exists("b:riscv_asm_rv32i")
     runtime! syntax/riscv_asm_rv32i.vim
 elseif exists("b:riscv_asm_rv32e")
     runtime! syntax/riscv_asm_rv32e.vim
+elseif exists("b:riscv_asm_g") && b:riscv_asm_xlen == 32
+    runtime! syntax/riscv_asm_rv32g.vim
 endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_m")
     runtime! syntax/riscv_asm_m.vim
@@ -379,6 +383,9 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_smcsrind")
     runtime! syntax/riscv_asm_smcsrind.vim
 endif
+if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_smepmp")
+    runtime! syntax/riscv_asm_smepmp.vim
+endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_smstateen")
     runtime! syntax/riscv_asm_smstateen.vim
 endif
@@ -396,8 +403,17 @@ endif
 if exists("b:riscv_asm_defined_rv32i")
     unlet b:riscv_asm_defined_rv32i
 endif
+if exists("b:riscv_asm_defined_rv32g")
+    unlet b:riscv_asm_defined_rv32g
+endif
+if exists("b:riscv_asm_defined_rv64e")
+    unlet b:riscv_asm_defined_rv64e
+endif
 if exists("b:riscv_asm_defined_rv64i")
     unlet b:riscv_asm_defined_rv64i
+endif
+if exists("b:riscv_asm_defined_rv64g")
+    unlet b:riscv_asm_defined_rv64g
 endif
 if exists("b:riscv_asm_defined_rv128i")
     unlet b:riscv_asm_defined_rv128i
@@ -680,6 +696,9 @@ if exists("b:riscv_asm_defined_smcntrpmf")
 endif
 if exists("b:riscv_asm_defined_smcsrind")
     unlet b:riscv_asm_defined_smcsrind
+endif
+if exists("b:riscv_asm_defined_smepmp")
+    unlet b:riscv_asm_defined_smepmp
 endif
 if exists("b:riscv_asm_defined_smstateen")
     unlet b:riscv_asm_defined_smstateen

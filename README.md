@@ -238,11 +238,11 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 |:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
 | `Ss`                   | Supervisor-Level Extension                                                                  | 1.12              |
 | `Ssaia`                | Supervisor-Level Advanced Interrupt Architecture Extension                                  | 1.0               |
-| `Sspmp`                | Supervisor Memory Protection Extension                                                      | 0.8               |
 | `Ssccptr`              | Main Memory Supports Page Table Reads                                                       |                   |
 | `Sscofpmf`             | Count Overflow and Mode-Based Filtering Extension                                           | 1.0               |
 | `Sscounterenw`         | Support Writeable Enables for Any Supported Counter                                         |                   |
 | `Sscsrind`             | Supervisor-Level Indirect CSR Access                                                        | 1.0               |
+| `Sspmp`                | Supervisor Memory Protection Extension                                                      | 0.8               |
 | `Ssstateen`            | Supervisor-Level State Enable Extension                                                     | 1.0               |
 | `Sstc`                 | Supervisor-Level Timer Comparison Extension                                                 | 1.0               |
 | `Sstvala`              | Stval Provides All Needed Values                                                            |                   |
@@ -268,7 +268,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 | `Smaia`                | Machine-Level Advanced Interrupt Architecture Extension                                     | 1.0               |
 | `Smcntrpmf`            | Cycle and Instret Privilege Mode Filtering                                                  | 1.0               |
 | `Smcsrind`             | Machine-Level Indirect CSR Access                                                           | 1.0               |
-| `Smepmp`               | PMP Enhancements for Memory Access and Execution Prevention on Machine Mode                 | 1.12              |
+| `Smepmp`               | PMP Enhancements for Memory Access and Execution Prevention on Machine Mode                 | 1.0               |
 | `Smstateen`            | Machine-Level State Enable Extension                                                        | 1.0               |
 | `Sdext`                | External Debug Extension                                                                    | 1.0               |
 | `Sdtrig`               | Debug Trigger Extension                                                                     | 1.0               |
@@ -286,7 +286,7 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 
 #### Rules Should Be Followed
 
-1. You should specifiy the extensions in sequence listed in [Currently Supported Extensions](#currently-supported-extensions). You should always choose one of the base integer ISA and put the base ISA name in the head of the option. Don't specify more than one base ISA, or the parser will return error. In addition to the base ISA, you can optionally add the extensions. The specified order should be the unprivileged extensions, the privileged extensions, the additional unprivileged extensions, and the additional privileged extensions. The extensions in the same category should follow the order listed in the corresponding table.
+1. You should specifiy the extensions in sequence listed in [Currently Supported Extensions](#currently-supported-extensions). You should always choose one of the base integer ISA and put the base ISA name in the head of the option. The only exception is that general purpose extension `G` can replace the RV32I and RV64I base ISA. Don't specify more than one base ISA, or the parser will return error. In addition to the base ISA, you can optionally add the extensions. The specified order should be the unprivileged extensions, the privileged extensions, the additional unprivileged extensions, and the additional privileged extensions. The extensions in the same category should follow the order listed in the corresponding table.
 2. If the supported version of an extension is not given, you shouldn't specified the version in the sequence.
 3. A underscore should be added between two consecutive additional extensions.
 4. Some extensions and privileged extensions can't co-exist, they are listed in [Conflict Extensions](#conflict-extensions). You shouldn't put them into the option together.
@@ -297,6 +297,7 @@ Some examples of valid and invalid ISA combinations:
 |:----------------------- |:----- |:----------------------------------------------------------- |:----------------- |
 | `RV64IMCZicsr_Zifencei` | Yes   |                                                             |                   |
 | `RV32IAM`               | No    | Incorrect order                                             | `M`               |
+| `RV32GMAF`              | No    | Incorrect order                                             | `MAF`             |
 | `Zicsr`                 | No    | No base ISA                                                 | `Zicsr`           |
 | `RV32IRV64IMAFC`        | No    | More than one base ISAs                                     | `RV64IMAFC`       |
 | `RV64GZve64dZvl256b`    | No    | No underscore between two consecutive additional extensions | `Zve64dZvl256b`   |
@@ -311,6 +312,15 @@ Some examples of valid and invalid ISA combinations:
 | Neovim Lua  | `vim.g.riscv_asm_all_enable`                       |
 
 If the option is defined (set to any value), the plugin will ignore the value of `g:riscv_asm_isa` and highlight all instructions and registers supported by the plugin. If an invalid sequence in `g:riscv_asm_isa` is detected, the plugin will automatically highlight all instructions and registers, too.
+
+### Display Debug Information
+
+| Language    | Option Name                                        |
+|:----------- |:-------------------------------------------------- |
+| Vimscript   | `g:riscv_asm_debug`                                |
+| Neovim Lua  | `vim.g.riscv_asm_debug`                            |
+
+If the option is defined (set to any value), the plugin will display more information while it's parsing the string in `g:riscv_asm_isa`.
 
 ## Other VIM plugins
 
