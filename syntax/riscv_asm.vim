@@ -396,6 +396,69 @@ if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_sdtrig")
     runtime! syntax/riscv_asm_sdtrig.vim
 endif
 
+function! s:highlight(isa, type, csr = 0)
+    let l:list = a:isa[a:type]
+    if type(l:list) == v:t_list
+        for item in l:list
+            if type(item) == v:t_string
+                if a:csr
+                    exec "syn keyword riscvXCSRegister " . item
+                else
+                    exec "syn keyword riscvXInstruction " . item
+                endif
+            else
+                if exists("g:riscv_asm_debug")
+                    echom 'WARN: "' . a:type . '" of ' . a:isa["name"] . ' extension contains non-string'
+                endif
+                break
+            endif
+        endfor
+    else
+        echom 'WARN: "' . a:type . '" of ' . a:isa["name"] . ' extension is not a list'
+        return
+    endif
+endfunction
+
+function! s:add_custom_isa(isa)
+    exec 'let l:isa_enable = exists("b:riscv_asm_' . tolower(a:isa["name"]) . '")'
+    if l:isa_enable || exists("b:riscv_asm_all_enable")
+        if has_key(a:isa, "inst")
+            call s:highlight(a:isa, "inst")
+        endif
+        if has_key(a:isa, "csr")
+            call s:highlight(a:isa, "csr", 1)
+        endif
+        if b:riscv_asm_xlen == 32 || exists("b:riscv_asm_all_enable")
+            if has_key(a:isa, "inst32")
+                call s:highlight(a:isa, "inst32")
+            endif
+            if has_key(a:isa, "csr32")
+                call s:highlight(a:isa, "csr32", 1)
+            endif
+        elseif b:riscv_asm_xlen == 64 || exists("b:riscv_asm_all_enable")
+            if has_key(a:isa, "inst64")
+                call s:highlight(a:isa, "inst64")
+            endif
+            if has_key(a:isa, "csr64")
+                call s:highlight(a:isa, "csr64", 1)
+            endif
+        elseif b:riscv_asm_xlen == 128 || exists("b:riscv_asm_all_enable")
+            if has_key(a:isa, "inst128")
+                call s:highlight(a:isa, "inst128")
+            endif
+            if has_key(a:isa, "csr128")
+                call s:highlight(a:isa, "csr128", 1)
+            endif
+        endif
+    endif
+endfunction
+
+if exists("b:riscv_asm_custom_isa")
+    for isa in b:riscv_asm_custom_isa
+        call s:add_custom_isa(isa)
+    endfor
+endif
+
 " Disable defined identifier for reopen
 if exists("b:riscv_asm_defined_rv32e")
     unlet b:riscv_asm_defined_rv32e
@@ -768,6 +831,7 @@ hi def link riscvSCSRegister                Function
 hi def link riscvHCSRegister                Function
 hi def link riscvMCSRegister                Function
 hi def link riscvDCSRegister                Function
+hi def link riscvXCSRegister                Function
 hi def link riscvLabel                      Label
 hi def link riscvNumericLabel               Label
 hi def link riscvDirective                  Special
@@ -801,6 +865,7 @@ hi def link riscvHInstruction               Statement
 hi def link riscvSsInstruction              Statement
 hi def link riscvSvInstruction              Statement
 hi def link riscvSmInstruction              Statement
+hi def link riscvXInstruction               Statement
 hi def link riscvFunction                   Function
 hi def link riscvInclude                    Include
 hi def link riscvIncluded                   String

@@ -72,6 +72,7 @@ function! s:add_unversioned_extension(isa_str, isa_name, dlm_expected = 0, speci
         if exists("g:riscv_asm_debug")
             echom "INFO: parse " . a:isa_name . " extension"
         endif
+        exec "let b:riscv_asm_" . tolower(a:isa_name) . " = 0"
         let l:isa_str = substitute(a:isa_str, '\c^_\=' . tolower(a:isa_name), "", "")
     else
         if exists("b:riscv_asm_" . tolower(a:isa_name))
@@ -81,25 +82,96 @@ function! s:add_unversioned_extension(isa_str, isa_name, dlm_expected = 0, speci
     return l:isa_str
 endfunction
 
+function! s:order_extensions(a, b)
+    let a_key = a:a.name
+    let b_key = a:b.name
+
+    let len_a = len(a_key)
+    let len_b = len(b_key)
+    let max_len = max([len_a, len_b])
+
+    for i in range(max_len)
+        let char_a = i < len_a ? a_key[i] : ' '
+        let char_b = i < len_b ? b_key[i] : ' '
+
+        if char_a ># char_b
+            return 1
+        elseif char_a <# char_b
+            return -1
+        endif
+    endfor
+
+    return 0
+endfunction
+
+function! s:is_list_of_dict(variable)
+  if type(a:variable) != v:t_list
+    return 0
+  endif
+
+  for item in a:variable
+    if type(item) != v:t_dict
+      return 0
+    endif
+  endfor
+
+  return 1
+endfunction
+
 " Find global setting of RISC-V ISA
 if exists("g:riscv_asm_isa")
-    let s:riscv_asm_isa = g:riscv_asm_isa
-endif
-
-" Find buffer setting of RISC-V ISA
-if exists("b:riscv_asm_isa")
-    let s:riscv_asm_isa = b:riscv_asm_isa
+    if type(g:riscv_asm_isa) == v:t_string
+        let s:riscv_asm_isa = g:riscv_asm_isa
+    else
+        echom "WARN: g:riscv_asm_isa is not a string"
+        if exists("s:riscv_asm_isa")
+            unlet s:riscv_asm_isa
+        endif
+    endif
 endif
 
 " Set default value if setting of RISC-V ISA isn't found
 if !exists("s:riscv_asm_isa")
     let s:riscv_asm_isa = "rv64gc"
-    unlet b:riscv_asm_xlen
+    if exists("b:riscv_asm_xlen")
+        unlet b:riscv_asm_xlen
+    endif
 endif
 
 " If all extensions are enabled, skip the parser
 if exists("g:riscv_asm_all_enable")
     let b:riscv_asm_all_enable = 1
+endif
+
+" Filter and sort valid custom extensions
+if exists("g:riscv_asm_custom_isa")
+    if s:is_list_of_dict(g:riscv_asm_custom_isa)
+        let b:riscv_asm_custom_isa = deepcopy(g:riscv_asm_custom_isa)
+        let s:riscv_asm_custom_unnamed = len(b:riscv_asm_custom_isa) - len(filter(b:riscv_asm_custom_isa, 'has_key(v:val, "name")'))
+        let s:riscv_asm_custom_not_x = len(b:riscv_asm_custom_isa) - len(filter(b:riscv_asm_custom_isa, 'v:val["name"] =~ "\\c^x"'))
+        call sort(b:riscv_asm_custom_isa, 's:order_extensions')
+        if exists("g:riscv_asm_debug")
+            echom "INFO: Detect " . len(g:riscv_asm_custom_isa) . ' custom extension(s)'
+            if s:riscv_asm_custom_unnamed > 0
+                echom "WARN: Remove " . s:riscv_asm_custom_unnamed . ' unnamed custom extension(s)'
+            endif
+            if s:riscv_asm_custom_not_x > 0
+                echom "WARN: Remove " . s:riscv_asm_custom_not_x . ' custom extension(s) not start with "X"'
+            endif
+            echom "INFO: Add " . len(b:riscv_asm_custom_isa) . ' named custom extension(s)'
+        endif
+        unlet s:riscv_asm_custom_unnamed
+        unlet s:riscv_asm_custom_not_x
+    else
+        echom "WARN: g:riscv_asm_custom_isa is not a list of dictionaries"
+        if exists("b:riscv_asm_custom_isa")
+            unlet b:riscv_asm_custom_isa
+        endif
+    endif
+else
+    if exists("b:riscv_asm_custom_isa")
+        unlet b:riscv_asm_custom_isa
+    endif
 endif
 
 " Parse base ISA
@@ -544,6 +616,17 @@ if !exists("b:riscv_asm_all_enable")
     let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sdext", 1.0, 1)
     " Sdtrig Extension: Debug Trigger Extension
     let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sdtrig", 1.0, 1)
+
+    " Parse custom extensions
+    if exists("b:riscv_asm_custom_isa")
+        for isa in b:riscv_asm_custom_isa
+            if has_key(isa, "ver") && (type(isa["ver"]) == v:t_float || type(isa["ver"]) == v:t_number)
+                let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, isa["name"], isa["ver"], 1)
+            else
+                let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, isa["name"], 1)
+            endif
+        endfor
+    endif
 endif
 if exists("b:riscv_asm_xlen")
     " Unknown extensions or parser error

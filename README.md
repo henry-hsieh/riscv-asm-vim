@@ -1,16 +1,29 @@
-# RISCV-ASM-VIM
+# Advanced RISC-V Assembly Highlight for Vim and Neovim
 
-Advanced RISC-V assembly syntax highlight for Vim.
+## Overview
 
-## About
+This Vim plugin is designed to enhance your RISC-V assembly coding experience. It achieves this by offering comprehensive syntax highlighting and providing support for both standard and custom RISC-V extensions, including instructions and registers. Additionally, the plugin is configurable by using RISC-V ISA extension naming conventions, recognizes GNU Assembly (GAS) directives, and incorporates smart indent functionality.
 
-The plugin provides options to combine diffrent ISA extension of RISC-V.
+## Features
+1. Syntax Highlighting:
 
-It also highlights GNU Assembler (GAS) directives, and provides basic auto-indent feature.
+    - Full coverage of standard RISC-V instructions and registers for improved code readability.
+    - Clear and intuitive color coding to distinguish different elements in your RISC-V assembly code.
+
+2. Customization:
+
+    - Add custom RISC-V extensions consist of instructions and CSRs to tailor the plugin to your specific needs.
+    - Follows RISC-V ISA Extension Naming Conventions to enable certain extensions, ensuring compatibility and standardization.
+
+3. GAS Directives:
+
+    - Recognizes and highlights GNU Assembly (GAS) directives for a seamless coding experience with popular RISC-V assemblers.
+
+4. Smart Indent:
+
+    - Provides smart indent functionality for improved code structure and alignment.
 
 ## Installation
-
-I recommand using Vim plugin manager to install the package
 
 ### [VimPlug](https://github.com/junegunn/vim-plug)
 
@@ -80,32 +93,24 @@ set ft=riscv_asm
 
 ## Options
 
-### Specify the ISAs You Want to Highlight
+### Specify the Extensions You Want to Highlight
 
 | Language    | Option Name                                        |
 |:----------- |:-------------------------------------------------- |
 | Vimscript   | `g:riscv_asm_isa`                                  |
 | Neovim Lua  | `vim.g.riscv_asm_isa`                              |
 
-The option complies with the ISA naming rule in the specification. But the extension names follow the latest RISC-V standard.
+The value of `g:riscv_asm_isa` aligns with RISC-V ISA extension naming conventions, allowing Vim to highlight specified RISC-V ISAs and extensions. By default, the plugin activates only the RV64GC extension, resulting in the highlighting of RV64I, M, A, F, D, C, Zicsr, and Zifencei instructions and registers.
 
-Vim highlights specified RISC-V ISA and extensions.
+While the version numbers of extensions can be parsed, the plugin currently does not utilize them. Here are examples of combinations of ISA extensions and version numbers:
 
-By default, the plugin will enable the RV64GC extension.
+- `rv32i2` (RV32I v2.0)
+- `rv32i2p2` (RV32I v2.2)
+- `rv32i2_p2` (RV32I v2.0, P v2.0)
+- `rv32i2p2p1` (RV32I v2.2, P v1.0)
+- `rv32i2p2_p1p2` (RV32I v2.2, P v1.2)
 
-This means that only RV64I,M,A,F,D,C,Zicsr,Zifencei instructions and registers will be highlighted.
-
-The version numbers of extensions can be parsed, but they are not used in plugin for now.
-
-Following are valid version number format:
-
-* rv32i2 (RV32I v2.0)
-* rv32i2p2 (RV32I v2.2)
-* rv32i2_p2 (RV32I v2.0, P v2.0)
-* rv32i2p2p1 (RV32I v2.2, P v1.0)
-* rv32i2p2_p1p2 (RV32I v2.2, P v1.2)
-
-The ISA name is case insensitive. The underscores will give the parser hints, but they are not neccessary for all situations.
+It's important to note that the ISA name is case insensitive, and underscores may provide hints to the parser but are not required in all situations.
 
 #### Currently Supported Extensions
 
@@ -286,12 +291,15 @@ The ISA name is case insensitive. The underscores will give the parser hints, bu
 
 #### Rules Should Be Followed
 
-1. You should specifiy the extensions in sequence listed in [Currently Supported Extensions](#currently-supported-extensions). You should always choose one of the base integer ISA and put the base ISA name in the head of the option. The only exception is that general purpose extension `G` can replace the RV32I and RV64I base ISA. Don't specify more than one base ISA, or the parser will return error. In addition to the base ISA, you can optionally add the extensions. The specified order should be the unprivileged extensions, the privileged extensions, the additional unprivileged extensions, and the additional privileged extensions. The extensions in the same category should follow the order listed in the corresponding table.
-2. If the supported version of an extension is not given, you shouldn't specified the version in the sequence.
-3. A underscore should be added between two consecutive additional extensions.
-4. Some extensions and privileged extensions can't co-exist, they are listed in [Conflict Extensions](#conflict-extensions). You shouldn't put them into the option together.
+1. Ensure that you specify extensions in the sequence listed in [Currently Supported Extensions](#currently-supported-extensions). Always choose one of the base integer ISAs and place the base ISA name at the beginning of the option. An exception is the general-purpose extension `G`, which can replace the RV32I and RV64I base ISAs. Do not specify more than one base ISA, as this will result in a parser error. Extensions should be added in the following order: unprivileged, privileged, additional unprivileged, and additional privileged. Extensions within the same category should adhere to the order in the corresponding table.
 
-Some examples of valid and invalid ISA combinations:
+2. If the supported version of an extension is unspecified in the table, *DO NOT* including the version in the sequence.
+
+3. Insert an underscore between two consecutive additional extensions for clarity.
+
+4. Some extensions and privileged extensions cannot coexist; refer to [Conflict Extensions](#conflict-extensions). Avoid including conflicting extensions in the option.
+
+Following table contains some examples of valid and invalid ISA extension combinations:
 
 | Sequence                | Valid | Reason                                                      | Unresolved String |
 |:----------------------- |:----- |:----------------------------------------------------------- |:----------------- |
@@ -313,6 +321,68 @@ Some examples of valid and invalid ISA combinations:
 
 If the option is defined (set to any value), the plugin will ignore the value of `g:riscv_asm_isa` and highlight all instructions and registers supported by the plugin. If an invalid sequence in `g:riscv_asm_isa` is detected, the plugin will automatically highlight all instructions and registers, too.
 
+### Add Custom Extensions with Instructions and CSRs
+
+| Language    | Option Name                                        |
+|:----------- |:-------------------------------------------------- |
+| Vimscript   | `g:riscv_asm_custom_isa`                           |
+| Neovim Lua  | `vim.g.riscv_asm_custom_isa`                       |
+
+The custom ISA extensions are construct by a list of dictionaries, each representing a custom ISA extension. Each custom extension has following configuration options:
+
+- `'name'`: _String_, **mandatory**. The custom extension name which starts with letter 'X'.
+- `'ver'`: _Float/Number_, **optional**. The version of the custom extension.
+- `'inst'`: _List of Strings_, **optional**. Common instructions for all `XLEN`.
+- `'csr'`: _List of Strings_, **optional**. Common CSRs for all `XLEN`.
+- `'inst32'`: _List of Strings_, **optional**. Instructions for `XLEN=32`.
+- `'csr32'`: _List of Strings_, **optional**. CSRs for `XLEN=32`.
+- `'inst64'`: _List of Strings_, **optional**. Instructions for `XLEN=64`.
+- `'csr64'`: _List of Strings_, **optional**. CSRs for `XLEN=64`.
+- `'inst128'`: _List of Strings_, **optional**. Instructions for `XLEN=128`.
+- `'csr128'`: _List of Strings_, **optional**. CSRs for `XLEN=128`.
+
+#### Example
+
+Vim example for adding two custom extensions, `Xangle` and `Xbargle`:
+
+```vim
+let g:riscv_asm_custom_isa =
+\ [
+\     {
+\         'name': 'Xargle',
+\         'ver': 1.0,
+\         'inst': ['inst_1', 'inst_2'],
+\         'csr': ['csr_1', 'csr_2'],
+\         'inst32': ['inst32_1', 'inst32_2'],
+\         'csr32': ['csr32_1', 'csr32_2'],
+\         'inst64': ['inst64_1', 'inst64_2'],
+\         'csr64': ['csr64_1', 'csr64_2'],
+\     },
+\     {
+\         'name': 'Xbargle',
+\     },
+\ ]
+```
+Equivalent example of Neovim Lua:
+
+```lua
+vim.g.riscv_asm_custom_isa = {
+    {
+        name = 'Xargle',
+        ver = 1.0,
+        inst = {'inst_1', 'inst_2'},
+        csr = {'csr_1', 'csr_2'},
+        inst32 = {'inst32_1', 'inst32_2'},
+        csr32 = {'csr32_1', 'csr32_2'},
+        inst64 = {'inst64_1', 'inst64_2'},
+        csr64 = {'csr64_1', 'csr64_2'},
+    },
+    {
+        name = 'Xbargle',
+    },
+}
+```
+
 ### Display Debug Information
 
 | Language    | Option Name                                        |
@@ -320,9 +390,17 @@ If the option is defined (set to any value), the plugin will ignore the value of
 | Vimscript   | `g:riscv_asm_debug`                                |
 | Neovim Lua  | `vim.g.riscv_asm_debug`                            |
 
-If the option is defined (set to any value), the plugin will display more information while it's parsing the string in `g:riscv_asm_isa`.
+If the option is defined (set to any value), the plugin will display more information while it's parsing the value of `g:riscv_asm_isa` or the custom extensions.
 
 ## Other VIM plugins
 
 ### Tagbar
 [Tagbar](https://github.com/preservim/tagbar) is a Vim plugin that provides an easy way to browse the tags of the current file and get an overview of its structure. Follow steps in [Tagbar Wiki](https://github.com/preservim/tagbar/wiki#risc-v-asm) to apply it.
+
+## Contributing
+
+Contributions are welcome! If you encounter issues or have suggestions for improvements, please open an issue or submit a pull request on the [riscv-asm-vim](https://github.com/henry-hsieh/riscv-asm-vim).
+
+## License
+
+This plugin is licensed under the [MIT License](LICENSE.md).
