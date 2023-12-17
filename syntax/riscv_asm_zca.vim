@@ -79,4 +79,7 @@ if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen >= 64
     syn keyword riscvCInstruction          c.sdsp
 endif
 
+" Pseudo-instructions
+syn keyword riscvCInstruction          c.unimp
+
 let b:riscv_asm_defined_zca = 0

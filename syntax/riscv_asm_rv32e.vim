@@ -38,7 +38,7 @@ syn keyword riscvIInstruction          ecall ebreak
 
 " Pseudo-instructions
 syn keyword riscvIInstruction          la lla lga
-syn keyword riscvIInstruction          nop li mv not neg negw sext.b sext.h sext.w zext.b zext.h zext.w seqz snez sltz sgtz
+syn keyword riscvIInstruction          unimp nop li mv not neg negw sext.b sext.h sext.w zext.b zext.h zext.w seqz snez sltz sgtz
 syn keyword riscvIInstruction          beqz bnez blez bgez bltz bgtz
 syn keyword riscvIInstruction          bgt ble bgtu bleu
 syn keyword riscvIInstruction          j jr ret call tail

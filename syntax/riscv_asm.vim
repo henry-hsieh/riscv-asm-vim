@@ -45,18 +45,18 @@ syn match   riscvNumericLabel          display /\<\d\+[bf]\>/
 
 " Operator
 syn match   riscvOperator              "[&|~><!*%+/=\^\-]"
-syn match   riscvInsnOperator          "[)(,]"
+syn match   riscvInsnOperator          "[}{)(,]"
 
 " GNU Assembler (GAS) directives
-syn keyword riscvDirective             .abort .ABORT .align .altmacro .balign .balignw .bundle_align_mode .bundle_lock .bundle_unlock
+syn keyword riscvDirective             .abort .ABORT .align .altmacro .attach_to_group .balign .balignw .balignl .bss .bundle_align_mode .bundle_lock .bundle_unlock
 syn keyword riscvDirective             .cfi_section .cfi_personality .cfi_fde_data .cfi_lsda .cfi_inline_lsda .cfi_def_cfa .cfi_def_cfa_register .cfi_def_cfa_offset .cfi_adjust_cfa_offset .cfi_offset .cfi_val_offset .cfi_rel_offset
 syn keyword riscvDirective             .cfi_register .cfi_restore .cfi_undefined .cfi_same_value .cfi_remember_state .cfi_restore_state .cfi_return_column .cfi_signal_frame .cfi_window_save .cfi_escape .cfi_val_encoded_addr
 syn keyword riscvDirective             .comm .data .dc.a .dc.b .dc.d .dc.l .dc.s .dc.w dc.x .dcb.b .dcb.d .dcb.l .dcb.s .dcb.w dcb.x .ds.b .ds.d .ds.l .ds.p .ds.s .ds.w ds.x
-syn keyword riscvDirective             .desc .dim .eject .end .equ .equiv .eqv .err .error .extern .fail .file .global .globl .hidden
-syn keyword riscvDirective             .ident .incbin .include .internal .lcomm .lflag .line .list .ln .loc_mark_labels .local .mri .noaltmacro .nolist
-syn keyword riscvDirective             .offset .p2align .p2alignw .p2alignl .popsection .previous .print .protected .psize .purgem .pushsection
-syn keyword riscvDirective             .reloc .sbttl .scl .section .set .size .stabd .stabn .stabs .struct .subsection .symvar .tag .text .title
-syn keyword riscvDirective             .val .version .vtable_entry .vtable_inherit .warning .weak .weakref
+syn keyword riscvDirective             .desc .dim .eject .end .equ .equiv .eqv .err .error .extern .fail .file .global .globl .gnu_attribute .hidden
+syn keyword riscvDirective             .ident .incbin .include .internal .lcomm .lflag .line .list .ln .loc_mark_labels .local .mri .noaltmacro .nolist .nop
+syn keyword riscvDirective             .offset .org .p2align .p2alignw .p2alignl .popsection .previous .print .protected .psize .purgem .pushsection
+syn keyword riscvDirective             .reloc .sbttl .scl .section .set .size .skip .space .stabd .stabn .stabs .struct .subsection .symver .tag .text .title .tls_common
+syn keyword riscvDirective             .val .version .vtable_entry .vtable_inherit .warning .weak .weakref .zero
 syn match   riscvDirectiveError1       "\S\+" display contained
 syn match   riscvDirectiveType1        "\<\(discard\|one_only\|same_size\|same_contents\)\>" display contained
 syn match   riscvDirective             "\<\.linkonce\>" nextgroup=riscvDirectiveError1,riscvDirectiveType1 skipwhite
@@ -69,8 +69,8 @@ syn match   riscvDirectiveType4        "\"\(function\|gnu_indirect_function\|obj
 syn match   riscvDirectiveType5        "\<\(STT_FUNC\|STT_GNU_IFUNC\|STT_OBJECT\|STT_TLS\|STT_COMMON\|STT_NOTYPE\)\>" display contained
 syn region  riscvDirective             matchgroup=riscvDirective start=+\<\.type\>+ skip=+\\$+ end=+$+ contains=riscvDirectiveType3,riscvDirectiveType4,riscvDirectiveType5,riscvDirectiveSymbol,riscvInsnOperator
 
-syn keyword riscvDataDirective         .ascii .asciz .byte .double .fill .float .hword .int .long .nops .octa .org .quad .short .single
-syn keyword riscvDataDirective         .skip .sleb128 .space .string .string8 .string16 .uleb128 .word .zero .2byte .4byte .8byte
+syn keyword riscvDataDirective         .ascii .asciz .byte .double .fill .float .hword .int .long .octa .quad .short .single
+syn keyword riscvDataDirective         .sleb128 .string .string8 .string16 .uleb128 .word .2byte .4byte .8byte
 
 syn keyword riscvBlockDirective        .cfi_startproc .cfi_endproc
 syn keyword riscvBlockDirective        .def .endef
@@ -81,10 +81,10 @@ syn keyword riscvBlockDirective        .irp .irpc .rept .endr
 syn keyword riscvConditDirective       .if .ifdef .ifb .ifc .ifeq .ifeqs .ifge .ifgt .ifle .iflt .ifnb .ifnc .ifndef .ifnotdef .ifne .ifnes .else .elseif .endif
 " GAS RISC-V directives
 syn keyword riscvDataDirective         .half .dword .dtprelword .dtpreldword
-syn keyword riscvDirective             .bss .insn
-syn match   riscvDirectiveType6        "\<\(push\|pop\|rvc\|norvc\|pic\|nopic\|relax\|norelax\|csr-check\|no-csr-check\)\>" display contained
+syn keyword riscvDirective             .common .rodata .insn .variant_cc
+syn match   riscvDirectiveType6        "\<\(arch\|push\|pop\|rvc\|norvc\|pic\|nopic\|relax\|norelax\|csr-check\|no-csr-check\)\>" display contained
 syn match   riscvDirective             "\<\.option\>" nextgroup=riscvDirectiveError1,riscvDirectiveType6 skipwhite
-syn match   riscvDirectiveType7        "\<\(Tag_RISCV_arch\|Tag_RISCV_stack_align\|Tag_RISCV_unaligned_access\|Tag_RISCV_priv_spec\|Tag_RISCV_priv_spec_minor\|Tag_RISCV_priv_spec_revision\)\>" display contained
+syn match   riscvDirectiveType7        "\<\(Tag_RISCV_\)\?\(stack_align\|arch\|unaligned_access\|priv_spec\|priv_spec_minor\|priv_spec_revision\|atomic_abi\|x3_reg_usage\)\>" display contained
 syn match   riscvDirective             "\<\.attribute\>" nextgroup=riscvDirectiveType7,riscvDirectiveError2,riscvInsnOperator skipwhite
 syn cluster riscvDirectiveGroup        contains=riscvDirective,riscvDirectiveError1,riscvDirectiveError2,riscvDirectiveType1,riscvDirectiveType2,riscvDirectiveType3,riscvDirectiveType4,riscvDirectiveType5,riscvDirectiveType6,riscvDirectiveType7,riscvDirectiveSymbol,riscvBlockDirective,riscvDataDirective,riscvConditDirective
 
