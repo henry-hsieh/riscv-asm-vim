@@ -418,6 +418,8 @@ if !exists("b:riscv_asm_all_enable")
     let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zam", 0.1, 1)
     " Zfa Extension: Additional Floating-Point Instructions
     let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zfa", 1.0, 1)
+    " Zfbfmin Extension: Scalar BF16 Converts
+    let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zfbfmin", 1.0, 1)
     " Zfh Extension: Half-Precision Floating-Point
     let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zfh", 1.0, 1)
     " Zfhmin Extension: Minimal Half-Precision Floating-Point
@@ -498,6 +500,10 @@ if !exists("b:riscv_asm_all_enable")
     let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zve64x", 1.1, 1)
     " Zvediv Extension
     let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Zvediv", 1)
+    " Zvfbfmin Extension: Vector BF16 Converts
+    let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zvfbfmin", 1.0, 1)
+    " Zvfbfwma Extension: Vector BF16 Widening Mul-Add
+    let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zvfbfwma", 1.0, 1)
     " Zvfh Extension: Vector Extension for Half-Precision Floating-Point
     let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zvfh", 1.1, 1, !exists("b:riscv_asm_zfinx") && !exists("b:riscv_asm_zdinx") && !exists("b:riscv_asm_zhinx") && !exists("b:riscv_asm_zhinxmin"))
     " Zvfhmin Extension: Vector Extension for Minimal Half-Precision Floating-Point

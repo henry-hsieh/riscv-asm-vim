@@ -173,6 +173,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Zawrs`                | Wait-On-Reservation-Set Extension                                                           | 1.0               |
 | `Zam`                  | Misaligned Atomic                                                                           | 0.1               |
 | `Zfa`                  | Additional Floating-Point Instructions                                                      | 1.0               |
+| `Zfbfmin`              | Scalar BF16 Converts                                                                        | 1.0               |
 | `Zfh`                  | Half-Precision Floating-Point                                                               | 1.0               |
 | `Zfhmin`               | Minimal Half-Precision Floating-Point                                                       | 1.0               |
 | `Zfinx`                | Single-Precision Floating-Point in Integer Registers                                        | 1.0               |
@@ -213,6 +214,8 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Zve64f`               | Vector Extension for Embedded 64-bit Single-Precision Floating-Point                        | 1.1               |
 | `Zve64x`               | Vector Extension for Embedded 64-bit Integer                                                | 1.1               |
 | `Zvediv`               | Vector Divided Element Extension                                                            |                   |
+| `Zvfbfmin`             | Vector BF16 Converts                                                                        | 1.0               |
+| `Zvfbfwma`             | Vector BF16 Widening Mul-Add                                                                | 1.0               |
 | `Zvfh`                 | Vector Extension for Half-Precision Floating-Point                                          | 1.1               |
 | `Zvfhmin`              | Vector Extension for Minimal Half-Precision Floating-Point                                  | 1.1               |
 | `Zvkb`                 | Vector Cryptography Bit-manipulation                                                        | 1.0               |
