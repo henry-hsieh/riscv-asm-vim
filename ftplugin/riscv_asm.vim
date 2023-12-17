@@ -508,9 +508,9 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zve32x", 1.1, 
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zve64d", 1.1, 1, !exists("b:riscv_asm_zfinx") && !exists("b:riscv_asm_zdinx") && !exists("b:riscv_asm_zhinx") && !exists("b:riscv_asm_zhinxmin"))
 " Zve64f Extension: Vector Extension for Embedded 64-bit Single-Precision Floating-Point
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zve64f", 1.1, 1, !exists("b:riscv_asm_zfinx") && !exists("b:riscv_asm_zdinx") && !exists("b:riscv_asm_zhinx") && !exists("b:riscv_asm_zhinxmin"))
-" Zve64x Extension
+" Zve64x Extension: Vector Extension for Embedded 64-bit Integer
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zve64x", 1.1, 1)
-" Zvediv Extension
+" Zvediv Extension: Vector Divided Element Extension
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Zvediv", 1)
 " Zvfbfmin Extension: Vector BF16 Converts
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zvfbfmin", 1.0, 1)
