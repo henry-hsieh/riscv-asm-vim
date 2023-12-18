@@ -49,11 +49,6 @@ function! GetRiscvIndent()
   let line = getline(v:lnum)
   let ind = 0
 
-  " If the line is first line, then don't indent
-  if v:lnum == 1
-    return ind
-  endif
-
   " If the line is a label (starts with ':' terminated keyword), then don't indent
   if line =~ '^\s*[0-9a-zA-Z_$.]\+:'
     return ind
