@@ -298,24 +298,24 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 
 2. If the supported version of an extension is unspecified in the table, *DO NOT* including the version in the sequence.
 
-3. Insert an underscore between two consecutive additional extensions for clarity.
+3. Insert an underscore between two consecutive multi-letter extensions, i.e. additional extensions, for clarity.
 
 4. Some extensions and privileged extensions cannot coexist; refer to [Conflict Extensions](#conflict-extensions). Avoid including conflicting extensions in the option.
 
 Following table contains some examples of valid and invalid ISA extension combinations:
 
-| Sequence                | Valid | Reason                                                      | Unresolved String |
-|:----------------------- |:----- |:----------------------------------------------------------- |:----------------- |
-| `RV64IMCZicsr_Zifencei` | Yes   |                                                             |                   |
-| `RV32IAM`               | No    | Incorrect order                                             | `M`               |
-| `RV32GMAF`              | No    | Incorrect order                                             | `MAF`             |
-| `Zicsr`                 | No    | No base ISA                                                 | `Zicsr`           |
-| `RV32IRV64IMAFC`        | No    | More than one base ISAs                                     | `RV64IMAFC`       |
-| `RV64GZve64dZvl256b`    | No    | No underscore between two consecutive additional extensions | `Zve64dZvl256b`   |
-| `RV32EMG`               | No    | Conflict extensions (`RV32E` & `G`)                         | `G`               |
-| `RV64GCVZvamo1p0`       | No    | Specify version number on an unversioned extension          | `Zvamo1p0`        |
+| Sequence                | Valid | Reason                                                        | Unresolved String |
+|:----------------------- |:----- |:------------------------------------------------------------- |:----------------- |
+| `RV64IMCZicsr_Zifencei` | Yes   |                                                               |                   |
+| `RV32IAM`               | No    | Incorrect order                                               | `M`               |
+| `RV32GMAF`              | No    | Incorrect order                                               | `MAF`             |
+| `Zicsr`                 | No    | No base ISA                                                   | `Zicsr`           |
+| `RV32IRV64IMAFC`        | No    | More than one base ISAs                                       | `RV64IMAFC`       |
+| `RV64GZve64dZvl256b`    | No    | No underscore between two consecutive multi-letter extensions | `Zve64dZvl256b`   |
+| `RV32EMG`               | No    | Conflict extensions (`RV32E` & `G`)                           | `G`               |
+| `RV64GCVZvamo1p0`       | No    | Specify version number on an unversioned extension            | `Zvamo1p0`        |
 
-### Enable All Supported RISC-V ISA
+### Highlight All Supported RISC-V ISA
 
 | Language    | Option Name                                        |
 |:----------- |:-------------------------------------------------- |
@@ -333,18 +333,42 @@ If the option is defined (set to any value), the plugin will ignore the value of
 
 The custom ISA extensions are construct by a list of dictionaries, each representing a custom ISA extension. Each custom extension has following configuration options:
 
-- `'name'`: _String_, **mandatory**. The custom extension name which starts with letter 'X'.
-- `'ver'`: _Float/Number_, **optional**. The version of the custom extension.
-- `'inst'`: _List of Strings_, **optional**. Common instructions for all `XLEN`.
-- `'csr'`: _List of Strings_, **optional**. Common CSRs for all `XLEN`.
-- `'inst32'`: _List of Strings_, **optional**. Instructions for `XLEN=32`.
-- `'csr32'`: _List of Strings_, **optional**. CSRs for `XLEN=32`.
-- `'inst64'`: _List of Strings_, **optional**. Instructions for `XLEN=64`.
-- `'csr64'`: _List of Strings_, **optional**. CSRs for `XLEN=64`.
-- `'inst128'`: _List of Strings_, **optional**. Instructions for `XLEN=128`.
-- `'csr128'`: _List of Strings_, **optional**. CSRs for `XLEN=128`.
+- `name`: _String_, **mandatory**. The custom extension name which starts with the letter 'X'.
+- `ver`: _Float/Number_, **optional**. The version of the custom extension.
+- `inst`: _List of Strings_, **optional**. Common instructions for all `XLEN`.
+- `csr`: _List of Strings_, **optional**. Common CSRs for all `XLEN`.
+- `inst32`: _List of Strings_, **optional**. Instructions for `XLEN=32`.
+- `csr32`: _List of Strings_, **optional**. CSRs for `XLEN=32`.
+- `inst64`: _List of Strings_, **optional**. Instructions for `XLEN=64`.
+- `csr64`: _List of Strings_, **optional**. CSRs for `XLEN=64`.
+- `inst128`: _List of Strings_, **optional**. Instructions for `XLEN=128`.
+- `csr128`: _List of Strings_, **optional**. CSRs for `XLEN=128`.
 
-#### Example
+#### Highlight the Custom Extensions
+
+Like the standard extensions, you can use `g:riscv_asm_isa` to control enablement of the custom extensions, or use `g:riscv_asm_all_enable` to highlight all of the standard extensions and the custom extensions. The syntax in `g:riscv_asm_isa` should comply with the RISC-V ISA extension naming conventions:
+
+1. The string is case insensitive.
+
+2. The name of a custom extension should start with the letter 'X' followed by an alphabetical name and an optional version number.
+
+3. The custom extensions must be listed after all standard extensions.
+
+4. Like other multi-letter extensions, must be separated from other multi-letter extensions by an underscore.
+
+5. If multiple custom extensions are listed, they should be ordered alphabetically.
+
+If you did not specify the `ver` of a custom extension defined in `g:riscv_asm_custom_isa`, you should not list the custom extension with any version number. Following table listed some valid or invalid sequence with the two custom extensions in the [examples](#examples-of-adding-the-custom-extensions).
+
+| Sequence                  | Valid | Reason                                                        | Unresolved String |
+|:------------------------- |:----- |:------------------------------------------------------------- |:----------------- |
+| `RV64GCXargle1p0_Xbargle` | Yes   |                                                               |                   |
+| `RV64GCXargle1p0_Sv48`    | No    | Incorrect order (standard extensions should be prior)         | `_Sv48`           |
+| `RV64GCXbargle_Xargle`    | No    | Incorrect order (violate the alphabetical order)              | `_Xargle`         |
+| `RV64GCXargleXbargle`     | No    | No underscore between two consecutive multi-letter extensions | `XargleXbargle`   |
+| `RV64GC_Sv48_Xbargle1p0`  | No    | Specify version number on an unversioned extension            | `_Xbargle1p0`     |
+
+#### Examples of Adding the Custom Extensions
 
 Vim example for adding two custom extensions, `Xangle` and `Xbargle`:
 
