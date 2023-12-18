@@ -19,5 +19,7 @@ syn keyword riscvFInstruction          fsw
 syn keyword riscvFInstruction          fmv.x.w
 " I-type: classfication, conversion
 syn keyword riscvFInstruction          fmv.w.x
+" Alias
+syn keyword riscvFInstruction          fmv.x.s fmv.s.x
 
 let b:riscv_asm_defined_f = 0
