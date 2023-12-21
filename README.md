@@ -27,7 +27,7 @@ This Vim plugin is designed to enhance your RISC-V assembly coding experience. I
 
 ### [VimPlug](https://github.com/junegunn/vim-plug)
 
-1. Add the following to your `.vimrc`:
+1. Add the following text to the vim-plug section in your `.vimrc`:
 
 ```VimL
 Plug 'henry-hsieh/riscv-asm-vim'
@@ -37,7 +37,7 @@ Plug 'henry-hsieh/riscv-asm-vim'
 
 ### [Vundle](https://github.com/VundleVim/Vundle.vim)
 
-1. Add the following to your `.vimrc`:
+1. Add the following text to the vundle section in your `.vimrc`:
 
 ```VimL
 Plugin 'henry-hsieh/riscv-asm-vim'
@@ -67,12 +67,30 @@ git clone https://github.com/henry-hsieh/riscv-asm-vim
 1. Add the following to your packer startup function:
 
 ```lua
-use "henry-hsieh/riscv-asm-vim"
+use {
+  "henry-hsieh/riscv-asm-vim",
+}
 ```
 
 2. Install the plugin:
 
     * Reload `init.lua` and run `:PackerSync` in Neovim.
+
+### [lazy.nvim](https://github.com/folke/lazy.nvim)
+
+1. Add the following to your lazy.nvim startup function:
+
+```lua
+{
+  "henry-hsieh/riscv-asm-vim",
+  ft = { "riscv_asm" },
+}
+```
+
+2. Install the plugin:
+
+    * Reload `init.lua` and run `:Lazy install` in Neovim.
+    * Or if you are using **install missing plugins**, just restart Neovim.
 
 ## Usage
 
