@@ -111,12 +111,32 @@ set ft=riscv_asm
 
 ## Options
 
+To set the option of this plugin, you can use either Vimscript or Lua (Neovim only). Put the options in your Vim/Neovim startup file.
+
+### Highlight All Supported RISC-V ISA
+
+**Vimscript:**
+```VimL
+let g:riscv_asm_all_enable = 1
+```
+
+**Neovim Lua:**
+```lua
+vim.g.riscv_asm_all_enable = true
+```
+If the option is defined (set to any value), the plugin will ignore the value of `g:riscv_asm_isa` and highlight all instructions and registers supported by the plugin. If an invalid sequence in `g:riscv_asm_isa` is detected, the plugin will automatically highlight all instructions and registers, too.
+
 ### Specify the Extensions You Want to Highlight
 
-| Language    | Option Name                                        |
-|:----------- |:-------------------------------------------------- |
-| Vimscript   | `g:riscv_asm_isa`                                  |
-| Neovim Lua  | `vim.g.riscv_asm_isa`                              |
+**Vimscript:**
+```VimL
+let g:riscv_asm_isa = 'RV64GC'
+```
+
+**Neovim Lua:**
+```lua
+vim.g.riscv_asm_isa = 'RV64GC'
+```
 
 The value of `g:riscv_asm_isa` aligns with RISC-V ISA extension naming conventions, allowing Vim to highlight specified RISC-V ISAs and extensions. By default, the plugin activates only the RV64GC extension, resulting in the highlighting of RV64I, M, A, F, D, C, Zicsr, and Zifencei instructions and registers.
 
@@ -333,21 +353,17 @@ Following table contains some examples of valid and invalid ISA extension combin
 | `RV32EMG`               | No    | Conflict extensions (`RV32E` & `G`)                           | `G`               |
 | `RV64GCVZvamo1p0`       | No    | Specify version number on an unversioned extension            | `Zvamo1p0`        |
 
-### Highlight All Supported RISC-V ISA
-
-| Language    | Option Name                                        |
-|:----------- |:-------------------------------------------------- |
-| Vimscript   | `g:riscv_asm_all_enable`                           |
-| Neovim Lua  | `vim.g.riscv_asm_all_enable`                       |
-
-If the option is defined (set to any value), the plugin will ignore the value of `g:riscv_asm_isa` and highlight all instructions and registers supported by the plugin. If an invalid sequence in `g:riscv_asm_isa` is detected, the plugin will automatically highlight all instructions and registers, too.
-
 ### Add Custom Extensions with Instructions and CSRs
 
-| Language    | Option Name                                        |
-|:----------- |:-------------------------------------------------- |
-| Vimscript   | `g:riscv_asm_custom_isa`                           |
-| Neovim Lua  | `vim.g.riscv_asm_custom_isa`                       |
+**Vimscript:**
+```VimL
+let g:riscv_asm_custom_isa = [{'name': 'Xcustom'}]
+```
+
+**Neovim Lua:**
+```lua
+vim.g.riscv_asm_custom_isa = {{name = 'Xcustom'}}
+```
 
 The custom ISA extensions are construct by a list of dictionaries, each representing a custom ISA extension. Each custom extension has following configuration options:
 
@@ -390,7 +406,7 @@ If you did not specify the `ver` of a custom extension defined in `g:riscv_asm_c
 
 Vim example for adding two custom extensions, `Xangle` and `Xbargle`:
 
-```vim
+```VimL
 let g:riscv_asm_custom_isa =
 \ [
 \     {
@@ -430,10 +446,16 @@ vim.g.riscv_asm_custom_isa = {
 
 ### Display Debug Information
 
-| Language    | Option Name                                        |
-|:----------- |:-------------------------------------------------- |
-| Vimscript   | `g:riscv_asm_debug`                                |
-| Neovim Lua  | `vim.g.riscv_asm_debug`                            |
+**Vimscript:**
+```VimL
+let g:riscv_asm_debug = 1
+```
+
+**Neovim Lua:**
+```lua
+vim.g.riscv_asm_debug = true
+```
+
 
 If the option is defined (set to any value), the plugin will display more information while it's parsing the value of `g:riscv_asm_isa` or the custom extensions.
 
