@@ -54,7 +54,7 @@ function! s:add_versioned_extension(isa_str, isa_name, max_version, dlm_expected
                 endif
             endif
         endif
-        let l:isa_str = substitute(a:isa_str, '\c^_\=' . tolower(a:isa_name) . '\(\d\+\(p\d\+\)\=\)\=', "", "")
+        let l:isa_str = substitute(a:isa_str, '\c^\(_\=' . tolower(a:isa_name) . '\(\d\+\(p\d\+\)\=\)\=\)\+', "", "")
     else
         if exists("b:riscv_asm_" . tolower(a:isa_name))
             exec "unlet b:riscv_asm_" . tolower(a:isa_name)
@@ -79,7 +79,7 @@ function! s:add_unversioned_extension(isa_str, isa_name, dlm_expected = 0, speci
             echom "INFO: parse " . a:isa_name . " extension"
         endif
         exec "let b:riscv_asm_" . tolower(a:isa_name) . " = 0"
-        let l:isa_str = substitute(a:isa_str, '\c^_\=' . tolower(a:isa_name), "", "")
+        let l:isa_str = substitute(a:isa_str, '\c^\(_\=' . tolower(a:isa_name) . '\)\+', "", "")
     else
         if exists("b:riscv_asm_" . tolower(a:isa_name))
             exec "unlet b:riscv_asm_" . tolower(a:isa_name)
