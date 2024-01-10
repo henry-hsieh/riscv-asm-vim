@@ -152,15 +152,26 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 
 #### Currently Supported Extensions
 
-* Base Integer
+* Base Integer ISAs or Profiles
 
-| Base ISA               | Full Name                                                                                   | Supported Version |
+| Base ISA / Profile     | Full Name                                                                                   | Supported Version |
 |:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
 | `RV32E`                | Embedded 32-bit integer                                                                     | 2.0               |
 | `RV32I`                | 32-bit integer                                                                              | 2.1               |
 | `RV64E`                | Embedded 64-bit integer                                                                     | 2.0               |
 | `RV64I`                | 64-bit integer                                                                              | 2.1               |
 | `RV128I`               | 128-bit integer                                                                             | 1.7               |
+| `RVI20U32`             | RVI20U32 Profile                                                                            |                   |
+| `RVI20U64`             | RVI20U64 Profile                                                                            |                   |
+| `RVA20U64`             | RVA20U64 Profile                                                                            |                   |
+| `RVA20S64`             | RVA20S64 Profile                                                                            |                   |
+| `RVA22U64`             | RVA22U64 Profile                                                                            |                   |
+| `RVA22S64`             | RVA22S64 Profile                                                                            |                   |
+| `RVA23U64`             | RVA23U64 Profile                                                                            |                   |
+| `RVA23S64`             | RVA23S64 Profile                                                                            |                   |
+| `RVB23U64`             | RVB23U64 Profile                                                                            |                   |
+| `RVB23S64`             | RVB23S64 Profile                                                                            |                   |
+| `RVM23U32`             | RVM23U32 Profile                                                                            |                   |
 
 * Unprivileged Extensions
 
@@ -332,7 +343,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 
 #### Rules Should Be Followed
 
-1. Ensure that you specify extensions in the sequence listed in [Currently Supported Extensions](#currently-supported-extensions). Always choose one of the base integer ISAs and place the base ISA name at the beginning of the option. An exception is the general-purpose extension `G`, which can replace the RV32I and RV64I base ISAs. Do not specify more than one base ISA, as this will result in a parser error. Extensions should be added in the following order: unprivileged, privileged, additional unprivileged, and additional privileged. Extensions within the same category should adhere to the order in the corresponding table.
+1. Ensure that you specify extensions in the sequence listed in [Currently Supported Extensions](#currently-supported-extensions). Always choose one of the base integer ISAs or profiles, and place the base ISA name at the beginning of the option. An exception is the general-purpose extension `G`, which can replace the RV32I and RV64I base ISAs. Do not specify more than one base ISA and profile, as this will result in a parser error. Extensions should be added in the following order: unprivileged, privileged, additional unprivileged, and additional privileged. Extensions within the same category should adhere to the order in the corresponding table.
 
 2. If the supported version of an extension is unspecified in the table, *DO NOT* including the version in the sequence.
 

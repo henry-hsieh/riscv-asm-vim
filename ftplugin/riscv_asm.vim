@@ -54,7 +54,7 @@ function! s:add_versioned_extension(isa_str, isa_name, max_version, dlm_expected
                 endif
             endif
         endif
-        let l:isa_str = substitute(a:isa_str, '\c^_\=' . tolower(a:isa_name) . '\(\d\+\(p\d\+\)\=\)\=', "", "")
+        let l:isa_str = substitute(a:isa_str, '\c^\(_\=' . tolower(a:isa_name) . '\(\d\+\(p\d\+\)\=\)\=\)\+', "", "")
     else
         if exists("b:riscv_asm_" . tolower(a:isa_name))
             exec "unlet b:riscv_asm_" . tolower(a:isa_name)
@@ -79,7 +79,31 @@ function! s:add_unversioned_extension(isa_str, isa_name, dlm_expected = 0, speci
             echom "INFO: parse " . a:isa_name . " extension"
         endif
         exec "let b:riscv_asm_" . tolower(a:isa_name) . " = 0"
-        let l:isa_str = substitute(a:isa_str, '\c^_\=' . tolower(a:isa_name), "", "")
+        let l:isa_str = substitute(a:isa_str, '\c^\(_\=' . tolower(a:isa_name) . '\)\+', "", "")
+    else
+        if exists("b:riscv_asm_" . tolower(a:isa_name))
+            exec "unlet b:riscv_asm_" . tolower(a:isa_name)
+        endif
+    endif
+    return l:isa_str
+endfunction
+
+function! s:add_profile(isa_str, isa_name)
+    let l:isa_str = a:isa_str
+
+    call add(b:riscv_asm_standard_isa, tolower(a:isa_name))
+    if a:isa_str =~ '\c^' . tolower(a:isa_name)
+        if exists("g:riscv_asm_debug")
+            echom "INFO: parse " . a:isa_name . " profile"
+        endif
+        exec "let b:riscv_asm_" . tolower(a:isa_name) . " = 0"
+        let l:isa_str = substitute(a:isa_str, '\c^' . tolower(a:isa_name), "", "")
+        let l:extract_length = substitute(a:isa_str, '\c^rv[iabm]\d\+[su]\(\d\+\).*', '\1', "")
+        if l:extract_length == "32"
+            let b:riscv_asm_xlen = 32
+        elseif l:extract_length == "64"
+            let b:riscv_asm_xlen = 64
+        endif
     else
         if exists("b:riscv_asm_" . tolower(a:isa_name))
             exec "unlet b:riscv_asm_" . tolower(a:isa_name)
@@ -187,32 +211,33 @@ else
     endif
 endif
 
+" Reset base ISA
+let b:riscv_asm_rv32e_max = 2.0
+let b:riscv_asm_rv32i_max = 2.1
+let b:riscv_asm_rv64e_max = 2.0
+let b:riscv_asm_rv64i_max = 2.1
+let b:riscv_asm_rv128i_max = 1.7
+if exists("b:riscv_asm_rv32e")
+    unlet b:riscv_asm_rv32e
+endif
+if exists("b:riscv_asm_rv32i")
+    unlet b:riscv_asm_rv32i
+endif
+if exists("b:riscv_asm_rv64e")
+    unlet b:riscv_asm_rv64e
+endif
+if exists("b:riscv_asm_rv64i")
+    unlet b:riscv_asm_rv64i
+endif
+if exists("b:riscv_asm_rv128i")
+    unlet b:riscv_asm_rv128i
+endif
+
 " Parse base ISA
 if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ieg]'
-    let b:riscv_asm_rv32e_max = 2.0
-    let b:riscv_asm_rv32i_max = 2.1
-    let b:riscv_asm_rv64e_max = 2.0
-    let b:riscv_asm_rv64i_max = 2.1
-    let b:riscv_asm_rv128i_max = 1.7
-
     let s:extract_length = substitute(s:riscv_asm_isa, '\c^rv\(\d\+\)\([ieg]\)\(\d\+\(p\d\+\)\=\)\=.*', '\1', "")
     let s:extract_base = substitute(s:riscv_asm_isa, '\c^rv\(\d\+\)\([ieg]\)\(\d\+\(p\d\+\)\=\)\=.*', '\2', "")
     let s:extract_version = substitute(s:riscv_asm_isa, '\c^rv\(\d\+\)\([ieg]\)\(\d\+\(p\d\+\)\=\)\=.*', '\3', "")
-    if exists("b:riscv_asm_rv32e")
-        unlet b:riscv_asm_rv32e
-    endif
-    if exists("b:riscv_asm_rv32i")
-        unlet b:riscv_asm_rv32i
-    endif
-    if exists("b:riscv_asm_rv64e")
-        unlet b:riscv_asm_rv64e
-    endif
-    if exists("b:riscv_asm_rv64i")
-        unlet b:riscv_asm_rv64i
-    endif
-    if exists("b:riscv_asm_rv128i")
-        unlet b:riscv_asm_rv128i
-    endif
     if s:extract_length == "32" && s:extract_base =~ '[Ee]'
         if exists("g:riscv_asm_debug")
             echom "INFO: parse RV32E base instruction set"
@@ -352,8 +377,33 @@ if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ieg]'
     let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv\(32\|64\)[ie]\(\d\+\(p\d\+\)\=\)\=', "", "")
     let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv128i\(\d\+\(p\d\+\)\=\)\=', "", "")
     let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv\d\+', "", "")
+elseif s:riscv_asm_isa =~ '\c^rv[iabm]\d\d[su]\(32\|64\)'
+    " Parse profiles
+    let b:riscv_asm_xlen = 0
+    " RVI20U32
+    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVI20U32")
+    " RVI20U64
+    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVI20U64")
+    " RVA20U64
+    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA20U64")
+    " RVA20S64
+    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA20S64")
+    " RVA22U64
+    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA22U64")
+    " RVA22S64
+    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA22S64")
+    " RVA23U64
+    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA23U64")
+    " RVA23S64
+    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA23S64")
+    " RVB23U64
+    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVB23U64")
+    " RVB23S64
+    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVB23S64")
+    " RVM23U32
+    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVM23U32")
 else
-    " Base ISA isn't found, enable all extensions
+    " Base ISA or profile isn't found, enable all extensions
     let b:riscv_asm_xlen = 0
     let b:riscv_asm_all_enable = 1
 endif
