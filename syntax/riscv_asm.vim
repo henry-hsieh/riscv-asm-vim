@@ -89,21 +89,6 @@ syn match   riscvDirective             "\<\.attribute\>" nextgroup=riscvDirectiv
 syn cluster riscvDirectiveGroup        contains=riscvDirective,riscvDirectiveError1,riscvDirectiveError2,riscvDirectiveType1,riscvDirectiveType2,riscvDirectiveType3,riscvDirectiveType4,riscvDirectiveType5,riscvDirectiveType6,riscvDirectiveType7,riscvDirectiveSymbol,riscvBlockDirective,riscvDataDirective,riscvConditDirective
 
 " Include registers and instructions
-if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_rv128i")
-    runtime! syntax/riscv_asm_rv128i.vim
-elseif exists("b:riscv_asm_rv64i")
-    runtime! syntax/riscv_asm_rv64i.vim
-elseif exists("b:riscv_asm_rv64e")
-    runtime! syntax/riscv_asm_rv64e.vim
-elseif exists("b:riscv_asm_g") && b:riscv_asm_xlen == 64
-    runtime! syntax/riscv_asm_rv64g.vim
-elseif exists("b:riscv_asm_rv32i")
-    runtime! syntax/riscv_asm_rv32i.vim
-elseif exists("b:riscv_asm_rv32e")
-    runtime! syntax/riscv_asm_rv32e.vim
-elseif exists("b:riscv_asm_g") && b:riscv_asm_xlen == 32
-    runtime! syntax/riscv_asm_rv32g.vim
-endif
 for isa_name in b:riscv_asm_standard_isa
     exec 'let isa_enable = exists("b:riscv_asm_' . isa_name . '")'
     if exists("b:riscv_asm_all_enable") || isa_enable
@@ -175,27 +160,6 @@ if exists("b:riscv_asm_custom_isa")
 endif
 
 " Disable defined identifier for reopen
-if exists("b:riscv_asm_defined_rv32e")
-    unlet b:riscv_asm_defined_rv32e
-endif
-if exists("b:riscv_asm_defined_rv32i")
-    unlet b:riscv_asm_defined_rv32i
-endif
-if exists("b:riscv_asm_defined_rv32g")
-    unlet b:riscv_asm_defined_rv32g
-endif
-if exists("b:riscv_asm_defined_rv64e")
-    unlet b:riscv_asm_defined_rv64e
-endif
-if exists("b:riscv_asm_defined_rv64i")
-    unlet b:riscv_asm_defined_rv64i
-endif
-if exists("b:riscv_asm_defined_rv64g")
-    unlet b:riscv_asm_defined_rv64g
-endif
-if exists("b:riscv_asm_defined_rv128i")
-    unlet b:riscv_asm_defined_rv128i
-endif
 for isa_name in b:riscv_asm_standard_isa
     exec 'let isa_defined = exists("b:riscv_asm_defined_' . isa_name . '")'
     if isa_defined

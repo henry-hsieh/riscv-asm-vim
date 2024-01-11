@@ -93,17 +93,77 @@ function! s:add_profile(isa_str, isa_name)
 
     call add(b:riscv_asm_standard_isa, tolower(a:isa_name))
     if a:isa_str =~ '\c^' . tolower(a:isa_name)
+        let l:extract_length = substitute(a:isa_str, '\c^rv[iabm]\d\+[su]\(\d\+\).*', '\1', "")
         if exists("g:riscv_asm_debug")
             echom "INFO: parse " . a:isa_name . " profile"
         endif
         exec "let b:riscv_asm_" . tolower(a:isa_name) . " = 0"
+        let b:riscv_asm_xlen = str2nr(l:extract_length)
         let l:isa_str = substitute(a:isa_str, '\c^' . tolower(a:isa_name), "", "")
-        let l:extract_length = substitute(a:isa_str, '\c^rv[iabm]\d\+[su]\(\d\+\).*', '\1', "")
-        if l:extract_length == "32"
-            let b:riscv_asm_xlen = 32
-        elseif l:extract_length == "64"
-            let b:riscv_asm_xlen = 64
+    else
+        if exists("b:riscv_asm_" . tolower(a:isa_name))
+            exec "unlet b:riscv_asm_" . tolower(a:isa_name)
         endif
+    endif
+    return l:isa_str
+endfunction
+
+function! s:add_base_isa(isa_str, isa_name, max_version)
+    let l:isa_str = a:isa_str
+    exec "let b:riscv_asm_" . tolower(a:isa_name) . "_max = " . string(a:max_version)
+
+    call add(b:riscv_asm_standard_isa, tolower(a:isa_name))
+    if a:isa_str =~ '\c^' . tolower(a:isa_name) . '\(\d\+\(p\d\+\)\=\)\='
+        let l:extract_length = substitute(a:isa_str, '\c^rv\(\d\+\)\([ie]\)\(\d\+\(p\d\+\)\=\)\=.*', '\1', "")
+        let l:extract_base = substitute(a:isa_str, '\c^rv\(\d\+\)\([ie]\)\(\d\+\(p\d\+\)\=\)\=.*', '\2', "")
+        let l:extract_version = substitute(a:isa_str, '\c^rv\(\d\+\)\([ie]\)\(\d\+\(p\d\+\)\=\)\=.*', '\3', "")
+        if exists("g:riscv_asm_debug")
+            echom "INFO: parse " . a:isa_name . " base ISA"
+        endif
+        if l:extract_version == ''
+            if exists("g:riscv_asm_debug")
+                echom "INFO: no version of " . a:isa_name . " base ISA"
+            endif
+            exec "let b:riscv_asm_" . tolower(a:isa_name) . " = b:riscv_asm_" . tolower(a:isa_name) . "_max"
+        else
+            let l:extract_version = substitute(l:extract_version, 'p', '.', "")
+            exec "let b:riscv_asm_" . tolower(a:isa_name) . " = str2float(l:extract_version)"
+            exec "let l:version_overflow = b:riscv_asm_" . tolower(a:isa_name) . " > b:riscv_asm_" . tolower(a:isa_name) . "_max"
+            if l:version_overflow
+                if exists("g:riscv_asm_debug")
+                    echom 'WARN: version of ' . a:isa_name . ' base ISA is overflow: ' . string(str2float(l:extract_version))
+                    echom 'INFO: version of ' . a:isa_name . ' base ISA is set to: ' . string(a:max_version)
+                endif
+                exec "let b:riscv_asm_" . tolower(a:isa_name) . " = b:riscv_asm_" . tolower(a:isa_name) . "_max"
+            else
+                if exists("g:riscv_asm_debug")
+                    echom 'INFO: version of ' . a:isa_name . ' extension is: ' . string(str2float(l:extract_version))
+                endif
+            endif
+        endif
+        let b:riscv_asm_xlen = str2nr(l:extract_length)
+        let l:isa_str = substitute(l:isa_str, '\c^rv\d\+[ie]\(\d\+\(p\d\+\)\=\)\=', "", "")
+    else
+        if exists("b:riscv_asm_" . tolower(a:isa_name))
+            exec "unlet b:riscv_asm_" . tolower(a:isa_name)
+        endif
+    endif
+    return l:isa_str
+endfunction
+
+function! s:add_general_isa(isa_str, isa_name)
+    let l:isa_str = a:isa_str
+
+    call add(b:riscv_asm_standard_isa, tolower(a:isa_name))
+    if a:isa_str =~ '\c^' . tolower(a:isa_name)
+        let l:extract_length = substitute(a:isa_str, '\c^rv\(\d\+\)\(g\).*', '\1', "")
+        let l:extract_base = substitute(a:isa_str, '\c^rv\(\d\+\)\(g\).*', '\2', "")
+        if exists("g:riscv_asm_debug")
+            echom "INFO: parse " . a:isa_name . " general purpose ISA"
+        endif
+        exec "let b:riscv_asm_" . tolower(a:isa_name) . " = 0"
+        let b:riscv_asm_xlen = str2nr(l:extract_length)
+        let l:isa_str = substitute(l:isa_str, '\c^rv\d\+g', "", "")
     else
         if exists("b:riscv_asm_" . tolower(a:isa_name))
             exec "unlet b:riscv_asm_" . tolower(a:isa_name)
@@ -163,12 +223,9 @@ endif
 " Set default value if setting of RISC-V ISA isn't found
 if !exists("s:riscv_asm_isa")
     let s:riscv_asm_isa = "rv64gc"
-    if exists("b:riscv_asm_xlen")
-        unlet b:riscv_asm_xlen
-    endif
 endif
 
-" If all extensions are enabled, skip the parser
+" Check whether all extensions should be enabled
 if exists("g:riscv_asm_all_enable")
     let b:riscv_asm_all_enable = 1
 else
@@ -211,202 +268,50 @@ else
     endif
 endif
 
-" Reset base ISA
-let b:riscv_asm_rv32e_max = 2.0
-let b:riscv_asm_rv32i_max = 2.1
-let b:riscv_asm_rv64e_max = 2.0
-let b:riscv_asm_rv64i_max = 2.1
-let b:riscv_asm_rv128i_max = 1.7
-if exists("b:riscv_asm_rv32e")
-    unlet b:riscv_asm_rv32e
-endif
-if exists("b:riscv_asm_rv32i")
-    unlet b:riscv_asm_rv32i
-endif
-if exists("b:riscv_asm_rv64e")
-    unlet b:riscv_asm_rv64e
-endif
-if exists("b:riscv_asm_rv64i")
-    unlet b:riscv_asm_rv64i
-endif
-if exists("b:riscv_asm_rv128i")
-    unlet b:riscv_asm_rv128i
-endif
+" Reset XLEN
+let b:riscv_asm_xlen = 0
 
 " Parse base ISA
-if s:riscv_asm_isa =~ '\c^rv\(32\|64\|128\)[ieg]'
-    let s:extract_length = substitute(s:riscv_asm_isa, '\c^rv\(\d\+\)\([ieg]\)\(\d\+\(p\d\+\)\=\)\=.*', '\1', "")
-    let s:extract_base = substitute(s:riscv_asm_isa, '\c^rv\(\d\+\)\([ieg]\)\(\d\+\(p\d\+\)\=\)\=.*', '\2', "")
-    let s:extract_version = substitute(s:riscv_asm_isa, '\c^rv\(\d\+\)\([ieg]\)\(\d\+\(p\d\+\)\=\)\=.*', '\3', "")
-    if s:extract_length == "32" && s:extract_base =~ '[Ee]'
-        if exists("g:riscv_asm_debug")
-            echom "INFO: parse RV32E base instruction set"
-        endif
-        if s:extract_version == ''
-            if exists("g:riscv_asm_debug")
-                echom "INFO: no version of RV32E base instruction set"
-            endif
-            let b:riscv_asm_rv32e = b:riscv_asm_rv32e_max
-        else
-            let s:extract_version = substitute(s:extract_version, 'p', '.', "")
-            let b:riscv_asm_rv32e = str2float(s:extract_version)
-            if b:riscv_asm_rv32e > b:riscv_asm_rv32e_max
-                if exists("g:riscv_asm_debug")
-                    echom 'WARN: version of RV32E base instruction set is overflow: ' . string(str2float(s:extract_version))
-                    echom 'INFO: version of RV32E base instruction set is set to: ' . string(b:riscv_asm_rv32e_max)
-                endif
-                let b:riscv_asm_rv32e = b:riscv_asm_rv32e_max
-            else
-                if exists("g:riscv_asm_debug")
-                    echom 'INFO: version of RV32E base instruction set is: ' . string(str2float(b:riscv_asm_rv32e))
-                endif
-            endif
-        endif
-        let b:riscv_asm_xlen = 32
-    elseif s:extract_length == "32" && s:extract_base =~ '[Ii]'
-        if exists("g:riscv_asm_debug")
-            echom "INFO: parse RV32I base instruction set"
-        endif
-        if s:extract_version == ''
-            if exists("g:riscv_asm_debug")
-                echom "INFO: no version of RV32I base instruction set"
-            endif
-            let b:riscv_asm_rv32i = b:riscv_asm_rv32i_max
-        else
-            let s:extract_version = substitute(s:extract_version, 'p', '.', "")
-            let b:riscv_asm_rv32i = str2float(s:extract_version)
-            if b:riscv_asm_rv32i > b:riscv_asm_rv32i_max
-                if exists("g:riscv_asm_debug")
-                    echom 'WARN: version of RV32I base instruction set is overflow: ' . string(str2float(s:extract_version))
-                    echom 'INFO: version of RV32I base instruction set is set to: ' . string(b:riscv_asm_rv32i_max)
-                endif
-                let b:riscv_asm_rv32i = b:riscv_asm_rv32i_max
-            else
-                if exists("g:riscv_asm_debug")
-                    echom 'INFO: version of RV32I base instruction set is: ' . string(str2float(b:riscv_asm_rv32i))
-                endif
-            endif
-        endif
-        let b:riscv_asm_xlen = 32
-    elseif s:extract_length == "32" && s:extract_base =~ '[Gg]' && s:extract_version == ''
-        if exists("g:riscv_asm_debug")
-            echom "INFO: parse RV32G general purpose ISA"
-        endif
-        let b:riscv_asm_xlen = 32
-    elseif s:extract_length == "64" && s:extract_base =~ '[Ee]'
-        if exists("g:riscv_asm_debug")
-            echom "INFO: parse RV64E base instruction set"
-        endif
-        if s:extract_version == ''
-            if exists("g:riscv_asm_debug")
-                echom "INFO: no version of RV64E base instruction set"
-            endif
-            let b:riscv_asm_rv64e = b:riscv_asm_rv64e_max
-        else
-            let s:extract_version = substitute(s:extract_version, 'p', '.', "")
-            let b:riscv_asm_rv64e = str2float(s:extract_version)
-            if b:riscv_asm_rv64e > b:riscv_asm_rv64e_max
-                if exists("g:riscv_asm_debug")
-                    echom 'WARN: version of RV64E base instruction set is overflow: ' . string(str2float(s:extract_version))
-                    echom 'INFO: version of RV64E base instruction set is set to: ' . string(b:riscv_asm_rv64e_max)
-                endif
-                let b:riscv_asm_rv64e = b:riscv_asm_rv64e_max
-            else
-                if exists("g:riscv_asm_debug")
-                    echom 'INFO: version of RV64E base instruction set is: ' . string(str2float(b:riscv_asm_rv64e))
-                endif
-            endif
-        endif
-        let b:riscv_asm_xlen = 64
-    elseif s:extract_length == "64" && s:extract_base =~ '[Ii]'
-        if exists("g:riscv_asm_debug")
-            echom "INFO: parse RV64I base instruction set"
-        endif
-        if s:extract_version == ''
-            if exists("g:riscv_asm_debug")
-                echom "INFO: no version of RV64I base instruction set"
-            endif
-            let b:riscv_asm_rv64i = b:riscv_asm_rv64i_max
-        else
-            let s:extract_version = substitute(s:extract_version, 'p', '.', "")
-            let b:riscv_asm_rv64i = str2float(s:extract_version)
-            if b:riscv_asm_rv64i > b:riscv_asm_rv64i_max
-                if exists("g:riscv_asm_debug")
-                    echom 'WARN: version of RV64I base instruction set is overflow: ' . string(str2float(s:extract_version))
-                    echom 'INFO: version of RV64I base instruction set is set to: ' . string(b:riscv_asm_rv64i_max)
-                endif
-                let b:riscv_asm_rv64i = b:riscv_asm_rv64i_max
-            else
-                if exists("g:riscv_asm_debug")
-                    echom 'INFO: version of RV64I base instruction set is: ' . string(str2float(b:riscv_asm_rv64i))
-                endif
-            endif
-        endif
-        let b:riscv_asm_xlen = 64
-    elseif s:extract_length == "64" && s:extract_base =~ '[Gg]' && s:extract_version == ''
-        if exists("g:riscv_asm_debug")
-            echom "INFO: parse RV64G general purpose ISA"
-        endif
-        let b:riscv_asm_xlen = 64
-    elseif s:extract_length == "128" && s:extract_base =~ '[Ii]'
-        if exists("g:riscv_asm_debug")
-            echom "INFO: parse RV128I base instruction set"
-        endif
-        if s:extract_version == ''
-            if exists("g:riscv_asm_debug")
-                echom "INFO: no version of RV128I base instruction set"
-            endif
-            let b:riscv_asm_rv128i = b:riscv_asm_rv128i_max
-        else
-            let s:extract_version = substitute(s:extract_version, 'p', '.', "")
-            let b:riscv_asm_rv128i = str2float(s:extract_version)
-            if b:riscv_asm_rv128i > b:riscv_asm_rv128i_max
-                if exists("g:riscv_asm_debug")
-                    echom 'WARN: version of RV128I base instruction set is overflow: ' . string(str2float(s:extract_version))
-                    echom 'INFO: version of RV128I base instruction set is set to: ' . string(b:riscv_asm_rv128i_max)
-                endif
-                let b:riscv_asm_rv128i = b:riscv_asm_rv128i_max
-            else
-                if exists("g:riscv_asm_debug")
-                    echom 'INFO: version of RV128I base instruction set is: ' . string(str2float(b:riscv_asm_rv128i))
-                endif
-            endif
-        endif
-        let b:riscv_asm_xlen = 128
-    endif
-    let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv\(32\|64\)[ie]\(\d\+\(p\d\+\)\=\)\=', "", "")
-    let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv128i\(\d\+\(p\d\+\)\=\)\=', "", "")
-    let s:riscv_asm_isa = substitute(s:riscv_asm_isa, '\c^rv\d\+', "", "")
-elseif s:riscv_asm_isa =~ '\c^rv[iabm]\d\d[su]\(32\|64\)'
-    " Parse profiles
-    let b:riscv_asm_xlen = 0
-    " RVI20U32
-    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVI20U32")
-    " RVI20U64
-    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVI20U64")
-    " RVA20U64
-    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA20U64")
-    " RVA20S64
-    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA20S64")
-    " RVA22U64
-    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA22U64")
-    " RVA22S64
-    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA22S64")
-    " RVA23U64
-    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA23U64")
-    " RVA23S64
-    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA23S64")
-    " RVB23U64
-    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVB23U64")
-    " RVB23S64
-    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVB23S64")
-    " RVM23U32
-    let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVM23U32")
-else
-    " Base ISA or profile isn't found, enable all extensions
-    let b:riscv_asm_xlen = 0
-    let b:riscv_asm_all_enable = 1
-endif
+" RV128I
+let s:riscv_asm_isa = s:add_base_isa(s:riscv_asm_isa, "RV128I", 1.7)
+" RV64I
+let s:riscv_asm_isa = s:add_base_isa(s:riscv_asm_isa, "RV64I", 2.1)
+" RV64E
+let s:riscv_asm_isa = s:add_base_isa(s:riscv_asm_isa, "RV64E", 2.0)
+" RV32I
+let s:riscv_asm_isa = s:add_base_isa(s:riscv_asm_isa, "RV32I", 2.1)
+" RV32E
+let s:riscv_asm_isa = s:add_base_isa(s:riscv_asm_isa, "RV32E", 2.0)
+
+" Parse general purpose ISA
+" RV64G
+let s:riscv_asm_isa = s:add_general_isa(s:riscv_asm_isa, "RV64G")
+" RV32G
+let s:riscv_asm_isa = s:add_general_isa(s:riscv_asm_isa, "RV32G")
+
+" Parse profiles
+" RVI20U32
+let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVI20U32")
+" RVI20U64
+let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVI20U64")
+" RVA20U64
+let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA20U64")
+" RVA20S64
+let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA20S64")
+" RVA22U64
+let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA22U64")
+" RVA22S64
+let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA22S64")
+" RVA23U64
+let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA23U64")
+" RVA23S64
+let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVA23S64")
+" RVB23U64
+let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVB23U64")
+" RVB23S64
+let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVB23S64")
+" RVM23U32
+let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVM23U32")
 
 " Parse extensions
 " The name should follow the sequence shown in README
@@ -696,12 +601,10 @@ if exists("b:riscv_asm_custom_isa")
     endfor
 endif
 
-if exists("b:riscv_asm_xlen")
-    " Unknown extensions or parser error
-    if s:riscv_asm_isa =~ '.\+' || b:riscv_asm_xlen == 0
-        let b:riscv_asm_all_enable = 1
-        echom "ERROR: Can't resolve remaining ISA string: " . s:riscv_asm_isa
-    endif
+" Unknown extensions or parser error
+if s:riscv_asm_isa =~ '.\+' || b:riscv_asm_xlen == 0
+    let b:riscv_asm_all_enable = 1
+    echom "ERROR: Can't resolve remaining ISA string: " . s:riscv_asm_isa
 endif
 
 " Override matchit configurations
