@@ -316,13 +316,13 @@ let s:riscv_asm_isa = s:add_profile(s:riscv_asm_isa, "RVM23U32")
 " Parse extensions
 " The name should follow the sequence shown in README
 " M Extension: Integer Multiplication and Division
-let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "M", 2.0)
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "M", 2.0, 0, !exists("b:riscv_asm_rv32g") && !exists("b:riscv_asm_rv64g"))
 " A Extension: Atomics
-let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "A", 2.1)
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "A", 2.1, 0, !exists("b:riscv_asm_rv32g") && !exists("b:riscv_asm_rv64g"))
 " F Extension: Single-Precision Floating-Point
-let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "F", 2.2)
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "F", 2.2, 0, !exists("b:riscv_asm_rv32g") && !exists("b:riscv_asm_rv64g"))
 " D Extension: Double-Precision Floating-Point
-let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "D", 2.2)
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "D", 2.2, 0, !exists("b:riscv_asm_rv32g") && !exists("b:riscv_asm_rv64g"))
 " G Extension: General
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "G", 0, !exists("b:riscv_asm_rv32e") && !exists("b:riscv_asm_rv64e"))
 " Q Extension: Quad-Precision Floating-Point
