@@ -531,6 +531,8 @@ let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Sscounterenw
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sscsrind", 1.0, 1)
 " Sspmp Extension: Supervisor Memory Protection Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sspmp", 0.8, 1)
+" Ssqosid Extension: Quality-of-Service Identifiers
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ssqosid", 1.0, 1)
 " Ssstateen Extension: Supervisor-Level State Enable Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ssstateen", 1.0, 1)
 " Sstc Extension: Supervisor-Level Timer Comparison Extension
