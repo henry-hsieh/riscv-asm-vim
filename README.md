@@ -302,6 +302,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Sspmp`                | Supervisor Memory Protection Extension                                                      | 0.8               |
 | `Ssqosid`              | Quality-of-Service Identifiers                                                              | 1.0               |
 | `Ssstateen`            | Supervisor-Level State Enable Extension                                                     | 1.0               |
+| `Ssstrict`             | No Non-Conforming Extensions Are Present                                                    | 1.0               |
 | `Sstc`                 | Supervisor-Level Timer Comparison Extension                                                 | 1.0               |
 | `Sstvala`              | Stval Provides All Needed Values                                                            |                   |
 | `Sstvecd`              | Stvec Supports Direct Mode                                                                  |                   |

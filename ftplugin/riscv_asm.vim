@@ -535,6 +535,8 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sspmp", 0.8, 1
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ssqosid", 1.0, 1)
 " Ssstateen Extension: Supervisor-Level State Enable Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ssstateen", 1.0, 1)
+" Ssstrict Extension: No Non-Conforming Extensions Are Present
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ssstrict", 1.0, 1)
 " Sstc Extension: Supervisor-Level Timer Comparison Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sstc", 1.0, 1)
 " Sstvala Extension: Stval Provides All Needed Values
