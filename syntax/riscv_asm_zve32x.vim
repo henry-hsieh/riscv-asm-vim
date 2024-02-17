@@ -25,16 +25,16 @@ syn keyword riscvVInstruction          vluxei8.v vloxei8.v vsuxei8.v vsoxei8.v
 syn keyword riscvVInstruction          vle8ff.v
 " Vector Load/Store Segment Instructions
 " Vector Unit-Stride Segment Loads and Stores
-syn keyword riscvVInstruction          vlseg1e8.v vlseg2e8.v vlseg3e8.v vlseg4e8.v vlseg5e8.v vlseg6e8.v vlseg7e8.v vlseg8e8.v
-syn keyword riscvVInstruction          vsseg1e8.v vsseg2e8.v vsseg3e8.v vsseg4e8.v vsseg5e8.v vsseg6e8.v vsseg7e8.v vsseg8e8.v
+syn keyword riscvVInstruction          vlseg2e8.v vlseg3e8.v vlseg4e8.v vlseg5e8.v vlseg6e8.v vlseg7e8.v vlseg8e8.v
+syn keyword riscvVInstruction          vsseg2e8.v vsseg3e8.v vsseg4e8.v vsseg5e8.v vsseg6e8.v vsseg7e8.v vsseg8e8.v
 " Vector Strided Segment Loads and Stores
-syn keyword riscvVInstruction          vlsseg1e8.v vlsseg2e8.v vlsseg3e8.v vlsseg4e8.v vlsseg5e8.v vlsseg6e8.v vlsseg7e8.v vlsseg8e8.v
-syn keyword riscvVInstruction          vssseg1e8.v vssseg2e8.v vssseg3e8.v vssseg4e8.v vssseg5e8.v vssseg6e8.v vssseg7e8.v vssseg8e8.v
+syn keyword riscvVInstruction          vlsseg2e8.v vlsseg3e8.v vlsseg4e8.v vlsseg5e8.v vlsseg6e8.v vlsseg7e8.v vlsseg8e8.v
+syn keyword riscvVInstruction          vssseg2e8.v vssseg3e8.v vssseg4e8.v vssseg5e8.v vssseg6e8.v vssseg7e8.v vssseg8e8.v
 " Vector Indexed Segment Loads and Stores
-syn keyword riscvVInstruction          vluxseg1e8.v vluxseg2e8.v vluxseg3e8.v vluxseg4e8.v vluxseg5e8.v vluxseg6e8.v vluxseg7e8.v vluxseg8e8.v
-syn keyword riscvVInstruction          vloxseg1e8.v vloxseg2e8.v vloxseg3e8.v vloxseg4e8.v vloxseg5e8.v vloxseg6e8.v vloxseg7e8.v vloxseg8e8.v
-syn keyword riscvVInstruction          vsuxseg1e8.v vsuxseg2e8.v vsuxseg3e8.v vsuxseg4e8.v vsuxseg5e8.v vsuxseg6e8.v vsuxseg7e8.v vsuxseg8e8.v
-syn keyword riscvVInstruction          vsoxseg1e8.v vsoxseg2e8.v vsoxseg3e8.v vsoxseg4e8.v vsoxseg5e8.v vsoxseg6e8.v vsoxseg7e8.v vsoxseg8e8.v
+syn keyword riscvVInstruction          vluxseg2e8.v vluxseg3e8.v vluxseg4e8.v vluxseg5e8.v vluxseg6e8.v vluxseg7e8.v vluxseg8e8.v
+syn keyword riscvVInstruction          vloxseg2e8.v vloxseg3e8.v vloxseg4e8.v vloxseg5e8.v vloxseg6e8.v vloxseg7e8.v vloxseg8e8.v
+syn keyword riscvVInstruction          vsuxseg2e8.v vsuxseg3e8.v vsuxseg4e8.v vsuxseg5e8.v vsuxseg6e8.v vsuxseg7e8.v vsuxseg8e8.v
+syn keyword riscvVInstruction          vsoxseg2e8.v vsoxseg3e8.v vsoxseg4e8.v vsoxseg5e8.v vsoxseg6e8.v vsoxseg7e8.v vsoxseg8e8.v
 " Vector Load Whole Register Instructions
 syn keyword riscvVInstruction          vl1re8.v vl2re8.v vl4re8.v vl8re8.v
 " Vector Unit-Stride Instructions
@@ -47,16 +47,16 @@ syn keyword riscvVInstruction          vluxei16.v vloxei16.v vsuxei16.v vsoxei16
 syn keyword riscvVInstruction          vle16ff.v
 " Vector Load/Store Segment Instructions
 " Vector Unit-Stride Segment Loads and Stores
-syn keyword riscvVInstruction          vlseg1e16.v vlseg2e16.v vlseg3e16.v vlseg4e16.v vlseg5e16.v vlseg6e16.v vlseg7e16.v vlseg8e16.v
-syn keyword riscvVInstruction          vsseg1e16.v vsseg2e16.v vsseg3e16.v vsseg4e16.v vsseg5e16.v vsseg6e16.v vsseg7e16.v vsseg8e16.v
+syn keyword riscvVInstruction          vlseg2e16.v vlseg3e16.v vlseg4e16.v vlseg5e16.v vlseg6e16.v vlseg7e16.v vlseg8e16.v
+syn keyword riscvVInstruction          vsseg2e16.v vsseg3e16.v vsseg4e16.v vsseg5e16.v vsseg6e16.v vsseg7e16.v vsseg8e16.v
 " Vector Strided Segment Loads and Stores
-syn keyword riscvVInstruction          vlsseg1e16.v vlsseg2e16.v vlsseg3e16.v vlsseg4e16.v vlsseg5e16.v vlsseg6e16.v vlsseg7e16.v vlsseg8e16.v
-syn keyword riscvVInstruction          vssseg1e16.v vssseg2e16.v vssseg3e16.v vssseg4e16.v vssseg5e16.v vssseg6e16.v vssseg7e16.v vssseg8e16.v
+syn keyword riscvVInstruction          vlsseg2e16.v vlsseg3e16.v vlsseg4e16.v vlsseg5e16.v vlsseg6e16.v vlsseg7e16.v vlsseg8e16.v
+syn keyword riscvVInstruction          vssseg2e16.v vssseg3e16.v vssseg4e16.v vssseg5e16.v vssseg6e16.v vssseg7e16.v vssseg8e16.v
 " Vector Indexed Segment Loads and Stores
-syn keyword riscvVInstruction          vluxseg1e16.v vluxseg2e16.v vluxseg3e16.v vluxseg4e16.v vluxseg5e16.v vluxseg6e16.v vluxseg7e16.v vluxseg8e16.v
-syn keyword riscvVInstruction          vloxseg1e16.v vloxseg2e16.v vloxseg3e16.v vloxseg4e16.v vloxseg5e16.v vloxseg6e16.v vloxseg7e16.v vloxseg8e16.v
-syn keyword riscvVInstruction          vsuxseg1e16.v vsuxseg2e16.v vsuxseg3e16.v vsuxseg4e16.v vsuxseg5e16.v vsuxseg6e16.v vsuxseg7e16.v vsuxseg8e16.v
-syn keyword riscvVInstruction          vsoxseg1e16.v vsoxseg2e16.v vsoxseg3e16.v vsoxseg4e16.v vsoxseg5e16.v vsoxseg6e16.v vsoxseg7e16.v vsoxseg8e16.v
+syn keyword riscvVInstruction          vluxseg2e16.v vluxseg3e16.v vluxseg4e16.v vluxseg5e16.v vluxseg6e16.v vluxseg7e16.v vluxseg8e16.v
+syn keyword riscvVInstruction          vloxseg2e16.v vloxseg3e16.v vloxseg4e16.v vloxseg5e16.v vloxseg6e16.v vloxseg7e16.v vloxseg8e16.v
+syn keyword riscvVInstruction          vsuxseg2e16.v vsuxseg3e16.v vsuxseg4e16.v vsuxseg5e16.v vsuxseg6e16.v vsuxseg7e16.v vsuxseg8e16.v
+syn keyword riscvVInstruction          vsoxseg2e16.v vsoxseg3e16.v vsoxseg4e16.v vsoxseg5e16.v vsoxseg6e16.v vsoxseg7e16.v vsoxseg8e16.v
 " Vector Load Whole Register Instructions
 syn keyword riscvVInstruction          vl1re16.v vl2re16.v vl4re16.v vl8re16.v
 " Vector Unit-Stride Instructions
@@ -69,16 +69,16 @@ syn keyword riscvVInstruction          vluxei32.v vloxei32.v vsuxei32.v vsoxei32
 syn keyword riscvVInstruction          vle32ff.v
 " Vector Load/Store Segment Instructions
 " Vector Unit-Stride Segment Loads and Stores
-syn keyword riscvVInstruction          vlseg1e32.v vlseg2e32.v vlseg3e32.v vlseg4e32.v vlseg5e32.v vlseg6e32.v vlseg7e32.v vlseg8e32.v
-syn keyword riscvVInstruction          vsseg1e32.v vsseg2e32.v vsseg3e32.v vsseg4e32.v vsseg5e32.v vsseg6e32.v vsseg7e32.v vsseg8e32.v
+syn keyword riscvVInstruction          vlseg2e32.v vlseg3e32.v vlseg4e32.v vlseg5e32.v vlseg6e32.v vlseg7e32.v vlseg8e32.v
+syn keyword riscvVInstruction          vsseg2e32.v vsseg3e32.v vsseg4e32.v vsseg5e32.v vsseg6e32.v vsseg7e32.v vsseg8e32.v
 " Vector Strided Segment Loads and Stores
-syn keyword riscvVInstruction          vlsseg1e32.v vlsseg2e32.v vlsseg3e32.v vlsseg4e32.v vlsseg5e32.v vlsseg6e32.v vlsseg7e32.v vlsseg8e32.v
-syn keyword riscvVInstruction          vssseg1e32.v vssseg2e32.v vssseg3e32.v vssseg4e32.v vssseg5e32.v vssseg6e32.v vssseg7e32.v vssseg8e32.v
+syn keyword riscvVInstruction          vlsseg2e32.v vlsseg3e32.v vlsseg4e32.v vlsseg5e32.v vlsseg6e32.v vlsseg7e32.v vlsseg8e32.v
+syn keyword riscvVInstruction          vssseg2e32.v vssseg3e32.v vssseg4e32.v vssseg5e32.v vssseg6e32.v vssseg7e32.v vssseg8e32.v
 " Vector Indexed Segment Loads and Stores
-syn keyword riscvVInstruction          vluxseg1e32.v vluxseg2e32.v vluxseg3e32.v vluxseg4e32.v vluxseg5e32.v vluxseg6e32.v vluxseg7e32.v vluxseg8e32.v
-syn keyword riscvVInstruction          vloxseg1e32.v vloxseg2e32.v vloxseg3e32.v vloxseg4e32.v vloxseg5e32.v vloxseg6e32.v vloxseg7e32.v vloxseg8e32.v
-syn keyword riscvVInstruction          vsuxseg1e32.v vsuxseg2e32.v vsuxseg3e32.v vsuxseg4e32.v vsuxseg5e32.v vsuxseg6e32.v vsuxseg7e32.v vsuxseg8e32.v
-syn keyword riscvVInstruction          vsoxseg1e32.v vsoxseg2e32.v vsoxseg3e32.v vsoxseg4e32.v vsoxseg5e32.v vsoxseg6e32.v vsoxseg7e32.v vsoxseg8e32.v
+syn keyword riscvVInstruction          vluxseg2e32.v vluxseg3e32.v vluxseg4e32.v vluxseg5e32.v vluxseg6e32.v vluxseg7e32.v vluxseg8e32.v
+syn keyword riscvVInstruction          vloxseg2e32.v vloxseg3e32.v vloxseg4e32.v vloxseg5e32.v vloxseg6e32.v vloxseg7e32.v vloxseg8e32.v
+syn keyword riscvVInstruction          vsuxseg2e32.v vsuxseg3e32.v vsuxseg4e32.v vsuxseg5e32.v vsuxseg6e32.v vsuxseg7e32.v vsuxseg8e32.v
+syn keyword riscvVInstruction          vsoxseg2e32.v vsoxseg3e32.v vsoxseg4e32.v vsoxseg5e32.v vsoxseg6e32.v vsoxseg7e32.v vsoxseg8e32.v
 " Vector Load Whole Register Instructions
 syn keyword riscvVInstruction          vl1re32.v vl2re32.v vl4re32.v vl8re32.v
 " Vector Unit-Stride Mask Instructions
