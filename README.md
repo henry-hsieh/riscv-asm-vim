@@ -84,6 +84,7 @@ use {
 {
   "henry-hsieh/riscv-asm-vim",
   ft = { "riscv_asm" },
+  event = {"BufNewFile", "BufReadPost"},
 }
 ```
 
