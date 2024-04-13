@@ -14,7 +14,7 @@ setlocal indentkeys+==include,=pragma,=error,=warning,=line,=define,=undef
 setlocal indentkeys+==if,=else,=elif,=endif
 
 " Undo the plugin effect
-let b:undo_indent = "setlocal indentexpr< indentkeys<"
+let b:undo_indent = "setlocal indentexpr< indentkeys< | delfunction GetRiscvIndent"
 
 let s:cpo_save = &cpo
 set cpo&vim
