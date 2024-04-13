@@ -2,7 +2,7 @@ if exists("b:riscv_asm_defined_rv32i")
     finish
 endif
 
-runtime! syntax/riscv_asm_rv32e.vim
+runtime! syntax/riscv_asm/riscv_asm_rv32e.vim
 " General Purpose Register
 syn keyword riscvGPRegister            x16 x17 x18 x19 x20 x21 x22 x23 x24 x25 x26 x27 x28 x29 x30 x31
 syn keyword riscvGPRegister            a4 a5 a6 a7

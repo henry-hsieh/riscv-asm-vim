@@ -2,7 +2,7 @@ if exists("b:riscv_asm_defined_zhinx")
     finish
 endif
 
-runtime! syntax/riscv_asm_zhinxmin.vim
+runtime! syntax/riscv_asm/riscv_asm_zhinxmin.vim
 " Instructions
 " R4-type
 syn keyword riscvFInstruction          fmadd.h fmsub.h fnmsub.h fnmadd.h

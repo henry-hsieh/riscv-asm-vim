@@ -15,12 +15,12 @@ syn keyword riscvCInstruction          c.fswsp
 if !exists("b:riscv_asm_zca")
     let b:riscv_asm_zca = b:riscv_asm_zca_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_zca"
-    runtime! syntax/riscv_asm_zca.vim
+    runtime! syntax/riscv_asm/riscv_asm_zca.vim
 endif
 if !exists("b:riscv_asm_f")
     let b:riscv_asm_f = b:riscv_asm_f_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_f"
-    runtime! syntax/riscv_asm_f.vim
+    runtime! syntax/riscv_asm/riscv_asm_f.vim
 endif
 
 let b:riscv_asm_defined_zcf = 0

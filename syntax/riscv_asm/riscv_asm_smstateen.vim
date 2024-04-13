@@ -12,12 +12,12 @@ endif
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_ss") && !exists("b:riscv_asm_ssstateen")
     let b:riscv_asm_ssstateen = b:riscv_asm_ssstateen_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_ssstateen"
-    runtime! syntax/riscv_asm_ssstateen.vim
+    runtime! syntax/riscv_asm/riscv_asm_ssstateen.vim
 endif
 if !exists("b:riscv_asm_sm")
     let b:riscv_asm_sm = b:riscv_asm_sm_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_sm"
-    runtime! syntax/riscv_asm_sm.vim
+    runtime! syntax/riscv_asm/riscv_asm_sm.vim
 endif
 
 let b:riscv_asm_defined_smstateen = 0

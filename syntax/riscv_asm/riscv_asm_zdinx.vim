@@ -28,7 +28,7 @@ syn keyword riscvDInstruction          fmv.d fabs.d fneg.d
 if !exists("b:riscv_asm_zfinx")
     let b:riscv_asm_zfinx = b:riscv_asm_zfinx_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_zfinx"
-    runtime! syntax/riscv_asm_zfinx.vim
+    runtime! syntax/riscv_asm/riscv_asm_zfinx.vim
 endif
 
 let b:riscv_asm_defined_zdinx = 0

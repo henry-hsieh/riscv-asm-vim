@@ -11,7 +11,7 @@ endif
 if !exists("b:riscv_asm_zmmul")
     let b:riscv_asm_zmmul = b:riscv_asm_zmmul_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_zmmul"
-    runtime! syntax/riscv_asm_zmmul.vim
+    runtime! syntax/riscv_asm/riscv_asm_zmmul.vim
 endif
 
 let b:riscv_asm_defined_m = 0

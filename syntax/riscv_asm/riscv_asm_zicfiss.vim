@@ -16,17 +16,17 @@ endif
 if !exists("b:riscv_asm_zicsr")
     let b:riscv_asm_zicsr = b:riscv_asm_zicsr_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_zicsr"
-    runtime! syntax/riscv_asm_zicsr.vim
+    runtime! syntax/riscv_asm/riscv_asm_zicsr.vim
 endif
 if !exists("b:riscv_asm_zimop")
     let b:riscv_asm_zimop = b:riscv_asm_zimop_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_zimop"
-    runtime! syntax/riscv_asm_zimop.vim
+    runtime! syntax/riscv_asm/riscv_asm_zimop.vim
 endif
 if !exists("b:riscv_asm_zcmop")
     let b:riscv_asm_zcmop = b:riscv_asm_zcmop_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_zcmop"
-    runtime! syntax/riscv_asm_zcmop.vim
+    runtime! syntax/riscv_asm/riscv_asm_zcmop.vim
 endif
 
 let b:riscv_asm_defined_zicfiss = 0

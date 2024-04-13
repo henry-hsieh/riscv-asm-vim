@@ -15,7 +15,7 @@ syn keyword riscvVInstruction          vwsll.vv vwsll.vx vwsll.vi
 if !exists("b:riscv_asm_zvkb")
     let b:riscv_asm_zvkb = b:riscv_asm_zvkb_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_zvkb"
-    runtime! syntax/riscv_asm_zvkb.vim
+    runtime! syntax/riscv_asm/riscv_asm_zvkb.vim
 endif
 
 let b:riscv_asm_defined_zvbb = 0

@@ -3,9 +3,9 @@ if exists("b:riscv_asm_defined_g")
 endif
 
 if b:riscv_asm_xlen == 32
-    runtime! syntax/riscv_asm_rv32g.vim
+    runtime! syntax/riscv_asm/riscv_asm_rv32g.vim
 elseif b:riscv_asm_xlen == 64
-    runtime! syntax/riscv_asm_rv64g.vim
+    runtime! syntax/riscv_asm/riscv_asm_rv64g.vim
 endif
 
 let b:riscv_asm_defined_g = 0

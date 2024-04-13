@@ -9,7 +9,7 @@ syn keyword riscvCInstruction          c.mop.1 c.mop.3 c.mop.5 c.mop.7 c.mop.9 c
 if !exists("b:riscv_asm_zca")
     let b:riscv_asm_zca = b:riscv_asm_zca_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_zca"
-    runtime! syntax/riscv_asm_zca.vim
+    runtime! syntax/riscv_asm/riscv_asm_zca.vim
 endif
 
 let b:riscv_asm_defined_zcmop = 0

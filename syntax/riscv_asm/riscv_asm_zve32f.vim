@@ -100,12 +100,12 @@ syn keyword riscvVInstruction          vmfge.vv
 if !exists("b:riscv_asm_f")
     let b:riscv_asm_f = b:riscv_asm_f_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_f"
-    runtime! syntax/riscv_asm_f.vim
+    runtime! syntax/riscv_asm/riscv_asm_f.vim
 endif
 if !exists("b:riscv_asm_zve32x")
     let b:riscv_asm_zve32x = b:riscv_asm_zve32x_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_zve32x"
-    runtime! syntax/riscv_asm_zve32x.vim
+    runtime! syntax/riscv_asm/riscv_asm_zve32x.vim
 endif
 
 let b:riscv_asm_defined_zve32f = 0

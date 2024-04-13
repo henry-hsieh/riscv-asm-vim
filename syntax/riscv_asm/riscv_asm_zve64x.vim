@@ -29,7 +29,7 @@ syn keyword riscvVInstruction          vl1re64.v vl2re64.v vl4re64.v vl8re64.v
 if !exists("b:riscv_asm_zve32x")
     let b:riscv_asm_zve32x = b:riscv_asm_zve32x_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_zve32x"
-    runtime! syntax/riscv_asm_zve32x.vim
+    runtime! syntax/riscv_asm/riscv_asm_zve32x.vim
 endif
 
 let b:riscv_asm_defined_zve64x = 0
