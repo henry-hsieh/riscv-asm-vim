@@ -92,7 +92,7 @@ syn cluster riscvDirectiveGroup        contains=riscvDirective,riscvDirectiveErr
 for isa_name in b:riscv_asm_standard_isa
     exec 'let isa_enable = exists("b:riscv_asm_' . isa_name . '")'
     if exists("b:riscv_asm_all_enable") || isa_enable
-        exec 'runtime! syntax/riscv_asm_' . isa_name . '.vim'
+        exec 'runtime! syntax/riscv_asm/riscv_asm_' . isa_name . '.vim'
     endif
 endfor
 
@@ -163,10 +163,9 @@ endif
 for isa_name in b:riscv_asm_standard_isa
     exec 'let isa_defined = exists("b:riscv_asm_defined_' . isa_name . '")'
     if isa_defined
-        exec 'unlet b:riscv_asm_defined_' . isa_name
+        let b:undo_ftplugin .= "| unlet! b:riscv_asm_defined_" . isa_name
     endif
 endfor
-unlet b:riscv_asm_standard_isa
 
 " Functions
 syn match riscvFunction                "%\(hi\|lo\|pcrel_hi\|pcrel_lo\|tprel_hi\|tprel_lo\|tprel_add\|tls_ie_pcrel_hi\|tls_gd_pcrel_hi\|got_pcrel_hi\)\>"

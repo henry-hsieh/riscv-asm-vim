@@ -2,5 +2,5 @@
 " Language: RISC-V Assembly
 "
 
-autocmd BufNewFile,BufReadPost *.S set filetype=riscv_asm
-autocmd BufNewFile,BufReadPost *.s set filetype=riscv_asm
+autocmd BufNewFile,BufRead *.S setfiletype riscv_asm
+autocmd BufNewFile,BufRead *.s setfiletype riscv_asm

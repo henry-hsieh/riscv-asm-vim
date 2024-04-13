@@ -1,6 +1,13 @@
 " Vim filetype plugin file
 " Language:	RISC-V Assembly
-"
+
+" Only do this when not done yet for this buffer
+if exists("b:did_ftplugin")
+  finish
+endif
+
+" Don't load another plugin for this buffer
+let b:did_ftplugin = 1
 
 " Define include string
 setlocal include=^\s*#\s*include
@@ -8,6 +15,9 @@ setlocal include=^\s*#\s*include
 " Store cpoptions
 let oldcpo=&cpoptions
 set cpo-=C
+
+" Undo the plugin effect
+let b:undo_ftplugin = "setlocal fo< com< tw< include<"
 
 " Set 'formatoptions' to break comment lines but not other lines,
 " and insert the comment leader when hitting <CR> or using "o".
@@ -18,6 +28,7 @@ setlocal comments=s1:/*,mb:*,ex:*/,://,b:#
 
 function! s:add_versioned_extension(isa_str, isa_name, max_version, dlm_expected = 0, special_cond = 1)
     exec "let b:riscv_asm_" . tolower(a:isa_name) . "_max = " . string(a:max_version)
+    let b:undo_ftplugin .= "| unlet! b:riscv_asm_" . tolower(a:isa_name) . "_max"
     let l:isa_str = a:isa_str
     if a:dlm_expected
         let l:dlm = '\(_\|$\)'
@@ -54,6 +65,7 @@ function! s:add_versioned_extension(isa_str, isa_name, max_version, dlm_expected
                 endif
             endif
         endif
+        let b:undo_ftplugin .= " b:riscv_asm_" . tolower(a:isa_name)
         let l:isa_str = substitute(a:isa_str, '\c^\(_\=' . tolower(a:isa_name) . '\(\d\+\(p\d\+\)\=\)\=\)\+', "", "")
     else
         if exists("b:riscv_asm_" . tolower(a:isa_name))
@@ -79,6 +91,7 @@ function! s:add_unversioned_extension(isa_str, isa_name, dlm_expected = 0, speci
             echom "INFO: parse " . a:isa_name . " extension"
         endif
         exec "let b:riscv_asm_" . tolower(a:isa_name) . " = 0"
+        let b:undo_ftplugin .= "| unlet! b:riscv_asm_" . tolower(a:isa_name)
         let l:isa_str = substitute(a:isa_str, '\c^\(_\=' . tolower(a:isa_name) . '\)\+', "", "")
     else
         if exists("b:riscv_asm_" . tolower(a:isa_name))
@@ -98,6 +111,7 @@ function! s:add_profile(isa_str, isa_name)
             echom "INFO: parse " . a:isa_name . " profile"
         endif
         exec "let b:riscv_asm_" . tolower(a:isa_name) . " = 0"
+        let b:undo_ftplugin .= "| unlet! b:riscv_asm_" . tolower(a:isa_name)
         let b:riscv_asm_xlen = str2nr(l:extract_length)
         let l:isa_str = substitute(a:isa_str, '\c^' . tolower(a:isa_name), "", "")
     else
@@ -111,6 +125,7 @@ endfunction
 function! s:add_base_isa(isa_str, isa_name, max_version)
     let l:isa_str = a:isa_str
     exec "let b:riscv_asm_" . tolower(a:isa_name) . "_max = " . string(a:max_version)
+    let b:undo_ftplugin .= "| unlet! b:riscv_asm_" . tolower(a:isa_name) . "_max"
 
     call add(b:riscv_asm_standard_isa, tolower(a:isa_name))
     if a:isa_str =~ '\c^' . tolower(a:isa_name) . '\(\d\+\(p\d\+\)\=\)\='
@@ -141,6 +156,7 @@ function! s:add_base_isa(isa_str, isa_name, max_version)
                 endif
             endif
         endif
+        let b:undo_ftplugin .= " b:riscv_asm_" . tolower(a:isa_name)
         let b:riscv_asm_xlen = str2nr(l:extract_length)
         let l:isa_str = substitute(l:isa_str, '\c^rv\d\+[ie]\(\d\+\(p\d\+\)\=\)\=', "", "")
     else
@@ -162,6 +178,7 @@ function! s:add_general_isa(isa_str, isa_name)
             echom "INFO: parse " . a:isa_name . " general purpose ISA"
         endif
         exec "let b:riscv_asm_" . tolower(a:isa_name) . " = 0"
+        let b:undo_ftplugin .= "| unlet! b:riscv_asm_" . tolower(a:isa_name)
         let b:riscv_asm_xlen = str2nr(l:extract_length)
         let l:isa_str = substitute(l:isa_str, '\c^rv\d\+g', "", "")
     else
@@ -228,6 +245,7 @@ endif
 " Check whether all extensions should be enabled
 if exists("g:riscv_asm_all_enable")
     let b:riscv_asm_all_enable = 1
+    let b:undo_ftplugin .= "| unlet! b:riscv_asm_all_enable"
 else
     if exists("b:riscv_asm_all_enable")
         unlet b:riscv_asm_all_enable
@@ -236,6 +254,7 @@ endif
 
 " Initial list of supported standard ISAs
 let b:riscv_asm_standard_isa = []
+let b:undo_ftplugin .= "| unlet! b:riscv_asm_standard_isa"
 
 " Filter and sort valid custom extensions
 if exists("g:riscv_asm_custom_isa")
@@ -256,6 +275,7 @@ if exists("g:riscv_asm_custom_isa")
         endif
         unlet s:riscv_asm_custom_unnamed
         unlet s:riscv_asm_custom_not_x
+        let b:undo_ftplugin .= "| unlet! b:riscv_asm_custom_isa"
     else
         echom "WARN: g:riscv_asm_custom_isa is not a list of dictionaries"
         if exists("b:riscv_asm_custom_isa")
@@ -270,6 +290,7 @@ endif
 
 " Reset XLEN
 let b:riscv_asm_xlen = 0
+let b:undo_ftplugin .= "| unlet! b:riscv_asm_xlen"
 
 " Parse base ISA
 " RV128I
@@ -606,8 +627,9 @@ if exists("b:riscv_asm_custom_isa")
 endif
 
 " Unknown extensions or parser error
-if s:riscv_asm_isa =~ '.\+' || b:riscv_asm_xlen == 0
+if (s:riscv_asm_isa =~ '.\+' || b:riscv_asm_xlen == 0) && !exists(b:riscv_asm_all_enable)
     let b:riscv_asm_all_enable = 1
+    let b:undo_ftplugin .= "| unlet! b:riscv_asm_all_enable"
     echom "ERROR: Can't resolve remaining ISA string: " . s:riscv_asm_isa
 endif
 
@@ -625,6 +647,7 @@ if exists("loaded_matchit")
     \ '\<.\(irpc\=\|rept\)\>:\<.endr\>,' .
     \ '\<.pushsection\>:\<.popsection\>,' .
     \ '\<.if\(\(n\(ot\)\=\)\=def\|n\=b\|n\=c\|eqs\=\|ge\|gt\|le\|lt\|nes\=\)\=\>:\<.elseif\>:\<.else\>:\<.endif\>,'
+  let b:undo_ftplugin = b:undo_ftplugin . "| unlet! b:match_ignorecase b:match_words"
 endif
 
 " Restore cpoptions
