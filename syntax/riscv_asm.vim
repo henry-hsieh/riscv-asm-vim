@@ -7,6 +7,7 @@ if exists("b:current_syntax")
 endif
 
 setlocal iskeyword+=48-57,192-255,_,$,.
+let b:undo_ftplugin .= "| setlocal iskeyword<"
 
 syn case    ignore
 " Number
@@ -164,6 +165,7 @@ for isa_name in b:riscv_asm_standard_isa
     exec 'let isa_defined = exists("b:riscv_asm_defined_' . isa_name . '")'
     if isa_defined
         let b:undo_ftplugin .= "| unlet! b:riscv_asm_defined_" . isa_name
+        exec 'unlet! b:riscv_asm_defined_' . isa_name
     endif
 endfor
 
