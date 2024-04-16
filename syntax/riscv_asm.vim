@@ -93,7 +93,7 @@ syn cluster riscvDirectiveGroup        contains=riscvDirective,riscvDirectiveErr
 for isa_name in b:riscv_asm_standard_isa
     exec 'let isa_enable = exists("b:riscv_asm_' . isa_name . '")'
     if exists("b:riscv_asm_all_enable") || isa_enable
-        exec 'runtime! syntax/riscv_asm/riscv_asm_' . isa_name . '.vim'
+        exec 'runtime! syntax/riscv-isas/riscv_asm_' . isa_name . '.vim'
     endif
 endfor
 
