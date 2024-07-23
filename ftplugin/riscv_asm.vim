@@ -402,8 +402,6 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zabha", 1.0, 1
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zacas", 1.0, 1)
 " Zawrs Extension: Wait-On-Reservation-Set Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zawrs", 1.0, 1)
-" Zam Extension: Misaligned Atomic
-let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zam", 0.1, 1)
 " Zfa Extension: Additional Floating-Point Instructions
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zfa", 1.0, 1)
 " Zfbfmin Extension: Scalar BF16 Converts

@@ -220,7 +220,6 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Zabha`                | Byte and Halfword Atomic Memory Operations                                                  | 1.0               |
 | `Zacas`                | Atomic Compare-and-Swap Instructions                                                        | 1.0               |
 | `Zawrs`                | Wait-On-Reservation-Set Extension                                                           | 1.0               |
-| `Zam`                  | Misaligned Atomic                                                                           | 0.1               |
 | `Zfa`                  | Additional Floating-Point Instructions                                                      | 1.0               |
 | `Zfbfmin`              | Scalar BF16 Converts                                                                        | 1.0               |
 | `Zfh`                  | Half-Precision Floating-Point                                                               | 1.0               |
