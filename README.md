@@ -204,8 +204,8 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Ziccif`               | Main Memory Supports Instruction Fetch With Atomicity Requirement                           |                   |
 | `Zicclsm`              | Main Memory Supports Misaligned Loads/Stores                                                |                   |
 | `Ziccrse`              | Main Memory Supports Forward Progress on LR/SC Sequences                                    |                   |
-| `Zicfilp`              | Landing Pad                                                                                 | 0.4               |
-| `Zicfiss`              | Shadow Stack                                                                                | 0.4               |
+| `Zicfilp`              | Landing Pad                                                                                 | 1.0               |
+| `Zicfiss`              | Shadow Stack                                                                                | 1.0               |
 | `Zicntr`               | Base Counters and Timers                                                                    | 2.0               |
 | `Zicond`               | Integer Conditional Operations Extension                                                    | 1.0               |
 | `Zicsr`                | Control and Status Register Access                                                          | 2.0               |
@@ -213,7 +213,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Zihintntl`            | Non-Temporal Locality Hints                                                                 | 1.0               |
 | `Zihintpause`          | Pause Hint                                                                                  | 2.0               |
 | `Zihpm`                | Hardware Performance Counters                                                               | 2.0               |
-| `Zimop`                | May-Be-Operations Extension                                                                 | 0.1               |
+| `Zimop`                | May-Be-Operations Extension                                                                 | 1.0               |
 | `Zmmul`                | Multiplication Without Division                                                             | 1.0               |
 | `Za128rs`              | Reservation Set Size of 128 Bytes                                                           |                   |
 | `Za64rs`               | Reservation Set Size of 64 Bytes                                                            |                   |
@@ -234,7 +234,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Zcd`                  | Compressed Double-Precision Floating-Point Load/Stores Instructions                         | 1.0               |
 | `Zce`                  | Compressed Instructions for Microcontrollers                                                | 1.0               |
 | `Zcf`                  | Compressed Single-Precision Floating-Point Load/Stores Instructions                         | 1.0               |
-| `Zcmop`                | Compressed May-Be-Operations Extension                                                      | 0.2               |
+| `Zcmop`                | Compressed May-Be-Operations Extension                                                      | 1.0               |
 | `Zcmp`                 | Push/Pop and Double Move Instructions                                                       | 1.0               |
 | `Zcmt`                 | Table Jump Instructions                                                                     | 1.0               |
 | `Zba`                  | Address Generation Instructions                                                             | 1.0               |

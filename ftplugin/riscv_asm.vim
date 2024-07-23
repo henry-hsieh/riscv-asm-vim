@@ -371,9 +371,9 @@ let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Zicclsm", 1)
 " Ziccrse Extension: Main Memory Supports Forward Progress on LR/SC Sequences
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Ziccrse", 1)
 " Zicfilp Extension: Landing Pad
-let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zicfilp", 0.4, 1)
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zicfilp", 1.0, 1)
 " Zicfiss Extension: Shadow Stack
-let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zicfiss", 0.4, 1)
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zicfiss", 1.0, 1)
 " Zicntr Extension: Base Counters and Timers
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zicntr", 2.0, 1)
 " Zicond Extension:  Integer Conditional Operations Extension
@@ -389,7 +389,7 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zihintpause", 
 " Zihpm Extension: Hardware Performance Counters
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zihpm", 2.0, 1)
 " Zimop Extension: May-Be-Operations Extension
-let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zimop", 0.1, 1)
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zimop", 1.0, 1)
 " Zmmul Extension: Multiplication Without Division
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zmmul", 1.0, 1)
 " Za128rs Extension: Reservation Set Size of 128 Bytes
@@ -431,7 +431,7 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zce", 1.0, 1, 
 " Zcf Extension: Compressed Single-Precision Floating-Point Load/Stores Instructions
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zcf", 1.0, 1, b:riscv_asm_xlen == 32 && !exists("b:riscv_asm_zfinx") && !exists("b:riscv_asm_zdinx") && !exists("b:riscv_asm_zhinx") && !exists("b:riscv_asm_zhinxmin"))
 " Zcmop Extension: Compressed May-Be-Operations Extension
-let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zcmop", 0.2, 1)
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zcmop", 1.0, 1)
 " Zcmp Extension: Push/Pop and Double Move Instructions
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zcmp", 1.0, 1, !exists("b:riscv_asm_c") && !exists("b:riscv_asm_zcd"))
 " Zcmt Extension: Table Jump Instructions
