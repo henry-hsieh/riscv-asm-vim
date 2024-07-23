@@ -292,12 +292,15 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 
 | Extension              | Full Name                                                                                   | Supported Version |
 |:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
+| `Supm`                 | User-Level Has Pointer Masking Support                                                      | 1.0               |
 | `Ss`                   | Supervisor-Level Extension                                                                  | 1.12              |
 | `Ssaia`                | Supervisor-Level Advanced Interrupt Architecture Extension                                  | 1.0               |
 | `Ssccptr`              | Main Memory Supports Page Table Reads                                                       |                   |
 | `Sscofpmf`             | Count Overflow and Mode-Based Filtering Extension                                           | 1.0               |
 | `Sscounterenw`         | Support Writeable Enables for Any Supported Counter                                         |                   |
 | `Sscsrind`             | Supervisor-Level Indirect CSR Access                                                        | 1.0               |
+| `Ssnpm`                | Supervisor-Level Next Lower Privilege Mode Pointer Masking                                  | 1.0               |
+| `Sspm`                 | Supervisor-Level Has Pointer Masking Support                                                | 1.0               |
 | `Sspmp`                | Supervisor Memory Protection Extension                                                      | 0.8               |
 | `Ssqosid`              | Quality-of-Service Identifiers                                                              | 1.0               |
 | `Ssstateen`            | Supervisor-Level State Enable Extension                                                     | 1.0               |
@@ -327,6 +330,8 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Smcntrpmf`            | Cycle and Instret Privilege Mode Filtering                                                  | 1.0               |
 | `Smcsrind`             | Machine-Level Indirect CSR Access                                                           | 1.0               |
 | `Smepmp`               | PMP Enhancements for Memory Access and Execution Prevention on Machine Mode                 | 1.0               |
+| `Smmpm`                | Machine-Level Pointer Masking                                                               | 1.0               |
+| `Smnpm`                | Machine-Level Next Lower Privilege Mode Pointer Masking                                     | 1.0               |
 | `Smstateen`            | Machine-Level State Enable Extension                                                        | 1.0               |
 | `Sdext`                | External Debug Extension                                                                    | 1.0               |
 | `Sdtrig`               | Debug Trigger Extension                                                                     | 1.0               |

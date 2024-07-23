@@ -536,6 +536,8 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zvl512b", 1.1,
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zvl1024b", 1.1, 1)
 " Ztso Extension: Total Store Ordering
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ztso", 1.0, 1)
+" Supm Extension: User-Level Has Pointer Masking Support
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Supm", 1.0, 1)
 " Ss Extension: Supervisor-Level Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ss", 1.12, 1)
 " Ssaia Extension: Supervisor-Level Advanced Interrupt Architecture Extension
@@ -548,6 +550,10 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sscofpmf", 1.0
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Sscounterenw", 1)
 " Sscsrind Extension: Supervisor-Level Indirect CSR Access
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sscsrind", 1.0, 1)
+" Ssnpm Extension: Supervisor-Level Next Lower Privilege Mode Pointer Masking
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ssnpm", 1.0, 1)
+" Sspm Extension: Supervisor-Level Has Pointer Masking Support
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sspm", 1.0, 1)
 " Sspmp Extension: Supervisor Memory Protection Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sspmp", 0.8, 1)
 " Ssqosid Extension: Quality-of-Service Identifiers
@@ -606,6 +612,10 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smcntrpmf", 1.
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smcsrind", 1.0, 1)
 " Smepmp Extension: PMP Enhancements for Memory Access and Execution Prevention on Machine Mode
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smepmp", 1.0, 1)
+" Smmpm Extension: Machine-Level Pointer Masking
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smmpm", 1.0, 1)
+" Smnpm Extension: Machine-Level Next Lower Privilege Mode Pointer Masking
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smnpm", 1.0, 1)
 " Smstateen Extension: Machine-Level State Enable Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smstateen", 1.0, 1)
 " Sdext Extension: External Debug Extension
