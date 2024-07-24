@@ -303,6 +303,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Sscofpmf`             | Count Overflow and Mode-Based Filtering Extension                                           | 1.0               |
 | `Sscounterenw`         | Support Writeable Enables for Any Supported Counter                                         |                   |
 | `Sscsrind`             | Supervisor-Level Indirect CSR Access                                                        | 1.0               |
+| `Ssdbltrp`             | Supervisor-Level Double Trap Extension                                                      | 1.0               |
 | `Ssnpm`                | Supervisor-Level Next Lower Privilege Mode Pointer Masking                                  | 1.0               |
 | `Sspm`                 | Supervisor-Level Has Pointer Masking Support                                                | 1.0               |
 | `Sspmp`                | Supervisor Memory Protection Extension                                                      | 0.8               |
@@ -334,6 +335,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Smcdeleg`             | Counter Delegation Extension                                                                | 1.0               |
 | `Smcntrpmf`            | Cycle and Instret Privilege Mode Filtering                                                  | 1.0               |
 | `Smcsrind`             | Machine-Level Indirect CSR Access                                                           | 1.0               |
+| `Smdbltrp`             | Machine-Level Double Trap Extension                                                         | 1.0               |
 | `Smepmp`               | PMP Enhancements for Memory Access and Execution Prevention on Machine Mode                 | 1.0               |
 | `Smmpm`                | Machine-Level Pointer Masking                                                               | 1.0               |
 | `Smnpm`                | Machine-Level Next Lower Privilege Mode Pointer Masking                                     | 1.0               |
