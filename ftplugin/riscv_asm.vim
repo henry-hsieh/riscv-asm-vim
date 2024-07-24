@@ -558,6 +558,8 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sscofpmf", 1.0
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Sscounterenw", 1)
 " Sscsrind Extension: Supervisor-Level Indirect CSR Access
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sscsrind", 1.0, 1)
+" Ssctr Extension: Supervisor-Level Control Transfer Records
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ssctr", 1.0, 1)
 " Ssdbltrp Extension: Supervisor-Level Double Trap Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ssdbltrp", 1.0, 1)
 " Ssnpm Extension: Supervisor-Level Next Lower Privilege Mode Pointer Masking
@@ -622,6 +624,8 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smcdeleg", 1.0
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smcntrpmf", 1.0, 1)
 " Smcsrind Extension: Machine-Level Indirect CSR Access
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smcsrind", 1.0, 1)
+" Smctr Extension: Machine-Level Control Transfer Records
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smctr", 1.0, 1)
 " Smdbltrp Extension: Machine-Level Double Trap Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smdbltrp", 1.0, 1)
 " Smepmp Extension: PMP Enhancements for Memory Access and Execution Prevention on Machine Mode
