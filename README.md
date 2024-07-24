@@ -298,6 +298,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Supm`                 | User-Level Has Pointer Masking Support                                                      | 1.0               |
 | `Ss`                   | Supervisor-Level Extension                                                                  | 1.12              |
 | `Ssaia`                | Supervisor-Level Advanced Interrupt Architecture Extension                                  | 1.0               |
+| `Ssccfg`               | Supervisor-Level Counter Configurations                                                     | 1.0               |
 | `Ssccptr`              | Main Memory Supports Page Table Reads                                                       |                   |
 | `Sscofpmf`             | Count Overflow and Mode-Based Filtering Extension                                           | 1.0               |
 | `Sscounterenw`         | Support Writeable Enables for Any Supported Counter                                         |                   |
@@ -330,6 +331,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Shgatpa`              | SvNNx4 Mode Supported for All Modes Supported by Satp, As Well As Bare                      |                   |
 | `Sm`                   | Machine-Level Extension                                                                     | 1.12              |
 | `Smaia`                | Machine-Level Advanced Interrupt Architecture Extension                                     | 1.0               |
+| `Smcdeleg`             | Counter Delegation Extension                                                                | 1.0               |
 | `Smcntrpmf`            | Cycle and Instret Privilege Mode Filtering                                                  | 1.0               |
 | `Smcsrind`             | Machine-Level Indirect CSR Access                                                           | 1.0               |
 | `Smepmp`               | PMP Enhancements for Memory Access and Execution Prevention on Machine Mode                 | 1.0               |

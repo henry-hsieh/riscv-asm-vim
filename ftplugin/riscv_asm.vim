@@ -548,6 +548,8 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Supm", 1.0, 1)
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ss", 1.12, 1)
 " Ssaia Extension: Supervisor-Level Advanced Interrupt Architecture Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ssaia", 1.0, 1)
+" Ssccfg Extension: Supervisor-Level Counter Configurations
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ssccfg", 1.0, 1)
 " Ssccptr Extension: Main Memory Supports Page Table Reads
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Ssccptr", 1)
 " Sscofpmf Extension: Count Overflow and Mode-Based Filtering Extension
@@ -612,6 +614,8 @@ let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Shgatpa", 1)
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sm", 1.0, 1)
 " Smaia Extension: Machine-Level Advanced Interrupt Architecture Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smaia", 1.0, 1)
+" Smcdeleg Extension: Counter Delegation Extension
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smcdeleg", 1.0, 1)
 " Smcntrpmf Extension: Cycle and Instret Privilege Mode Filtering
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smcntrpmf", 1.0, 1)
 " Smcsrind Extension: Machine-Level Indirect CSR Access
