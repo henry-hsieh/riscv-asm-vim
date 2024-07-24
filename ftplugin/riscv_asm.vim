@@ -366,6 +366,8 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zicbop", 1.0, 
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zicboz", 1.0, 1)
 " Ziccamoa Extension: Main Memory Supports All Atomics in A
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Ziccamoa", 1)
+" Ziccamoc Extension: Main Memory Supports AMOCASQ level PMA
+let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Ziccamoc", 1)
 " Ziccif Extension: Main Memory Supports Instruction Fetch With Atomicity Requirement
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Ziccif", 1)
 " Zicclsm Extension: Main Memory Supports Misaligned Loads/Stores
@@ -406,6 +408,8 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zabha", 1.0, 1
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zacas", 1.0, 1)
 " Zalrsc Extension: Load-Reserved/Store-Conditional Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zalrsc", 1.0, 1)
+" Zama16b Extension: Misaligned Loads/Stores/AMOs to Main Memory That Do Not Cross 16-byte Boundary are Atomic
+let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Zama16b", 1)
 " Zawrs Extension: Wait-On-Reservation-Set Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zawrs", 1.0, 1)
 " Zfa Extension: Additional Floating-Point Instructions

@@ -88,6 +88,16 @@ if !exists("b:riscv_asm_zicond")
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_zicond"
     runtime! syntax/riscv-isas/riscv_asm_zicond.vim
 endif
+if !exists("b:riscv_asm_zimop")
+    let b:riscv_asm_zimop = b:riscv_asm_zimop_max
+    let b:undo_ftplugin .= "| unlet! b:riscv_asm_zimop"
+    runtime! syntax/riscv-isas/riscv_asm_zimop.vim
+endif
+if !exists("b:riscv_asm_zcmop")
+    let b:riscv_asm_zcmop = b:riscv_asm_zcmop_max
+    let b:undo_ftplugin .= "| unlet! b:riscv_asm_zcmop"
+    runtime! syntax/riscv-isas/riscv_asm_zcmop.vim
+endif
 if !exists("b:riscv_asm_zcb")
     let b:riscv_asm_zcb = b:riscv_asm_zcb_max
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_zcb"

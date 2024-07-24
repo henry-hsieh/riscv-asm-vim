@@ -23,6 +23,11 @@ if !exists("b:riscv_asm_sstc")
     let b:undo_ftplugin .= "| unlet! b:riscv_asm_sstc"
     runtime! syntax/riscv-isas/riscv_asm_sstc.vim
 endif
+if !exists("b:riscv_asm_sscofpmf")
+    let b:riscv_asm_sscofpmf = b:riscv_asm_sscofpmf_max
+    let b:undo_ftplugin .= "| unlet! b:riscv_asm_sscofpmf"
+    runtime! syntax/riscv-isas/riscv_asm_sscofpmf.vim
+endif
 if exists("b:riscv_asm_h")
     if !exists("b:riscv_asm_ssstateen")
         let b:riscv_asm_ssstateen = b:riscv_asm_ssstateen_max

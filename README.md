@@ -202,6 +202,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Zicbop`               | Cache-Block Prefetch Instructions                                                           | 1.0               |
 | `Zicboz`               | Cache-Block Zero Instructions                                                               | 1.0               |
 | `Ziccamoa`             | Main Memory Supports All Atomics in A                                                       |                   |
+| `Ziccamoc`             | Main Memory Supports AMOCASQ level PMA                                                      |                   |
 | `Ziccif`               | Main Memory Supports Instruction Fetch With Atomicity Requirement                           |                   |
 | `Zicclsm`              | Main Memory Supports Misaligned Loads/Stores                                                |                   |
 | `Ziccrse`              | Main Memory Supports Forward Progress on LR/SC Sequences                                    |                   |
@@ -222,6 +223,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Zabha`                | Byte and Halfword Atomic Memory Operations                                                  | 1.0               |
 | `Zacas`                | Atomic Compare-and-Swap Instructions                                                        | 1.0               |
 | `Zalrsc`               | Load-Reserved/Store-Conditional Extension                                                   | 1.0               |
+| `Zama16b`              | Misaligned Loads/Stores/AMOs to Main Memory That Do Not Cross 16-byte Boundary are Atomic   |                   |
 | `Zawrs`                | Wait-On-Reservation-Set Extension                                                           | 1.0               |
 | `Zfa`                  | Additional Floating-Point Instructions                                                      | 1.0               |
 | `Zfbfmin`              | Scalar BF16 Converts                                                                        | 1.0               |
