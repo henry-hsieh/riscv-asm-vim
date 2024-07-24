@@ -545,7 +545,7 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ztso", 1.0, 1)
 " Supm Extension: User-Level Has Pointer Masking Support
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Supm", 1.0, 1)
 " Ss Extension: Supervisor-Level Extension
-let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ss", 1.12, 1)
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ss", 1.13, 1)
 " Ssaia Extension: Supervisor-Level Advanced Interrupt Architecture Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Ssaia", 1.0, 1)
 " Ssccfg Extension: Supervisor-Level Counter Configurations
@@ -615,7 +615,7 @@ let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Shvstvecd", 
 " Shgatpa Extension: SvNNx4 Mode Supported for All Modes Supported by Satp, As Well As Bare
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Shgatpa", 1)
 " Sm Extension: Machine-Level Extension
-let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sm", 1.0, 1)
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Sm", 1.13, 1)
 " Smaia Extension: Machine-Level Advanced Interrupt Architecture Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smaia", 1.0, 1)
 " Smcdeleg Extension: Counter Delegation Extension

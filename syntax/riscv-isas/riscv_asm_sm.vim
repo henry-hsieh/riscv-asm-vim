@@ -9,6 +9,9 @@ syn keyword riscvMCSRegister           mvendorid marchid mimpid mhartid mconfigp
 syn keyword riscvMCSRegister           mstatus misa mie mtvec mcounteren
 if exists("b:riscv_asm_all_enable") || exists("b:riscv_asm_ss")
     syn keyword riscvMCSRegister           medeleg mideleg
+    if exists("b:riscv_asm_all_enable") || (b:riscv_asm_xlen == 32 && b:riscv_asm_sm >= 1.13)
+        syn keyword riscvMCSRegister           medelegh
+    endif
 endif
 if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen == 32
     syn keyword riscvMCSRegister           mstatush

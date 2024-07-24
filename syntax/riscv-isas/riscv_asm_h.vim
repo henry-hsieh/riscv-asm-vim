@@ -5,6 +5,9 @@ endif
 " Control Status Register
 " Hypervisor Trap Setup
 syn keyword riscvHCSRegister           hstatus hedeleg hideleg hie hcounteren hgeie
+if exists("b:riscv_asm_all_enable") || (b:riscv_asm_xlen == 32 && !exists("b:riscv_asm_ss")) || (b:riscv_asm_xlen == 32 && b:riscv_asm_ss >= 1.13)
+    syn keyword riscvHCSRegister           hedelegh
+endif
 " Hypervisor Trap Handling
 syn keyword riscvHCSRegister           htval hip hvip htinst hgeip
 " Hypervisor Configuration

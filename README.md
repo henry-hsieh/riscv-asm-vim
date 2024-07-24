@@ -296,7 +296,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | Extension              | Full Name                                                                                   | Supported Version |
 |:---------------------- |:------------------------------------------------------------------------------------------- |:----------------- |
 | `Supm`                 | User-Level Has Pointer Masking Support                                                      | 1.0               |
-| `Ss`                   | Supervisor-Level Extension                                                                  | 1.12              |
+| `Ss`                   | Supervisor-Level Extension                                                                  | 1.13              |
 | `Ssaia`                | Supervisor-Level Advanced Interrupt Architecture Extension                                  | 1.0               |
 | `Ssccfg`               | Supervisor-Level Counter Configurations                                                     | 1.0               |
 | `Ssccptr`              | Main Memory Supports Page Table Reads                                                       |                   |
@@ -331,7 +331,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Shvstvala`            | Vstval Provides All Needed Values                                                           |                   |
 | `Shvstvecd`            | Vstvec Supports Direct Mode                                                                 |                   |
 | `Shgatpa`              | SvNNx4 Mode Supported for All Modes Supported by Satp, As Well As Bare                      |                   |
-| `Sm`                   | Machine-Level Extension                                                                     | 1.12              |
+| `Sm`                   | Machine-Level Extension                                                                     | 1.13              |
 | `Smaia`                | Machine-Level Advanced Interrupt Architecture Extension                                     | 1.0               |
 | `Smcdeleg`             | Counter Delegation Extension                                                                | 1.0               |
 | `Smcntrpmf`            | Cycle and Instret Privilege Mode Filtering                                                  | 1.0               |
