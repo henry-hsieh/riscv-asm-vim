@@ -350,6 +350,8 @@ let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "G", 0, !exis
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Q", 2.2)
 " C Extension: 16-bit Compressed Instructions
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "C", 2.0)
+" B Extension: Bit Manipulation
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "B", 1.0)
 " V Extension: Vector Extensions
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "V", 1.1)
 " H Extension: Hypervisor Extension

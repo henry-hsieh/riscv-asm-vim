@@ -184,6 +184,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `G`                    | General                                                                                     |                   |
 | `Q`                    | Quad-Precision Floating-Point                                                               | 2.2               |
 | `C`                    | 16-bit Compressed Instructions                                                              | 2.0               |
+| `B`                    | Bit Manipulation                                                                            | 1.0               |
 | `V`                    | Vector Instructions                                                                         | 1.1               |
 
 * Privileged Extensions
