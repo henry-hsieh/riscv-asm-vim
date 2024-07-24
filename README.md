@@ -217,8 +217,10 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Zmmul`                | Multiplication Without Division                                                             | 1.0               |
 | `Za128rs`              | Reservation Set Size of 128 Bytes                                                           |                   |
 | `Za64rs`               | Reservation Set Size of 64 Bytes                                                            |                   |
+| `Zaamo`                | Atomic Memory Operations Extension                                                          | 1.0               |
 | `Zabha`                | Byte and Halfword Atomic Memory Operations                                                  | 1.0               |
 | `Zacas`                | Atomic Compare-and-Swap Instructions                                                        | 1.0               |
+| `Zalrsc`               | Load-Reserved/Store-Conditional Extension                                                   | 1.0               |
 | `Zawrs`                | Wait-On-Reservation-Set Extension                                                           | 1.0               |
 | `Zfa`                  | Additional Floating-Point Instructions                                                      | 1.0               |
 | `Zfbfmin`              | Scalar BF16 Converts                                                                        | 1.0               |

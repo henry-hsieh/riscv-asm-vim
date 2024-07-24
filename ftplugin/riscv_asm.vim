@@ -396,10 +396,14 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zmmul", 1.0, 1
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Za128rs", 1)
 " Za64rs Extension: Reservation Set Size of 64 Bytes
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Za64rs", 1)
+" Zaamo Extension: Atomic Memory Operations Extension
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zaamo", 1.0, 1)
 " Zabha Extension: Byte and Halfword Atomic Memory Operations
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zabha", 1.0, 1)
 " Zacas Extension: Atomic Compare-and-Swap Instructions
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zacas", 1.0, 1)
+" Zalrsc Extension: Load-Reserved/Store-Conditional Extension
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zalrsc", 1.0, 1)
 " Zawrs Extension: Wait-On-Reservation-Set Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Zawrs", 1.0, 1)
 " Zfa Extension: Additional Floating-Point Instructions

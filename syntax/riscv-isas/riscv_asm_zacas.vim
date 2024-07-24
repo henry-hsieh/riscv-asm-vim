@@ -11,10 +11,10 @@ if exists("b:riscv_asm_all_enable") || b:riscv_asm_xlen > 32
     syn keyword riscvAInstruction          amocas.q
 endif
 
-if !exists("b:riscv_asm_a")
-    let b:riscv_asm_a = b:riscv_asm_a_max
-    let b:undo_ftplugin .= "| unlet! b:riscv_asm_a"
-    runtime! syntax/riscv-isas/riscv_asm_a.vim
+if !exists("b:riscv_asm_zaamo")
+    let b:riscv_asm_zaamo = b:riscv_asm_zaamo_max
+    let b:undo_ftplugin .= "| unlet! b:riscv_asm_zaamo"
+    runtime! syntax/riscv-isas/riscv_asm_zaamo.vim
 endif
 
 let b:riscv_asm_defined_zacas = 0
