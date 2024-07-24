@@ -326,6 +326,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Svnapot`              | NAPOT Translation Contiguity                                                                | 1.0               |
 | `Svpbmt`               | Page-Based Memory Types                                                                     | 1.0               |
 | `Shcounterenw`         | Support Writeable Enables for Any Supported Counter                                         |                   |
+| `Shlcofideleg`         | LCOFI Interrupt Delegation to VS-Mode                                                       | 0.1               |
 | `Shtvala`              | Htval Provides All Needed Values                                                            |                   |
 | `Shvsatpa`             | Vsatp Supports All Modes Supported by Satp                                                  |                   |
 | `Shvstvala`            | Vstval Provides All Needed Values                                                           |                   |

@@ -604,6 +604,8 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Svnapot", 1.0,
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Svpbmt", 1.0, 1)
 " Shcounterenw Extension: Support Writeable Enables for Any Supported Counter
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Shcounterenw", 1)
+" Shlcofideleg Extension: LCOFI Interrupt Delegation to VS-Mode
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Shlcofideleg", 0.1, 1)
 " Shtvala Extension: Htval Provides All Needed Values
 let s:riscv_asm_isa = s:add_unversioned_extension(s:riscv_asm_isa, "Shtvala", 1)
 " Shvsatpa Extension: Vsatp Supports All Modes Supported by Satp
