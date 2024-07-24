@@ -626,6 +626,8 @@ let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smepmp", 1.0, 
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smmpm", 1.0, 1)
 " Smnpm Extension: Machine-Level Next Lower Privilege Mode Pointer Masking
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smnpm", 1.0, 1)
+" Smrnmi Extension: Resumable Non-Maskable Interrupts
+let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smrnmi", 1.0, 1)
 " Smstateen Extension: Machine-Level State Enable Extension
 let s:riscv_asm_isa = s:add_versioned_extension(s:riscv_asm_isa, "Smstateen", 1.0, 1)
 " Sdext Extension: External Debug Extension

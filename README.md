@@ -337,6 +337,7 @@ It's important to note that the ISA name is case insensitive, and underscores ma
 | `Smepmp`               | PMP Enhancements for Memory Access and Execution Prevention on Machine Mode                 | 1.0               |
 | `Smmpm`                | Machine-Level Pointer Masking                                                               | 1.0               |
 | `Smnpm`                | Machine-Level Next Lower Privilege Mode Pointer Masking                                     | 1.0               |
+| `Smrnmi`               | Resumable Non-Maskable Interrupts                                                           | 1.0               |
 | `Smstateen`            | Machine-Level State Enable Extension                                                        | 1.0               |
 | `Sdext`                | External Debug Extension                                                                    | 1.0               |
 | `Sdtrig`               | Debug Trigger Extension                                                                     | 1.0               |
